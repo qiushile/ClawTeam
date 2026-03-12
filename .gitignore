@@ -1,1 +1,49 @@
+# 环境变量
 .env
+
+# IDE 配置
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# 日志文件
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+.tmp/
+
+# 构建产物
+dist/
+build/
+*.pyc
+__pycache__/
+node_modules/
+
+# Docker 相关
+.docker/
+*.dockerfile.local
+
+# 本地配置覆盖
+*.local.json
+*.local.yaml
+*.local.yml
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
