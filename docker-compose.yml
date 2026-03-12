@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  # 统一知识底座：PostgreSQL (带向量扩展)
+  postgres-db:
+    image: pgvector/pgvector:pg16
+    container_name: openclaw-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  # 1. 协调中枢 Agent (暴露 18789 端口用于接收企业微信/钉钉消息)
+  agent-orchestrator:
+    image: openclaw/openclaw:latest
+    container_name: openclaw-orchestrator
+    restart: unless-stopped
+    ports:
+      - "18789:18789"
+    environment:
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
+    volumes:
+      - ~/.openclaw-orch:/root/.openclaw
+      - ./workspace-orchestrator:/workspace
+    depends_on:
+      - postgres-db
+
+  # 2. 研发助手 Agent (使用 sandbox 镜像保障代码执行安全) [3, 5]
+  agent-dev:
+    image: openclaw/openclaw:sandbox
+    container_name: openclaw-dev
+    restart: unless-stopped
+    environment:
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
+    volumes:
+      - ~/.openclaw-dev:/root/.openclaw
+      - ./workspace-dev:/workspace
+      - ~/company-code-repo:/app/repo # 挂载本地代码仓库用于分析
+    depends_on:
+      - postgres-db
+
+  # 3. 产品经理 Agent
+  agent-pm:
+    image: openclaw/openclaw:latest
+    container_name: openclaw-pm
+    restart: unless-stopped
+    environment:
+      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - DATABASE_URL=postgresql://pm_user:${PM_DB_PASS}@postgres-db:5432/openclaw_db
+    volumes:
+      - ~/.openclaw-pm:/root/.openclaw
+      - ./workspace-pm:/workspace
+    depends_on:
+      - postgres-db
+
+volumes:
+  pgdata:
