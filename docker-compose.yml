@@ -16,7 +16,7 @@ services:
 
   # 1. 协调中枢 Agent (暴露 18789 端口用于接收企业微信/钉钉消息)
   agent-orchestrator:
-    image: openclaw/openclaw:latest
+    image: openclaw:local
     container_name: openclaw-orchestrator
     restart: unless-stopped
     ports:
@@ -32,7 +32,7 @@ services:
 
   # 2. 研发助手 Agent (使用 sandbox 镜像保障代码执行安全) [3, 5]
   agent-dev:
-    image: openclaw/openclaw:sandbox
+    image: openclaw-sandbox:common
     container_name: openclaw-dev
     restart: unless-stopped
     environment:
@@ -47,7 +47,7 @@ services:
 
   # 3. 产品经理 Agent
   agent-pm:
-    image: openclaw/openclaw:latest
+    image: openclaw:local
     container_name: openclaw-pm
     restart: unless-stopped
     environment:
