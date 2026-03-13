@@ -49,25 +49,19 @@
         "fallbacks": [
           "dashscope/qwen-plus"
         ]
-      },
-      "costControl": {
-        "enabled": true,
-        "limits": {
-          "daily": 10
-        }
-      },
-      "tools": {
-        "allow": [
-          "group:fs",
-          "group:runtime",
-          "read",
-          "write",
-          "edit"
-        ],
-        "deny": [
-          "file_delete"
-        ]
       }
     }
+  },
+  "tools": {
+    "allow": [
+      "group:fs",
+      "group:runtime",
+      "read",
+      "write",
+      "edit"
+    ],
+    "deny": [
+      "file_delete"
+    ]
   }
 }

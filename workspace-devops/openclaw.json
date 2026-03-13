@@ -49,21 +49,15 @@
         "fallbacks": [
           "dashscope/qwen-plus"
         ]
-      },
-      "costControl": {
-        "enabled": true,
-        "limits": {
-          "daily": 10
-        }
-      },
-      "tools": {
-        "deny": [
-          "exec",
-          "bash",
-          "process",
-          "file_delete"
-        ]
       }
     }
+  },
+  "tools": {
+    "deny": [
+      "exec",
+      "bash",
+      "process",
+      "file_delete"
+    ]
   }
 }
