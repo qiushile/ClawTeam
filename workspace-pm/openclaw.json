@@ -1,2 +1,25 @@
 {
+  "agents": {
+    "defaults": {
+      "compaction": {
+        "mode": "safeguard"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "776dad0faea680b576aeb076b1a9f0038c51c22d0cc8ef85"
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-13T09:23:33.694Z"
+  }
 }
