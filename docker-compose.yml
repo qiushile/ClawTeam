@@ -37,6 +37,8 @@ services:
       - OPENAI_MODEL=qwen2.5-72b-instruct
       - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai # 确保心跳定时任务触发时间准确 [5]
+      - FEISHU_APP_ID=${FEISHU_ORCHESTRATOR_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_ORCHESTRATOR_APP_SECRET}
     volumes:
       - ./workspace-orchestrator:/home/node/.openclaw
     depends_on:
@@ -61,6 +63,8 @@ services:
       - OPENAI_MODEL=qwen2.5-coder-32b-instruct
       - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_DEV_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_DEV_APP_SECRET}
     volumes:
       - ./workspace-dev:/home/node/.openclaw
       - ~/code-repo:/app/repo # 挂载本地代码仓库用于分析
@@ -86,6 +90,8 @@ services:
       - OPENAI_MODEL=qwen-plus
       - DATABASE_URL=postgresql://pm_user:${PM_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_PM_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_PM_APP_SECRET}
     volumes:
       - ./workspace-pm:/home/node/.openclaw
     depends_on:

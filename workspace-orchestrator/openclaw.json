@@ -40,6 +40,20 @@
       "token": "my_super_secret_token_2026"
     }
   },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "accounts": {
+        "main": {
+          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
+          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
+          "botName": "OpenClaw 协调中枢"
+        }
+      }
+    }
+  },
   "meta": {
     "lastTouchedVersion": "2026.3.11",
     "lastTouchedAt": "2026-03-13T09:23:33.988Z"

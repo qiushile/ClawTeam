@@ -32,6 +32,20 @@
       "token": "776dad0faea680b576aeb076b1a9f0038c51c22d0cc8ef85"
     }
   },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "accounts": {
+        "main": {
+          "appId": "${FEISHU_PM_APP_ID}",
+          "appSecret": "${FEISHU_PM_APP_SECRET}",
+          "botName": "OpenClaw 产品经理"
+        }
+      }
+    }
+  },
   "meta": {
     "lastTouchedVersion": "2026.3.11",
     "lastTouchedAt": "2026-03-13T09:23:33.694Z"
