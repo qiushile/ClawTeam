@@ -73,7 +73,7 @@
         "main": {
           "appId": "${FEISHU_DEV_APP_ID}",
           "appSecret": "${FEISHU_DEV_APP_SECRET}",
-          "botName": "OpenClaw 研发助手"
+          "botName": "开发者"
         }
       }
     }
