@@ -31,7 +31,9 @@ services:
       - "127.0.0.1:18001:18789" # Gateway 端口，仅在本地/Tailscale内网可用 [2, 3]
       - "127.0.0.1:13000:3000"   # Orchestrator 的 Web UI 监控看板 [4]
     environment:
-      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+      - OPENAI_MODEL=qwen2.5-72b-instruct
       - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai # 确保心跳定时任务触发时间准确 [5]
     volumes:
@@ -52,7 +54,9 @@ services:
     ports:
       - "127.0.0.1:13001:3000"   # 独立映射 Dev 的 Web UI，供独立诊断 [4]
     environment:
-      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+      - OPENAI_MODEL=qwen2.5-coder-32b-instruct
       - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
     volumes:
@@ -74,7 +78,9 @@ services:
     ports:
       - "127.0.0.1:13002:3000"   # 独立映射 PM 的 Web UI，供独立诊断 [4]
     environment:
-      - DASHSCOPE_API_KEY=${DASHSCOPE_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+      - OPENAI_MODEL=qwen-plus
       - DATABASE_URL=postgresql://pm_user:${PM_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
     volumes:
