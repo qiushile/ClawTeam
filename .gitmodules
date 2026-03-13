@@ -1,0 +1,3 @@
+[submodule "workspace-pm/skills-library"]
+	path = workspace-pm/skills-library
+	url = https://github.com/deanpeters/Product-Manager-Skills.git
