@@ -1,21 +1,2 @@
 {
-  "models": {
-    "primary": {
-      "provider": "openai-compatible",
-      "baseURL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-      "apiKey": "${DASHSCOPE_API_KEY}",
-      "model": "qwen-plus"
-    },
-    "fast": {
-      "provider": "openai-compatible",
-      "baseURL": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-      "apiKey": "${DASHSCOPE_API_KEY}",
-      "model": "qwen2.5-7b-instruct"
-    }
-  },
-  "agents": {
-    "defaults": {
-      "model": { "primary": "primary", "fallbacks": ["fast"] }
-    }
-  }
 }
