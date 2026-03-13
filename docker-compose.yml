@@ -35,7 +35,7 @@ services:
       - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai # 确保心跳定时任务触发时间准确 [5]
     volumes:
-      - ~/.openclaw-orch:/root/.openclaw
+      - ~/.openclaw-orch:/home/node/.openclaw
       - ./workspace-orchestrator:/workspace
     depends_on:
       - postgres-db
@@ -57,7 +57,7 @@ services:
       - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
     volumes:
-      - ~/.openclaw-dev:/root/.openclaw
+      - ~/.openclaw-dev:/home/node/.openclaw
       - ./workspace-dev:/workspace
       - ~/code-repo:/app/repo # 挂载本地代码仓库用于分析
     depends_on:
@@ -80,7 +80,7 @@ services:
       - DATABASE_URL=postgresql://pm_user:${PM_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
     volumes:
-      - ~/.openclaw-pm:/root/.openclaw
+      - ~/.openclaw-pm:/home/node/.openclaw
       - ./workspace-pm:/workspace
     depends_on:
       - postgres-db

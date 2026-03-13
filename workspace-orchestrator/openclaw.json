@@ -1,10 +1,11 @@
 {
   "gateway": {
+    "port": 18789,
+    "bind": "lan",
     "auth": {
       "mode": "token",
       "token": "my_super_secret_token_2026"
-    },
-    "port": 18789
+    }
   },
   "models": {
     "primary": {
