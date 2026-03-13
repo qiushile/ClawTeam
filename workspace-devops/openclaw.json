@@ -1,0 +1,69 @@
+{
+  "models": {
+    "providers": {
+      "dashscope": {
+        "api": "openai-responses",
+        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "apiKey": "${ALIYUN_API_KEY}",
+        "models": [
+          {
+            "id": "qwen2.5-72b-instruct",
+            "name": "Qwen 2.5 72B Instruct",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 4096
+          },
+          {
+            "id": "qwen-plus",
+            "name": "Qwen Plus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "dashscope/qwen2.5-72b-instruct",
+        "fallbacks": [
+          "dashscope/qwen-plus"
+        ]
+      },
+      "costControl": {
+        "enabled": true,
+        "limits": {
+          "daily": 10
+        }
+      },
+      "tools": {
+        "deny": [
+          "exec",
+          "bash",
+          "process",
+          "file_delete"
+        ]
+      }
+    }
+  }
+}
