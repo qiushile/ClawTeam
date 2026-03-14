@@ -47,3 +47,14 @@ node_modules/
 *.db
 *.sqlite
 *.sqlite3
+
+# OpenClaw 运行时文件
+*/agents/
+*/canvas/
+*/credentials/
+*/cron/
+*/feishu/
+*/workspace/
+*.bak
+*.bak.*
+update-check.json
