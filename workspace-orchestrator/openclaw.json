@@ -1,14 +1,43 @@
 {
+  "meta": {
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-13T17:45:16.685Z"
+  },
+  "models": {
+    "providers": {
+      "dashscope": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
+        "apiKey": "${ALIYUN_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3-coder-plus",
+            "name": "Qwen 3 Coder Plus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 32000,
+            "maxTokens": 4096
+          }
+        ]
+      }
+    }
+  },
   "agents": {
     "defaults": {
+      "model": {
+        "primary": "dashscope/qwen3-coder-plus",
+        "fallbacks": []
+      },
       "compaction": {
         "mode": "safeguard"
-      },
-      "model": {
-        "primary": "dashscope/qwen2.5-72b-instruct",
-        "fallbacks": [
-          "dashscope/qwen-plus"
-        ]
       }
     }
   },
@@ -26,6 +55,20 @@
     "restart": true,
     "ownerDisplay": "raw"
   },
+  "channels": {
+    "feishu": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "accounts": {
+        "default": {
+          "appId": "${FEISHU_APP_ID}",
+          "appSecret": "${FEISHU_APP_SECRET}",
+          "botName": "指挥官"
+        }
+      }
+    }
+  },
   "gateway": {
     "port": 18789,
     "bind": "lan",
@@ -40,64 +83,10 @@
       "token": "my_super_secret_token_2026"
     }
   },
-  "channels": {
-    "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "accounts": {
-        "main": {
-          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
-          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
-          "botName": "指挥官"
-        }
-      }
-    }
-  },
-  "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-13T09:23:33.988Z"
-  },
-  "models": {
-    "providers": {
-      "dashscope": {
-        "api": "openai-responses",
-        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-        "apiKey": "${ALIYUN_API_KEY}",
-        "models": [
-          {
-            "id": "qwen2.5-72b-instruct",
-            "name": "Qwen 2.5 72B Instruct",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 32000,
-            "maxTokens": 4096
-          },
-          {
-            "id": "qwen-plus",
-            "name": "Qwen Plus",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 32000,
-            "maxTokens": 4096
-          }
-        ]
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
       }
     }
   }

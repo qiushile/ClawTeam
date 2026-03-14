@@ -1,30 +1,18 @@
 {
+  "meta": {
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-13T18:39:28.749Z"
+  },
   "models": {
     "providers": {
       "dashscope": {
-        "api": "openai-responses",
-        "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
         "apiKey": "${ALIYUN_API_KEY}",
+        "api": "openai-completions",
         "models": [
           {
-            "id": "qwen2.5-72b-instruct",
-            "name": "Qwen 2.5 72B Instruct",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 32000,
-            "maxTokens": 4096
-          },
-          {
-            "id": "qwen-plus",
-            "name": "Qwen Plus",
+            "id": "qwen3-coder-plus",
+            "name": "Qwen 3 Coder Plus",
             "reasoning": false,
             "input": [
               "text"
@@ -45,10 +33,11 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "dashscope/qwen2.5-72b-instruct",
-        "fallbacks": [
-          "dashscope/qwen-plus"
-        ]
+        "primary": "dashscope/qwen3-coder-plus",
+        "fallbacks": []
+      },
+      "compaction": {
+        "mode": "safeguard"
       }
     }
   },
@@ -64,17 +53,36 @@
       "file_delete"
     ]
   },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
   "channels": {
     "feishu": {
       "enabled": true,
       "dmPolicy": "pairing",
       "groupPolicy": "open",
       "accounts": {
-        "main": {
-          "appId": "${FEISHU_DEV_APP_ID}",
-          "appSecret": "${FEISHU_DEV_APP_SECRET}",
+        "default": {
+          "appId": "${FEISHU_APP_ID}",
+          "appSecret": "${FEISHU_APP_SECRET}",
           "botName": "开发者"
         }
+      }
+    }
+  },
+  "gateway": {
+    "auth": {
+      "mode": "token",
+      "token": "7dccf9bf3d215e00c5827bc4784f2b7f6786e552638338c4"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "feishu": {
+        "enabled": true
       }
     }
   }
