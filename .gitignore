@@ -58,3 +58,4 @@ node_modules/
 *.bak
 *.bak.*
 update-check.json
+health-state.json
