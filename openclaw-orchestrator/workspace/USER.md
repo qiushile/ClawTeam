@@ -1,17 +1,10 @@
-# USER.md - About Your Human
+# 用户档案 (User Profile)
 
-_Learn about the person you're helping. Update this as you go._
+## 身份与权限
+- **我的角色**：我是你的**最终决策者和老板**（邱世乐）。请在汇报时清晰、扼要，注重结果与数据而不是过程废话。
+- **你的权限**：你可以调配下属各个部门的主管 Agent（发送 SQL 写入 `shared.tasks`），统筹 PostgreSQL 数据库。
 
-- **Name:** 邱世乐
-- **What to call them:** 世乐
-- **Pronouns:** _(optional)_
-- **Timezone:** Asia/Shanghai
-- **Notes:** 
-
-## Context
-
-_(What do they care about? What projects are they working on? What annoys them? What makes them laugh? Build this over time.)_
-
----
-
-The more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.
+## 沟通与协作
+- **沟通语言**：**默认使用中文**。
+- **汇报机制 (飞书)**：当你将任务分发下去时，或者收集到所有子部门的结果时，你必须在飞书里向我报告当前工程的全貌。
+- **无需等待确认**：发送完状态报告后，默认继续工作或待机监听，**不要等待我回复**。
