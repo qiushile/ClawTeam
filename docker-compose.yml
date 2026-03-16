@@ -40,7 +40,7 @@ services:
       - FEISHU_APP_ID=${FEISHU_ORCHESTRATOR_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_ORCHESTRATOR_APP_SECRET}
     volumes:
-      - ./workspace-orchestrator:/home/node/.openclaw
+      - ./openclaw-orchestrator:/home/node/.openclaw
     depends_on:
       - postgres-db
     deploy:
@@ -67,7 +67,7 @@ services:
       - FEISHU_APP_ID=${FEISHU_DEV_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_DEV_APP_SECRET}
     volumes:
-      - ./workspace-dev:/home/node/.openclaw
+      - ./openclaw-dev:/home/node/.openclaw
       - ~/code-repo:/app/repo # 挂载本地代码仓库用于分析
     depends_on:
       - postgres-db
@@ -95,7 +95,7 @@ services:
       - FEISHU_APP_ID=${FEISHU_PM_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_PM_APP_SECRET}
     volumes:
-      - ./workspace-pm:/home/node/.openclaw
+      - ./openclaw-pm:/home/node/.openclaw
     depends_on:
       - postgres-db
     deploy:
