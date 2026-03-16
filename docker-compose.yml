@@ -104,5 +104,275 @@ services:
           memory: 2G
     logging: *default-logging
 
+  # 4. 设计部 design
+  openclaw-design:
+    image: openclaw:local
+    container_name: openclaw-design
+    restart: unless-stopped
+    ports:
+      - "18004:18789"
+      - "13004:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://design_user:${DESIGN_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_DESIGN_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_DESIGN_APP_SECRET}
+    volumes:
+      - ./openclaw-design:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 5. 投放部 ads
+  openclaw-ads:
+    image: openclaw:local
+    container_name: openclaw-ads
+    restart: unless-stopped
+    ports:
+      - "18005:18789"
+      - "13005:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://ads_user:${ADS_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_ADS_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_ADS_APP_SECRET}
+    volumes:
+      - ./openclaw-ads:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 6. 销售部 sales
+  openclaw-sales:
+    image: openclaw:local
+    container_name: openclaw-sales
+    restart: unless-stopped
+    ports:
+      - "18006:18789"
+      - "13006:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://sales_user:${SALES_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_SALES_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_SALES_APP_SECRET}
+    volumes:
+      - ./openclaw-sales:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 7. 市场部 marketing
+  openclaw-marketing:
+    image: openclaw:local
+    container_name: openclaw-marketing
+    restart: unless-stopped
+    ports:
+      - "18007:18789"
+      - "13007:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://marketing_user:${MARKETING_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_MARKETING_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_MARKETING_APP_SECRET}
+    volumes:
+      - ./openclaw-marketing:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 8. 项目部 project
+  openclaw-project:
+    image: openclaw:local
+    container_name: openclaw-project
+    restart: unless-stopped
+    ports:
+      - "18008:18789"
+      - "13008:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://project_user:${PROJECT_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_PROJECT_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_PROJECT_APP_SECRET}
+    volumes:
+      - ./openclaw-project:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 9. 测试部 qa
+  openclaw-qa:
+    image: openclaw:local
+    container_name: openclaw-qa
+    restart: unless-stopped
+    ports:
+      - "18009:18789"
+      - "13009:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://qa_user:${QA_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_QA_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_QA_APP_SECRET}
+    volumes:
+      - ./openclaw-qa:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 10. 支撑部 support
+  openclaw-support:
+    image: openclaw:local
+    container_name: openclaw-support
+    restart: unless-stopped
+    ports:
+      - "18010:18789"
+      - "13010:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://support_user:${SUPPORT_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_SUPPORT_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_SUPPORT_APP_SECRET}
+    volumes:
+      - ./openclaw-support:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 11. 空间部 spatial
+  openclaw-spatial:
+    image: openclaw:local
+    container_name: openclaw-spatial
+    restart: unless-stopped
+    ports:
+      - "18011:18789"
+      - "13011:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://spatial_user:${SPATIAL_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_SPATIAL_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_SPATIAL_APP_SECRET}
+    volumes:
+      - ./openclaw-spatial:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 12. 专家组 expert
+  openclaw-expert:
+    image: openclaw:local
+    container_name: openclaw-expert
+    restart: unless-stopped
+    ports:
+      - "18012:18789"
+      - "13012:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://expert_user:${EXPERT_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_EXPERT_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_EXPERT_APP_SECRET}
+    volumes:
+      - ./openclaw-expert:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
+  # 13. 游戏部 game
+  openclaw-game:
+    image: openclaw:local
+    container_name: openclaw-game
+    restart: unless-stopped
+    ports:
+      - "18013:18789"
+      - "13013:3000"
+    environment:
+      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_MODEL=qwen3-coder-plus
+      - DATABASE_URL=postgresql://game_user:${GAME_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_GAME_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_GAME_APP_SECRET}
+    volumes:
+      - ./openclaw-game:/home/node/.openclaw
+    depends_on:
+      - postgres-db
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    logging: *default-logging
+
 volumes:
   pgdata:
