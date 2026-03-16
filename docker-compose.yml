@@ -22,8 +22,8 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     logging: *default-logging
 
-  # 1. 协调中枢 Agent
-  agent-orchestrator:
+  # 1. 协调中枢 orchestrator
+  openclaw-orchestrator:
     image: openclaw:local
     container_name: openclaw-orchestrator
     restart: unless-stopped
@@ -49,8 +49,8 @@ services:
           memory: 2G # 限制最大内存，防止 OOM 拖垮宿主机 [6, 7]
     logging: *default-logging
 
-  # 2. 研发助手 Agent (Sandbox)
-  agent-dev:
+  # 2. 研发部 dev
+  openclaw-dev:
     image: openclaw:local
     container_name: openclaw-dev
     restart: unless-stopped
@@ -77,8 +77,8 @@ services:
           memory: 2G
     logging: *default-logging
 
-  # 3. 产品经理 Agent
-  agent-pm:
+  # 3. 产品部 pm
+  openclaw-pm:
     image: openclaw:local
     container_name: openclaw-pm
     restart: unless-stopped
