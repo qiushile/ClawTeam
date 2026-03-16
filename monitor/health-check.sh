@@ -9,7 +9,7 @@ set -e
 # 容器配置
 SERVICES=("openclaw-orchestrator" "openclaw-dev" "openclaw-pm")
 GATEWAY_PORTS=("18001" "18002" "18003")  # Gateway 端口
-WEBUI_PORTS=("13000" "13001" "13002")    # Web UI 端口
+WEBUI_PORTS=("13001" "13002" "13003")    # Web UI 端口
 DB_CONTAINER="openclaw-postgres"
 ALERT_THRESHOLD=3
 TIMEOUT=2
@@ -48,21 +48,21 @@ echo "📦 容器状态检查:"
 for i in "${!SERVICES[@]}"; do
     svc="${SERVICES[$i]}"
     port="${PORTS[$i]}"
-    
+
     # 检查容器是否存在
     exists=$(docker inspect --format '{{.State.Status}}' "$svc" 2>/dev/null || echo "not_found")
-    
+
     if [ "$exists" = "not_found" ]; then
         echo -e "  ${RED}❌ $svc: 容器不存在${NC}"
         ISSUES+=("$svc 容器不存在")
         continue
     fi
-    
+
     # 检查容器状态
     status=$(docker inspect --format '{{.State.Status}}' "$svc")
     restarts=$(docker inspect --format '{{.RestartCount}}' "$svc")
     running=$(docker inspect --format '{{.State.Running}}' "$svc")
-    
+
     if [ "$status" != "running" ]; then
         echo -e "  ${RED}❌ $svc: 状态异常 ($status)${NC}"
         ISSUES+=("$svc 状态异常：$status")
@@ -84,7 +84,7 @@ echo "  Gateway 端口:"
 for i in "${!SERVICES[@]}"; do
     svc="${SERVICES[$i]}"
     port="${GATEWAY_PORTS[$i]}"
-    
+
     # 使用 nc 进行 TCP 连接检查（比 curl 更可靠）
     if echo "" | nc -w $TIMEOUT 127.0.0.1 $port >/dev/null 2>&1; then
         echo -e "    ${GREEN}✅ 端口 $port ($svc): 正常${NC}"
@@ -99,7 +99,7 @@ echo "  Web UI 端口:"
 for i in "${!SERVICES[@]}"; do
     svc="${SERVICES[$i]}"
     port="${WEBUI_PORTS[$i]}"
-    
+
     if echo "" | nc -w $TIMEOUT 127.0.0.1 $port >/dev/null 2>&1; then
         echo -e "    ${GREEN}✅ 端口 $port ($svc): 正常${NC}"
     else

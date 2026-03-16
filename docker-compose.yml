@@ -16,7 +16,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       TZ: Asia/Shanghai # 统一时区
     ports:
-      - "127.0.0.1:15432:5432" # 仅绑定本地回环，防止数据库端口暴露到公网
+      - "15432:5432" # 仅绑定本地回环，防止数据库端口暴露到公网
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -28,8 +28,8 @@ services:
     container_name: openclaw-orchestrator
     restart: unless-stopped
     ports:
-      - "127.0.0.1:18001:18789" # Gateway 端口，仅在本地/Tailscale内网可用 [2, 3]
-      - "127.0.0.1:13000:3000"   # Orchestrator 的 Web UI 监控看板 [4]
+      - "18001:18789" # Gateway 端口，仅在本地/Tailscale内网可用 [2, 3]
+      - "13001:3000"   # Orchestrator 的 Web UI 监控看板 [4]
     environment:
       - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
@@ -55,8 +55,8 @@ services:
     container_name: openclaw-dev
     restart: unless-stopped
     ports:
-      - "127.0.0.1:18002:18789"  # Gateway 端口
-      - "127.0.0.1:13001:3000"   # Web UI 端口
+      - "18002:18789"  # Gateway 端口
+      - "13002:3000"   # Web UI 端口
     environment:
       - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
@@ -83,8 +83,8 @@ services:
     container_name: openclaw-pm
     restart: unless-stopped
     ports:
-      - "127.0.0.1:18003:18789"  # Gateway 端口
-      - "127.0.0.1:13002:3000"   # Web UI 端口
+      - "18003:18789"  # Gateway 端口
+      - "13003:3000"   # Web UI 端口
     environment:
       - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
