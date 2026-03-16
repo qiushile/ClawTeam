@@ -30,16 +30,16 @@ ClawTeam/
 ├── docker-compose.yml                # 容器集群编排，统筹启动所有 Agent
 ├── init.sql                          # PostgreSQL 初始化脚本（Schema、角色与 RLS 策略）
 │
-├── workspace-orchestrator/           # 协调中枢工作区
+├── openclaw-orchestrator/           # 协调中枢工作区
 │   ├── openclaw.json                 # 全局网关、模型与权限配置
 │   ├── SOUL.md                       # 中枢路由分发规则
 │   └── AGENTS.md
 │
-├── workspace-pm/                     # 产品经理工作区
+├── openclaw-pm/                     # 产品部门工作区
 │   ├── HEARTBEAT.md                  # 定时任务（如早间竞品简报）
 │   └── ...
 │
-├── workspace-dev/                    # 研发助手工作区 (挂载 Sandbox)
+├── openclaw-dev/                    # 研发部门工作区
 │   └── ...
 │
 └── ... (其他角色工作区)
