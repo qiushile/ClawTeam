@@ -54,7 +54,6 @@ node_modules/
 */credentials/
 */cron/
 */feishu/
-*/workspace/
 *.bak
 *.bak.*
 update-check.json
