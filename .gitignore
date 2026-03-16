@@ -59,3 +59,8 @@ node_modules/
 *.bak.*
 update-check.json
 health-state.json
+/monitor/daily-report-*.md
+/monitor/daily-report-state.json
+*/update-check.json
+*/health-state.json
+*/woekspace-state.json
