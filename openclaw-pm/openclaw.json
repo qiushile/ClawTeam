@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-13T17:45:16.778Z"
+    "lastTouchedAt": "2026-03-13T18:39:28.749Z"
   },
   "models": {
     "providers": {
@@ -42,10 +42,14 @@
     }
   },
   "tools": {
+    "allow": [
+      "group:fs",
+      "group:runtime",
+      "read",
+      "write",
+      "edit"
+    ],
     "deny": [
-      "exec",
-      "bash",
-      "process",
       "file_delete"
     ]
   },
@@ -62,9 +66,9 @@
       "groupPolicy": "open",
       "accounts": {
         "default": {
-          "appId": "${FEISHU_APP_ID}",
-          "appSecret": "${FEISHU_APP_SECRET}",
-          "botName": "产品经理"
+          "appId": "${FEISHU_PM_APP_ID}",
+          "appSecret": "${FEISHU_PM_APP_SECRET}",
+          "botName": "产品部"
         }
       }
     }
@@ -72,7 +76,7 @@
   "gateway": {
     "auth": {
       "mode": "token",
-      "token": "776dad0faea680b576aeb076b1a9f0038c51c22d0cc8ef85"
+      "token": "7dccf9bf3d215e00c5827bc4784f2b7f6786e552638338c4"
     }
   },
   "plugins": {

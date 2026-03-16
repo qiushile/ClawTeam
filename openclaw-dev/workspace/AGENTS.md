@@ -1,6 +1,6 @@
-# 研发部专业 Agent 库 (Engineering Specialized Agents)
+# 研发部专业 Agent 库
 
-你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `agents/` 目录中。
+你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `workspace/agents/` 目录中。
 
 ## 软件架构与设计
 - **软件架构师 (Software Architect)**: 专注于系统设计、DDD、架构模式和架构决策。
