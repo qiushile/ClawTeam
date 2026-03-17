@@ -20,6 +20,8 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - openclaw-net
     logging: *default-logging
 
   # 1. 协调中枢 orchestrator
@@ -31,18 +33,20 @@ services:
       - "18001:18789" # Gateway 端口，仅在本地/Tailscale内网可用 [2, 3]
       - "13001:3000"   # Orchestrator 的 Web UI 监控看板 [4]
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3-max-2026-01-23
       - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai # 确保心跳定时任务触发时间准确 [5]
       - FEISHU_APP_ID=${FEISHU_ORCHESTRATOR_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_ORCHESTRATOR_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-orchestrator:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -58,19 +62,21 @@ services:
       - "18002:18789"  # Gateway 端口
       - "13002:3000"   # Web UI 端口
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3-coder-next
       - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_DEV_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_DEV_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-dev:/home/node/.openclaw
       - ~/code-repo:/app/repo # 挂载本地代码仓库用于分析
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -86,18 +92,20 @@ services:
       - "18003:18789"  # Gateway 端口
       - "13003:3000"   # Web UI 端口
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_API_KEY=${MINIMAX_API_KEY}
+      - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
+      - OPENAI_MODEL=MiniMax-M2.5
       - DATABASE_URL=postgresql://pm_user:${PM_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_PM_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_PM_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-pm:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -113,18 +121,20 @@ services:
       - "18004:18789"
       - "13004:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_API_KEY=${KIMI_API_KEY}
+      - OPENAI_BASE_URL=${KIMI_BASE_URL}
+      - OPENAI_MODEL=kimi-k2.5
       - DATABASE_URL=postgresql://design_user:${DESIGN_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_DESIGN_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_DESIGN_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-design:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -140,18 +150,20 @@ services:
       - "18005:18789"
       - "13005:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3.5-plus
       - DATABASE_URL=postgresql://ads_user:${ADS_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_ADS_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_ADS_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-ads:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -167,18 +179,20 @@ services:
       - "18006:18789"
       - "13006:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_API_KEY=${ZHIPU_API_KEY}
+      - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
+      - OPENAI_MODEL=glm-4.7
       - DATABASE_URL=postgresql://sales_user:${SALES_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SALES_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_SALES_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-sales:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -194,18 +208,20 @@ services:
       - "18007:18789"
       - "13007:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_API_KEY=${KIMI_API_KEY}
+      - OPENAI_BASE_URL=${KIMI_BASE_URL}
+      - OPENAI_MODEL=kimi-k2.5
       - DATABASE_URL=postgresql://marketing_user:${MARKETING_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_MARKETING_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_MARKETING_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-marketing:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -221,18 +237,20 @@ services:
       - "18008:18789"
       - "13008:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3-max-2026-01-23
       - DATABASE_URL=postgresql://project_user:${PROJECT_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_PROJECT_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_PROJECT_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-project:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -248,18 +266,20 @@ services:
       - "18009:18789"
       - "13009:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3-coder-plus
       - DATABASE_URL=postgresql://qa_user:${QA_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_QA_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_QA_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-qa:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -275,18 +295,20 @@ services:
       - "18010:18789"
       - "13010:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_API_KEY=${MINIMAX_API_KEY}
+      - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
+      - OPENAI_MODEL=MiniMax-M2.5
       - DATABASE_URL=postgresql://support_user:${SUPPORT_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SUPPORT_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_SUPPORT_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-support:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -302,18 +324,20 @@ services:
       - "18011:18789"
       - "13011:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3.5-plus
       - DATABASE_URL=postgresql://spatial_user:${SPATIAL_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SPATIAL_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_SPATIAL_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-spatial:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -329,18 +353,20 @@ services:
       - "18012:18789"
       - "13012:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
-      - OPENAI_MODEL=qwen3-coder-plus
+      - OPENAI_API_KEY=${ZHIPU_API_KEY}
+      - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
+      - OPENAI_MODEL=glm-5
       - DATABASE_URL=postgresql://expert_user:${EXPERT_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_EXPERT_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_EXPERT_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-expert:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
@@ -356,23 +382,29 @@ services:
       - "18013:18789"
       - "13013:3000"
     environment:
-      - ALIYUN_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
-      - OPENAI_BASE_URL=https://coding.dashscope.aliyuncs.com/v1
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3-coder-plus
       - DATABASE_URL=postgresql://game_user:${GAME_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_GAME_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_GAME_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-game:/home/node/.openclaw
     depends_on:
       - postgres-db
+    networks:
+      - openclaw-net
     deploy:
       resources:
         limits:
           memory: 2G
     logging: *default-logging
+
+networks:
+  openclaw-net:
+    driver: bridge
 
 volumes:
   pgdata:
