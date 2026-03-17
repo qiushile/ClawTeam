@@ -1,0 +1,9 @@
+{
+  "name": "postgres-tool",
+  "version": "1.0.0",
+  "description": "Shared Postgres tool for OpenClaw",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^8.11.0"
+  }
+}

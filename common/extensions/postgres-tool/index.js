@@ -23,7 +23,7 @@ class PostgresTool {
       this.#pool = new pg.Pool({ connectionString });
       this.#logger.info('PostgresTool: Connected to DB.');
     } catch (e) {
-      this.#logger.error('PostgresTool: Failed to load pg driver or connect.', e);
+      this.#logger.error(`PostgresTool: Initialization failed. Error: ${e.message}`);
     }
   }
 
