@@ -60,7 +60,7 @@ services:
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
       - ./sentinel/credentials:/home/node/.openclaw/credentials
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 2. 研发部 dev
   openclaw-dev:
@@ -82,7 +82,7 @@ services:
       - ./openclaw-dev:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ~/code-repo:/app/repo
 
   # 3. 产品部 pm
@@ -105,7 +105,7 @@ services:
       - ./openclaw-pm:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 4. 设计部 design
   openclaw-design:
@@ -127,7 +127,7 @@ services:
       - ./openclaw-design:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 5. 投放部 ads
   openclaw-ads:
@@ -149,7 +149,7 @@ services:
       - ./openclaw-ads:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 6. 销售部 sales
   openclaw-sales:
@@ -171,7 +171,7 @@ services:
       - ./openclaw-sales:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 7. 市场部 marketing
   openclaw-marketing:
@@ -193,7 +193,7 @@ services:
       - ./openclaw-marketing:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 8. 项目部 project
   openclaw-project:
@@ -215,7 +215,7 @@ services:
       - ./openclaw-project:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 9. 测试部 qa
   openclaw-qa:
@@ -237,7 +237,7 @@ services:
       - ./openclaw-qa:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 10. 支撑部 support
   openclaw-support:
@@ -259,7 +259,7 @@ services:
       - ./openclaw-support:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 11. 空间部 spatial
   openclaw-spatial:
@@ -281,7 +281,7 @@ services:
       - ./openclaw-spatial:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 12. 专家组 expert
   openclaw-expert:
@@ -303,7 +303,7 @@ services:
       - ./openclaw-expert:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 13. 游戏部 game
   openclaw-game:
@@ -325,7 +325,7 @@ services:
       - ./openclaw-game:/home/node/.openclaw
       - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
 networks:
   openclaw-net:
