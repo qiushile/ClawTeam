@@ -242,10 +242,10 @@
     "mode": "local"
   },
   "plugins": {
+    "allow": ["feishu-openclaw-plugin", "postgres-tool"],
     "entries": {
-      "feishu": {
-        "enabled": true
-      }
+      "feishu": { "enabled": true },
+      "postgres-tool": { "enabled": true }
     }
   }
 }
