@@ -2,12 +2,12 @@
  * Shared Postgres Tool for OpenClaw Instances
  * Deployed via ClawTeam volume mapping.
  */
-export default class PostgresTool {
+class PostgresTool {
   #pool = null;
   #logger;
 
-  constructor(context) {
-    this.#logger = context.logger;
+  constructor(api) {
+    this.#logger = api.logger;
     this.init();
   }
 
@@ -52,3 +52,16 @@ export default class PostgresTool {
     if (this.#pool) await this.#pool.end();
   }
 }
+
+export default {
+  id: "postgres-tool",
+  register(api) {
+    const instance = new PostgresTool(api);
+    // 显式注册工具
+    for (const tool of instance.tools) {
+      api.registerTool(tool);
+    }
+    return instance;
+  }
+};
+
