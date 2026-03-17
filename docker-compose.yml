@@ -57,10 +57,8 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-orchestrator:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
       - ./sentinel/credentials:/home/node/.openclaw/credentials
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 2. 研发部 dev
   openclaw-dev:
@@ -80,9 +78,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-dev:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ~/code-repo:/app/repo
 
   # 3. 产品部 pm
@@ -103,9 +99,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-pm:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 4. 设计部 design
   openclaw-design:
@@ -125,9 +119,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-design:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 5. 投放部 ads
   openclaw-ads:
@@ -147,9 +139,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-ads:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 6. 销售部 sales
   openclaw-sales:
@@ -169,9 +159,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-sales:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 7. 市场部 marketing
   openclaw-marketing:
@@ -191,9 +179,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-marketing:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 8. 项目部 project
   openclaw-project:
@@ -213,9 +199,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-project:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 9. 测试部 qa
   openclaw-qa:
@@ -235,9 +219,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-qa:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 10. 支撑部 support
   openclaw-support:
@@ -257,9 +239,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-support:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 11. 空间部 spatial
   openclaw-spatial:
@@ -279,9 +259,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-spatial:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 12. 专家组 expert
   openclaw-expert:
@@ -301,9 +279,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-expert:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
   # 13. 游戏部 game
   openclaw-game:
@@ -323,9 +299,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-game:/home/node/.openclaw
-      - ./sentinel/workspace:/home/node/.openclaw/workspace
       - ./sentinel/extensions:/home/node/.openclaw/extensions
-      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
 
 networks:
   openclaw-net:
