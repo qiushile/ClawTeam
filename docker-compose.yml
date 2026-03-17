@@ -1,10 +1,25 @@
 
-# 全局日志配置，防止 Docker 容器日志无限增长撑满磁盘 [1]
+# 全局日志配置，防止 Docker 容器日志无限增长撑满磁盘
 x-logging: &default-logging
   driver: "json-file"
   options:
     max-size: "500m"
     max-file: "5"
+
+# OpenClaw 服务的通用基础配置模板
+x-openclaw-base: &openclaw-base
+  image: openclaw:local
+  restart: unless-stopped
+  env_file: .env
+  depends_on:
+    - postgres-db
+  networks:
+    - openclaw-net
+  logging: *default-logging
+  deploy:
+    resources:
+      limits:
+        memory: 2G
 
 services:
   # 统一知识底座：PostgreSQL (带向量扩展)
@@ -14,9 +29,9 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      TZ: Asia/Shanghai # 统一时区
+      TZ: Asia/Shanghai
     ports:
-      - "15432:5432" # 仅绑定本地回环，防止数据库端口暴露到公网
+      - "15432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -26,44 +41,31 @@ services:
 
   # 1. 协调中枢 orchestrator
   openclaw-orchestrator:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-orchestrator
-    env_file: .env
-    restart: unless-stopped
     ports:
-      - "18001:18789" # Gateway 端口，仅在本地/Tailscale内网可用 [2, 3]
-      - "13001:3000"   # Orchestrator 的 Web UI 监控看板 [4]
+      - "18001:18789"
+      - "13001:3000"
     environment:
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3-max-2026-01-23
       - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
-      - TZ=Asia/Shanghai # 确保心跳定时任务触发时间准确 [5]
+      - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_ORCHESTRATOR_APP_ID}
       - FEISHU_APP_SECRET=${FEISHU_ORCHESTRATOR_APP_SECRET}
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-orchestrator:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G # 限制最大内存，防止 OOM 拖垮宿主机 [6, 7]
-    logging: *default-logging
 
   # 2. 研发部 dev
   openclaw-dev:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-dev
-    env_file: .env
-    restart: unless-stopped
     ports:
-      - "18002:18789"  # Gateway 端口
-      - "13002:3000"   # Web UI 端口
+      - "18002:18789"
+      - "13002:3000"
     environment:
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
@@ -76,26 +78,15 @@ services:
     volumes:
       - ./openclaw-dev:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-      - ~/code-repo:/app/repo # 挂载本地代码仓库用于分析
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
+      - ~/code-repo:/app/repo
 
   # 3. 产品部 pm
   openclaw-pm:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-pm
-    env_file: .env
-    restart: unless-stopped
     ports:
-      - "18003:18789"  # Gateway 端口
-      - "13003:3000"   # Web UI 端口
+      - "18003:18789"
+      - "13003:3000"
     environment:
       - OPENAI_API_KEY=${MINIMAX_API_KEY}
       - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
@@ -108,22 +99,11 @@ services:
     volumes:
       - ./openclaw-pm:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 4. 设计部 design
   openclaw-design:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-design
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18004:18789"
       - "13004:3000"
@@ -139,22 +119,11 @@ services:
     volumes:
       - ./openclaw-design:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 5. 投放部 ads
   openclaw-ads:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-ads
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18005:18789"
       - "13005:3000"
@@ -170,22 +139,11 @@ services:
     volumes:
       - ./openclaw-ads:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 6. 销售部 sales
   openclaw-sales:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-sales
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18006:18789"
       - "13006:3000"
@@ -201,22 +159,11 @@ services:
     volumes:
       - ./openclaw-sales:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 7. 市场部 marketing
   openclaw-marketing:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-marketing
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18007:18789"
       - "13007:3000"
@@ -232,22 +179,11 @@ services:
     volumes:
       - ./openclaw-marketing:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 8. 项目部 project
   openclaw-project:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-project
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18008:18789"
       - "13008:3000"
@@ -263,22 +199,11 @@ services:
     volumes:
       - ./openclaw-project:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 9. 测试部 qa
   openclaw-qa:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-qa
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18009:18789"
       - "13009:3000"
@@ -294,22 +219,11 @@ services:
     volumes:
       - ./openclaw-qa:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 10. 支撑部 support
   openclaw-support:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-support
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18010:18789"
       - "13010:3000"
@@ -325,22 +239,11 @@ services:
     volumes:
       - ./openclaw-support:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 11. 空间部 spatial
   openclaw-spatial:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-spatial
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18011:18789"
       - "13011:3000"
@@ -356,22 +259,11 @@ services:
     volumes:
       - ./openclaw-spatial:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 12. 专家组 expert
   openclaw-expert:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-expert
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18012:18789"
       - "13012:3000"
@@ -387,22 +279,11 @@ services:
     volumes:
       - ./openclaw-expert:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
   # 13. 游戏部 game
   openclaw-game:
-    image: openclaw:local
+    <<: *openclaw-base
     container_name: openclaw-game
-    env_file: .env
-    restart: unless-stopped
     ports:
       - "18013:18789"
       - "13013:3000"
@@ -418,15 +299,6 @@ services:
     volumes:
       - ./openclaw-game:/home/node/.openclaw
       - ./common/plugins/postgres-tool:/home/node/.openclaw/plugins/postgres-tool
-    depends_on:
-      - postgres-db
-    networks:
-      - openclaw-net
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    logging: *default-logging
 
 networks:
   openclaw-net:
