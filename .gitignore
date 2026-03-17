@@ -65,3 +65,17 @@ health-state.json
 */update-check.json
 */health-state.json
 */woekspace-state.json
+
+# 哨兵整合 - 运行时生成
+openclaw-*/workspace/.openclaw/
+openclaw-*/identity/
+openclaw-*/subagents/
+workspace-*/
+
+# 每日报告
+*daily_*.md
+*report_*.md
+
+# 日志文件
+*.log
+logs/
