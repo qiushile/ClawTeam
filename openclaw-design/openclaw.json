@@ -5,25 +5,15 @@
   },
   "models": {
     "providers": {
-      "dashscope": {
-        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
-        "apiKey": "${ALIYUN_API_KEY}",
+      "kimi": {
+        "baseUrl": "${KIMI_BASE_URL}",
+        "apiKey": "${KIMI_API_KEY}",
         "api": "openai-completions",
         "models": [
           {
-            "id": "qwen3-coder-plus",
-            "name": "Qwen 3 Coder Plus",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 32000,
+            "id": "kimi-k2.5",
+            "name": "kimi-k2.5",
+            "contextWindow": 128000,
             "maxTokens": 4096
           }
         ]
@@ -33,7 +23,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "dashscope/qwen3-coder-plus",
+        "primary": "kimi/kimi-k2.5",
         "fallbacks": []
       },
       "compaction": {

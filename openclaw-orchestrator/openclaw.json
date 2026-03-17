@@ -7,7 +7,7 @@
     "providers": {
       "dashscope": {
         "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
-        "apiKey": "${ALIYUN_API_KEY}",
+        "apiKey": "${OPENAI_API_KEY}",
         "api": "openai-completions",
         "models": [
           {

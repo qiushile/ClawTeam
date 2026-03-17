@@ -6,24 +6,14 @@
   "models": {
     "providers": {
       "dashscope": {
-        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
+        "baseUrl": "${ALIYUN_BASE_URL}",
         "apiKey": "${ALIYUN_API_KEY}",
         "api": "openai-completions",
         "models": [
           {
-            "id": "qwen3-coder-plus",
-            "name": "Qwen 3 Coder Plus",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 32000,
+            "id": "qwen3-coder-next",
+            "name": "qwen3-coder-next",
+            "contextWindow": 128000,
             "maxTokens": 4096
           }
         ]
@@ -33,7 +23,7 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "dashscope/qwen3-coder-plus",
+        "primary": "dashscope/qwen3-coder-next",
         "fallbacks": []
       },
       "compaction": {
@@ -68,7 +58,7 @@
         "default": {
           "appId": "${FEISHU_DEV_APP_ID}",
           "appSecret": "${FEISHU_DEV_APP_SECRET}",
-          "botName": "研发部"
+          "botName": "研发部助手"
         }
       }
     }
