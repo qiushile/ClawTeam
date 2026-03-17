@@ -33,6 +33,7 @@ build/
 *.pyc
 __pycache__/
 node_modules/
+/pnpm-lock.yaml
 
 # Docker 相关
 .docker/
