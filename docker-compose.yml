@@ -28,6 +28,7 @@ services:
   openclaw-orchestrator:
     image: openclaw:local
     container_name: openclaw-orchestrator
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18001:18789" # Gateway 端口，仅在本地/Tailscale内网可用 [2, 3]
@@ -58,6 +59,7 @@ services:
   openclaw-dev:
     image: openclaw:local
     container_name: openclaw-dev
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18002:18789"  # Gateway 端口
@@ -89,6 +91,7 @@ services:
   openclaw-pm:
     image: openclaw:local
     container_name: openclaw-pm
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18003:18789"  # Gateway 端口
@@ -119,6 +122,7 @@ services:
   openclaw-design:
     image: openclaw:local
     container_name: openclaw-design
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18004:18789"
@@ -149,6 +153,7 @@ services:
   openclaw-ads:
     image: openclaw:local
     container_name: openclaw-ads
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18005:18789"
@@ -179,6 +184,7 @@ services:
   openclaw-sales:
     image: openclaw:local
     container_name: openclaw-sales
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18006:18789"
@@ -209,6 +215,7 @@ services:
   openclaw-marketing:
     image: openclaw:local
     container_name: openclaw-marketing
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18007:18789"
@@ -239,6 +246,7 @@ services:
   openclaw-project:
     image: openclaw:local
     container_name: openclaw-project
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18008:18789"
@@ -269,6 +277,7 @@ services:
   openclaw-qa:
     image: openclaw:local
     container_name: openclaw-qa
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18009:18789"
@@ -299,6 +308,7 @@ services:
   openclaw-support:
     image: openclaw:local
     container_name: openclaw-support
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18010:18789"
@@ -329,6 +339,7 @@ services:
   openclaw-spatial:
     image: openclaw:local
     container_name: openclaw-spatial
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18011:18789"
@@ -359,6 +370,7 @@ services:
   openclaw-expert:
     image: openclaw:local
     container_name: openclaw-expert
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18012:18789"
@@ -389,6 +401,7 @@ services:
   openclaw-game:
     image: openclaw:local
     container_name: openclaw-game
+    env_file: .env
     restart: unless-stopped
     ports:
       - "18013:18789"
