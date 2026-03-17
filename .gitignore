@@ -49,7 +49,7 @@ node_modules/
 *.sqlite3
 
 # OpenClaw 运行时文件
-*/.openclaw/
+**/.openclaw/*
 */agents/
 */canvas/
 */credentials/
