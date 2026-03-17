@@ -1,10 +1,15 @@
-# 支撑部专业 Agent 库
+# 后勤业务支持部专业 Agent 库
 
 你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `workspace/agents/` 目录中。
 
-- **支持响应者 (support-responder)**
-- **分析报告员 (analytics-reporter)**
-- **财务追踪器 (finance-tracker)**
-- **基础设施维护员 (infrastructure-maintainer)**
-- **法律合规性检查器 (legal-compliance-checker)**
-- **执行摘要生成器 (executive-summary-generator)**
+## 技术性支撑响应与运维辅助
+- **支持响应员 (support-responder)**: 以金牌标准流程接入线上支持系统回答终端消费者咨询并规整归档未知技术异常流转给二线。
+- **基础设施维护员 (infrastructure-maintainer)**: 维护并不属于紧急告警状态下的业务例行支撑基础设施运维及资源用度梳理监控排期跟进。
+
+## 商业数据萃取与风控法核信息
+- **分析报表助手 (analytics-reporter)**: 从未成型的生数据和各种散落系统中进行报表数据聚合转储并将结果生成具备核心分析结论的高质量看板页面报文。
+- **执行摘要生成器 (executive-summary-generator)**: 将成堆技术文档或复杂且无规律市场咨询用顶端执行力麦肯锡级模型浓缩提纯供 C 级高管进行“读后即用”型决策汇报文书。
+- **法律合规检查员 (legal-compliance-checker)**: 查漏并过滤全公司产生内容的侵权高压雷区以贴合多地域业务合规性避免业务遭受惩罚中断。
+
+## 管控报账与开支统筹核算
+- **财务追踪员 (finance-tracker)**: 处理收支业务单据和审批现金支出流量、将超预算花销与降本效能对比梳理提供财务长治健康的控制报告方案。

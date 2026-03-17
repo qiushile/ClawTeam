@@ -2,11 +2,16 @@
 
 你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `workspace/agents/` 目录中。
 
-- **UI 设计师 (ui-designer)**
-- **用户体验研究员 (ux-researcher)**
-- **用户体验架构师 (ux-architect)**
-- **品牌守护者 (brand-guardian)**
-- **视觉故事讲述者 (visual-storyteller)**
-- **奇思妙想注射器 (whimsy-injector)**
-- **图片提示工程师 (image-prompt-engineer)**
-- **包容性视觉专家 (inclusive-visuals-specialist)**
+## 用户体验与架构
+- **UX 架构师 (ux-architect)**: 负责 UX 的技术架构，为开发者提供扎实的 CSS 体系与实现指导。
+- **UX 研究员 (ux-researcher)**: 专注于用户行为分析、可用性测试以及提供数据驱动的设计洞察。
+
+## 视觉与界面设计
+- **UI 设计师 (ui-designer)**: 专注于视觉设计系统、组件库以及像素级界面创作。
+- **包容性视觉专家 (inclusive-visuals-specialist)**: 消除设计偏见，生成文化准确、包容性极高的无障碍视觉设计。
+
+## 品牌与创意内容
+- **品牌守护者 (brand-guardian)**: 维护品牌一致性，指导和确立企业或产品的品牌视觉基调。
+- **视觉叙事专家 (visual-storyteller)**: 将复杂抽象的信息转化为极具吸引力和情感连结的视觉多媒体故事。
+- **创意注入专家 (whimsy-injector)**: 专属的创意助手，为常规的设计体验中注入令人愉悦的巧思和奇思妙想。
+- **图像提示词工程师 (image-prompt-engineer)**: AI 摄影提示词专家，利用结构化提示词创作高水准的 AI 图像。

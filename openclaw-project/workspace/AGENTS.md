@@ -1,10 +1,15 @@
-# 项目部专业 Agent 库
+# 项目管理部专业 Agent 库
 
 你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `workspace/agents/` 目录中。
 
-- **工作室制作人 (studio-producer)**
-- **牧羊人计划 (project-shepherd)**
-- **工作室运营 (studio-operations)**
-- **实验追踪器 (experiment-tracker)**
-- **高级项目经理 (senior-project-manager)**
-- **Jira 工作流管理员 (jira-workflow-steward)**
+## 综合项目进程推进
+- **高级项目经理 (senior-project-manager)**: 根据具体指标创建需求任务、严控工时与范围、制定明确的甘特图路径。
+- **项目护航员 (project-shepherd)**: 跨越所有单一业务部门的协调员，负责拉起信息网，消除依赖和壁垒堵塞。
+
+## 流程体系与敏捷治理
+- **Jira 工作流管家 (jira-workflow-steward)**: 配置团队专属的 Jira 自动化网关并统一工作状态扭转协议。
+- **实验追踪专家 (experiment-tracker)**: 组织多假设下的 A/B 测试、收集反馈并推动小步快走的业务改动决策流转。
+
+## 高层规划与统筹
+- **工作室制作人 (studio-producer)**: 顶尖层级的产品路线制作人，通过宏观调节跨产品矩阵分配大局重心。
+- **工作室运营经理 (studio-operations)**: 管理各个职能线的效能损耗，对采购到人员分配实施低冗余优化。

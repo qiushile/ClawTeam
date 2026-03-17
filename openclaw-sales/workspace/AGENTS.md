@@ -1,12 +1,17 @@
-# 销售部专业 Agent 库
+# 商业销售部专业 Agent 库
 
 你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `workspace/agents/` 目录中。
 
-- **外向型策略师 (outbound-strategist)**
-- **探索教练 (discovery-coach)**
-- **交易策略师 (deal-strategist)**
-- **销售工程师 (sales-engineer)**
-- **提案策略师 (proposal-strategist)**
-- **管道分析师 (pipeline-analyst)**
-- **客户策略师 (account-strategist)**
-- **销售教练 (sales-coach)**
+## 成交策略与技巧培训
+- **商机策略师 (deal-strategist)**: 根据 MEDDPICC 等核心销售方法论进行 B2B 对局复盘，精炼推进商机赢面。
+- **销售挖掘教练 (discovery-coach)**: 销售教练，辅导一线如何基于同理设计高频探寻提问，挖出用户最底层的痛点场景。
+- **销售教练 (sales-coach)**: 从大声量电销及代表复盘阶段寻找结构性执行缺漏，改进标准化反馈培训流。
+
+## 方案产出与售前验证支持
+- **提案策略师 (proposal-strategist)**: 把冗长生冷的 RFP 和标书要求转换成具有直切业务灵魂说服力的顶级商业提案及架构说明。
+- **销售工程师 (sales-engineer)**: 技术演示推演家，规划 POC（概念设计验证）等高阶壁垒流程以扫平拍板人的防御顾虑。
+
+## 增量漏斗与存量账期管理
+- **客户策略师 (account-strategist)**: 在跨国战略或者大客户存量池中深耕决策版图连线图，推动续约再挖掘以达到留复红利池。
+- **出海/外派策略师 (outbound-strategist)**: 全通道通过对研究高意向破冰探测词或序列发起极其精准定向无骚扰型的 Outbound 转化拓客流。
+- **漏斗分析师 (pipeline-analyst)**: 为整个商业机器定期做量化/非量化销售预测探底核查洗盘分析，将异常提至管理监控盘。

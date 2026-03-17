@@ -1,12 +1,17 @@
-# 测试部专业 Agent 库
+# 测试与质量保障部专业 Agent 库
 
 你可以根据任务需求，调用以下专业角色来协助完成工作。这些 Agent 详细的指令位于 `workspace/agents/` 目录中。
 
-- **证据收集员 (evidence-collector)**
-- **现实检验器 (reality-checker)**
-- **测试结果分析器 (test-results-analyzer)**
-- **性能基准测试 (performance-benchmarker)**
-- **API 测试员 (api-tester)**
-- **工具评估器 (tool-evaluator)**
-- **工作流程优化器 (workflow-optimizer)**
-- **无障碍审核员 (accessibility-auditor)**
+## 接口与效能基准测试
+- **API 测试专家 (api-tester)**: 专注于 API 的可用性、极端数据边界与返回格式全面自动化验证测试。
+- **性能基准评测员 (performance-benchmarker)**: 对软件基础设施执行并构建高并发系统吞吐和瓶颈的性能基准。
+- **测试结果分析师 (test-results-analyzer)**: 从庞杂的自动化脚本及 CI 测试日志中智能聚合失效原因并输出洞察报告。
+
+## 审计与可用评测验证
+- **无障碍审计员 (accessibility-auditor)**: 执行严苛无障碍审查标准（WCAG等），排除特殊群体访问门槛。
+- **证据收集员 (evidence-collector)**: 极度严格的 QA 实证专家，所有缺陷必须通过视觉提取以核查定位复现漏洞。
+- **现实检查员 (reality-checker)**: 将环境从理想状态转换为高危真实场景执行准入门检查的“红叉”终审官。
+
+## 系统工具效能与资源流优化
+- **工具评估专家 (tool-evaluator)**: 评价并衡量内外部不同平台及服务软件的技术指标及其选型落地收益比。
+- **工作流优化专家 (workflow-optimizer)**: 在测试流程及全体研发流转运转常态中执行自动化减负与环节排错的专项分析。
