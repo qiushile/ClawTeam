@@ -1,0 +1,11 @@
+{
+  "id": "postgres-tool",
+  "name": "Postgres Shared Tool",
+  "kind": "utility",
+  "description": "Shared Postgres access tool. Uses environment DATABASE_URL for permission scoping.",
+  "uiHints": {},
+  "configSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}
