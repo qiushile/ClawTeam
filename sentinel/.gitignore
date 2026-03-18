@@ -1,0 +1,37 @@
+# 敏感配置文件
+openclaw.json
+.env
+*.env.local
+*.env.*.local
+
+# 运行时数据
+logs/
+*.log
+agents/*/sessions/
+feishu/dedup/
+delivery-queue/
+media/
+canvas/
+completions/
+devices/*.json
+
+# 节点模块
+node_modules/
+**/node_modules/
+
+# 锁文件
+*.lock
+pnpm-lock.yaml
+package-lock.json
+
+# 记忆文件
+memory/
+
+# 临时文件
+*.tmp
+*.bak
+update-check.json
+*.jsonl
+
+# 备份文件
+*.pre-*
