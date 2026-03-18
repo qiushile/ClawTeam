@@ -41,7 +41,7 @@ export { isMessageExpired } from "./src/messaging/inbound/dedup.js";
 // Plugin definition
 // ---------------------------------------------------------------------------
 const plugin = {
-    id: "feishu",
+    id: "feishu-openclaw-plugin",
     name: "Feishu",
     description: "Feishu/Lark channel plugin with doc/wiki/drive/task/calendar tools",
     configSchema: emptyPluginConfigSchema(),
