@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "name": "agent-team-health-check",
+      "schedule": "*/5 * * * *",
+      "enabled": true,
+      "description": "每 5 分钟检查 Agent 团队健康状态",
+      "command": "/opt/openclaw-team/monitor/heartbeat-trigger.sh",
+      "timeout": 60,
+      "notify": {
+        "onFailure": true,
+        "onCritical": true
+      }
+    }
+  ]
+}
