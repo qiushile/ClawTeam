@@ -1,9 +1,10 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-13T18:39:28.749Z"
+    "lastTouchedAt": "2026-03-17T16:55:00.295Z"
   },
   "models": {
+    "mode": "merge",
     "providers": {
       "aliyun": {
         "baseUrl": "${ALIYUN_BASE_URL}",
@@ -178,17 +179,13 @@
           }
         ]
       }
-    },
-    "mode": "merge"
+    }
   },
   "agents": {
     "defaults": {
       "model": {
         "primary": "aliyun/qwen3-coder-plus",
         "fallbacks": []
-      },
-      "compaction": {
-        "mode": "safeguard"
       },
       "models": {
         "aliyun/qwen3.5-plus": {},
@@ -199,6 +196,9 @@
         "zhipu/glm-4.7": {},
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
+      },
+      "compaction": {
+        "mode": "safeguard"
       }
     }
   },
@@ -235,16 +235,24 @@
     }
   },
   "gateway": {
+    "mode": "local",
     "auth": {
       "mode": "token",
       "token": "7dccf9bf3d215e00c5827bc4784f2b7f6786e552638338c4"
-    },
-    "mode": "local"
+    }
   },
   "plugins": {
-    "allow": ["postgres-tool"],
+    "allow": [
+      "postgres-tool",
+      "feishu"
+    ],
     "entries": {
-      "postgres-tool": { "enabled": true }
+      "postgres-tool": {
+        "enabled": true
+      },
+      "feishu": {
+        "enabled": true
+      }
     }
   }
 }
