@@ -235,6 +235,7 @@
     }
   },
   "gateway": {
+    "name": "市场部门 (Marketing)",
     "mode": "local",
     "auth": {
       "mode": "token",

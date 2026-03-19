@@ -179,8 +179,7 @@
     }
         ]
       }
-    },
-    "mode": "merge"
+    }
   },
   "agents": {
     "defaults": {
@@ -232,6 +231,7 @@
     }
   },
   "gateway": {
+    "name": "指挥中枢 (Orchestrator)",
     "port": 18789,
     "bind": "lan",
     "controlUi": {

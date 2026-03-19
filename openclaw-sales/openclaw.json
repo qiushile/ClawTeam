@@ -235,6 +235,7 @@
     }
   },
   "gateway": {
+    "name": "销售部门 (Sales)",
     "mode": "local",
     "auth": {
       "mode": "token",

@@ -235,6 +235,7 @@
     }
   },
   "gateway": {
+    "name": "研发部门 (Dev)",
     "mode": "local",
     "auth": {
       "mode": "token",

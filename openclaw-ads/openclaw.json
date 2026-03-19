@@ -235,6 +235,7 @@
     }
   },
   "gateway": {
+    "name": "投放部门 (Ads)",
     "mode": "local",
     "auth": {
       "mode": "token",

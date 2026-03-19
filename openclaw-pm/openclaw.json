@@ -241,6 +241,7 @@
     }
   },
   "gateway": {
+    "name": "产品部门 (PM)",
     "mode": "local",
     "auth": {
       "mode": "token",

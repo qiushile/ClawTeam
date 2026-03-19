@@ -235,6 +235,7 @@
     }
   },
   "gateway": {
+    "name": "设计部门 (Design)",
     "mode": "local",
     "auth": {
       "mode": "token",
