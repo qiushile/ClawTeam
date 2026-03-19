@@ -73,6 +73,12 @@ openclaw-*/identity/
 openclaw-*/subagents/
 workspace-*/
 
+# Skills - ClawHub 安装信息
+sentinel/workspace/skills/*/.clawhub/
+
+# ClawSec - 动态安全情报 feed
+sentinel/workspace/skills/clawsec-suite/advisories/feed.json
+
 # 每日报告
 *daily_*.md
 *report_*.md
