@@ -89,3 +89,6 @@ sentinel/extensions/moltguard/data/*.db-wal
 
 # 备份文件
 backups/
+
+# 设备配对凭证（敏感）
+openclaw-*/devices/
