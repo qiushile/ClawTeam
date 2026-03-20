@@ -278,3 +278,133 @@ CREATE POLICY department_task_policy ON shared.tasks
         assignee = CURRENT_USER
         OR requester = CURRENT_USER
     );
+
+-- ==========================================
+-- 多 Agent 协作增强表 (心跳、消息队列、产物、讨论)
+-- ==========================================
+
+-- (5) Agent 心跳表：用于 Orchestrator 判断路由目标是否在线
+CREATE TABLE shared.agent_heartbeats (
+    db_username VARCHAR(50) PRIMARY KEY,     -- 对应真实 DB 用户名
+    last_seen_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(20) DEFAULT 'online',     -- online / busy / offline
+    current_task_id INTEGER REFERENCES shared.tasks(id),
+    metadata JSONB                           -- 可扩展: 版本号、模型、负载等
+);
+
+-- (6) 跨 Agent 异步消息队列：轻量级点对点或广播通信
+CREATE TABLE shared.inter_agent_messages (
+    id SERIAL PRIMARY KEY,
+    from_agent VARCHAR(50) NOT NULL,         -- 发送方 DB 用户名
+    to_agent VARCHAR(50),                    -- 接收方 (NULL = 广播)
+    channel VARCHAR(50) DEFAULT 'default',   -- 频道 (如 'task_updates', 'alerts')
+    msg_type VARCHAR(50) NOT NULL,           -- 类型 (如 'REQUEST', 'RESPONSE', 'NOTIFY')
+    payload JSONB NOT NULL,                  -- 消息体
+    ref_task_id INTEGER REFERENCES shared.tasks(id),
+    is_read BOOLEAN DEFAULT false,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- (7) 跨部门共享产物表：存放 PRD、设计稿、测试报告等交付物
+CREATE TABLE shared.shared_artifacts (
+    id SERIAL PRIMARY KEY,
+    task_id INTEGER REFERENCES shared.tasks(id),
+    owner VARCHAR(50) NOT NULL,              -- 产出方 DB 用户名
+    artifact_type VARCHAR(50) NOT NULL,      -- 类型: 'PRD', 'DESIGN', 'CODE', 'TEST_REPORT'
+    title VARCHAR(255) NOT NULL,
+    content TEXT,                            -- 正文或存储链接
+    metadata JSONB,                          -- 扩展字段 (格式、大小等)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- (8) 任务讨论表：执行过程中的多轮对话和 Feedback
+CREATE TABLE shared.task_comments (
+    id SERIAL PRIMARY KEY,
+    task_id INTEGER REFERENCES shared.tasks(id) ON DELETE CASCADE,
+    author VARCHAR(50) NOT NULL,             -- 评论者 DB 用户名
+    content TEXT NOT NULL,
+    parent_comment_id INTEGER REFERENCES shared.task_comments(id), -- 楼中楼
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ==========================================
+-- 增强表触发器与索引
+-- ==========================================
+-- ==========================================
+-- 为共享产物更新 update_time
+-- ==========================================
+CREATE TRIGGER update_shared_artifacts_modtime
+    BEFORE UPDATE ON shared.shared_artifacts
+    FOR EACH ROW
+    EXECUTE FUNCTION update_updated_at_column();
+
+-- 消息提醒触发器
+CREATE OR REPLACE FUNCTION notify_new_message()
+RETURNS TRIGGER AS $$
+BEGIN
+  PERFORM pg_notify('message_channel', json_build_object(
+    'id', NEW.id,
+    'from', NEW.from_agent,
+    'to', NEW.to_agent,
+    'type', NEW.msg_type,
+    'channel', NEW.channel
+  )::text);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER inter_agent_message_notifier
+  AFTER INSERT ON shared.inter_agent_messages
+  FOR EACH ROW EXECUTE FUNCTION notify_new_message();
+
+-- 索引
+CREATE INDEX idx_heartbeats_status ON shared.agent_heartbeats(status);
+CREATE INDEX idx_messages_to_unread ON shared.inter_agent_messages(to_agent, is_read) WHERE NOT is_read;
+CREATE INDEX idx_messages_channel ON shared.inter_agent_messages(channel, created_at DESC);
+CREATE INDEX idx_artifacts_task ON shared.shared_artifacts(task_id);
+CREATE INDEX idx_artifacts_type ON shared.shared_artifacts(artifact_type);
+CREATE INDEX idx_comments_task ON shared.task_comments(task_id, created_at);
+
+-- ==========================================
+-- 增强表的基础授权
+-- （因有 DEFAULT PRIVILEGES，其实这部分可以省略，
+--   但为了向后兼容对现有存在的表显式赋权更为保险）
+-- ==========================================
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.agent_heartbeats TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.inter_agent_messages TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.shared_artifacts TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.task_comments TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+
+
+-- ==========================================
+-- 为新表开启行级安全 (RLS)
+-- ==========================================
+
+ALTER TABLE shared.agent_heartbeats ENABLE ROW LEVEL SECURITY;
+ALTER TABLE shared.inter_agent_messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE shared.shared_artifacts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE shared.task_comments ENABLE ROW LEVEL SECURITY;
+
+-- Orchestrator 完全管理所有新表
+CREATE POLICY orchestrator_heartbeats_policy ON shared.agent_heartbeats FOR ALL TO orchestrator_user USING (true) WITH CHECK (true);
+CREATE POLICY orchestrator_messages_policy ON shared.inter_agent_messages FOR ALL TO orchestrator_user USING (true) WITH CHECK (true);
+CREATE POLICY orchestrator_artifacts_policy ON shared.shared_artifacts FOR ALL TO orchestrator_user USING (true) WITH CHECK (true);
+CREATE POLICY orchestrator_comments_policy ON shared.task_comments FOR ALL TO orchestrator_user USING (true) WITH CHECK (true);
+
+-- 部门用户权限：
+-- 1. Heartbeats: 可看所有，只能改自己的
+CREATE POLICY dept_heartbeats_select ON shared.agent_heartbeats FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (true);
+CREATE POLICY dept_heartbeats_modify ON shared.agent_heartbeats FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (db_username = CURRENT_USER) WITH CHECK (db_username = CURRENT_USER);
+
+-- 2. Messages: 只能看发给自己的、自己发的，或者广播消息 (to_agent IS NULL)
+CREATE POLICY dept_messages_policy ON shared.inter_agent_messages FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (from_agent = CURRENT_USER OR to_agent = CURRENT_USER OR to_agent IS NULL) WITH CHECK (from_agent = CURRENT_USER);
+
+-- 3. Artifacts: 任何人都可以查看和评论关联任务的产物，但只有 Owner 能改
+CREATE POLICY dept_artifacts_select ON shared.shared_artifacts FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (true);
+CREATE POLICY dept_artifacts_modify ON shared.shared_artifacts FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (owner = CURRENT_USER) WITH CHECK (owner = CURRENT_USER);
+
+-- 4. Comments: 任何人都可以查看，只有 Author 能改
+CREATE POLICY dept_comments_select ON shared.task_comments FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (true);
+CREATE POLICY dept_comments_modify ON shared.task_comments FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (author = CURRENT_USER) WITH CHECK (author = CURRENT_USER);
+
