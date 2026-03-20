@@ -95,7 +95,11 @@ CREATE INDEX idx_tasks_created_at ON shared.tasks(created_at DESC);
 CREATE INDEX idx_events_task_id_created ON shared.collaboration_events(task_id, created_at DESC);
 CREATE INDEX idx_kb_department_category ON shared.knowledge_base(department, category);
 
--- 向量索引示例 (HNSW)
+-- GIN 索引：支持按标签数组高效搜索
+CREATE INDEX idx_tasks_tags ON shared.tasks USING gin (tags);
+CREATE INDEX idx_kb_tags ON shared.knowledge_base USING gin (tags);
+
+-- 向量索引 (HNSW)
 CREATE INDEX idx_kb_embedding ON shared.knowledge_base USING hnsw (content_embedding vector_cosine_ops);
 CREATE INDEX idx_tasks_embedding ON shared.tasks USING hnsw (context_embedding vector_cosine_ops);
 
@@ -106,8 +110,16 @@ CREATE OR REPLACE FUNCTION notify_task_status_change()
 RETURNS TRIGGER AS $$
 DECLARE
   payload json;
+  should_notify boolean := false;
 BEGIN
-  IF (TG_OP = 'INSERT' OR NEW.status <> OLD.status OR NEW.assignee <> OLD.assignee) THEN
+  -- INSERT 时 OLD 为 NULL，必须单独判断
+  IF (TG_OP = 'INSERT') THEN
+    should_notify := true;
+  ELSIF (NEW.status <> OLD.status OR NEW.assignee <> OLD.assignee) THEN
+    should_notify := true;
+  END IF;
+
+  IF should_notify THEN
     payload = json_build_object(
       'task_id', NEW.id,
       'title', NEW.title,
@@ -257,6 +269,7 @@ CREATE POLICY orchestrator_task_policy ON shared.tasks
 -- 这要求应用端填写的 assignee 必须是完整的数据库用户名，如 'dev_user'
 CREATE POLICY department_task_policy ON shared.tasks
     FOR ALL
+    TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user
     USING (
         assignee = CURRENT_USER
         OR requester = CURRENT_USER
