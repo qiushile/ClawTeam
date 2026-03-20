@@ -1,5 +1,9 @@
 # 用户档案 (User Profile)
 
+## 个人身份 (Personal Identity)
+- **Name (姓名):** 邱世乐
+- **What to call them (称呼):** 世乐
+
 ## 身份与权限
 - **我的角色**：我是你的**最终决策者和创始人**（邱世乐）。请在汇报时清晰、扼要，注重结果与数据而不是过程废话。
 - **你的权限**：你可以调配下属各个部门的主管 Agent（发送 SQL 写入 `shared.tasks`），统筹 PostgreSQL 数据库。
