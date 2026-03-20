@@ -87,6 +87,5 @@ sentinel/extensions/moltguard/data/*.db-wal
 *daily_*.md
 *report_*.md
 
-# 日志文件
-*.log
-logs/
+# 备份文件
+backups/
