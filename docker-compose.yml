@@ -43,6 +43,7 @@ services:
   openclaw-orchestrator:
     <<: *openclaw-base
     container_name: openclaw-orchestrator
+    hostname: openclaw-orchestrator
     ports:
       - "18001:18789"
       - "13001:3000"
@@ -64,6 +65,7 @@ services:
   openclaw-dev:
     <<: *openclaw-base
     container_name: openclaw-dev
+    hostname: openclaw-dev
     ports:
       - "18002:18789"
       - "13002:3000"
@@ -85,6 +87,7 @@ services:
   openclaw-pm:
     <<: *openclaw-base
     container_name: openclaw-pm
+    hostname: openclaw-pm
     ports:
       - "18003:18789"
       - "13003:3000"
@@ -105,6 +108,7 @@ services:
   openclaw-design:
     <<: *openclaw-base
     container_name: openclaw-design
+    hostname: openclaw-design
     ports:
       - "18004:18789"
       - "13004:3000"
@@ -125,6 +129,7 @@ services:
   openclaw-ads:
     <<: *openclaw-base
     container_name: openclaw-ads
+    hostname: openclaw-ads
     ports:
       - "18005:18789"
       - "13005:3000"
@@ -145,6 +150,7 @@ services:
   openclaw-sales:
     <<: *openclaw-base
     container_name: openclaw-sales
+    hostname: openclaw-sales
     ports:
       - "18006:18789"
       - "13006:3000"
@@ -165,6 +171,7 @@ services:
   openclaw-marketing:
     <<: *openclaw-base
     container_name: openclaw-marketing
+    hostname: openclaw-marketing
     ports:
       - "18007:18789"
       - "13007:3000"
@@ -185,6 +192,7 @@ services:
   openclaw-project:
     <<: *openclaw-base
     container_name: openclaw-project
+    hostname: openclaw-project
     ports:
       - "18008:18789"
       - "13008:3000"
@@ -205,6 +213,7 @@ services:
   openclaw-qa:
     <<: *openclaw-base
     container_name: openclaw-qa
+    hostname: openclaw-qa
     ports:
       - "18009:18789"
       - "13009:3000"
@@ -225,6 +234,7 @@ services:
   openclaw-support:
     <<: *openclaw-base
     container_name: openclaw-support
+    hostname: openclaw-support
     ports:
       - "18010:18789"
       - "13010:3000"
@@ -245,6 +255,7 @@ services:
   openclaw-spatial:
     <<: *openclaw-base
     container_name: openclaw-spatial
+    hostname: openclaw-spatial
     ports:
       - "18011:18789"
       - "13011:3000"
@@ -265,6 +276,7 @@ services:
   openclaw-expert:
     <<: *openclaw-base
     container_name: openclaw-expert
+    hostname: openclaw-expert
     ports:
       - "18012:18789"
       - "13012:3000"
@@ -285,6 +297,7 @@ services:
   openclaw-game:
     <<: *openclaw-base
     container_name: openclaw-game
+    hostname: openclaw-game
     ports:
       - "18013:18789"
       - "13013:3000"
