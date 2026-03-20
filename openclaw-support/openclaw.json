@@ -235,7 +235,6 @@
     }
   },
   "gateway": {
-    "name": "支撑部门 (Support)",
     "mode": "local",
     "auth": {
       "mode": "token",

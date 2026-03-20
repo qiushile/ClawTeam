@@ -235,7 +235,6 @@
     }
   },
   "gateway": {
-    "name": "游戏部门 (Game)",
     "mode": "local",
     "auth": {
       "mode": "token",

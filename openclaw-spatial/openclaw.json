@@ -235,7 +235,6 @@
     }
   },
   "gateway": {
-    "name": "空间部门 (Spatial)",
     "mode": "local",
     "auth": {
       "mode": "token",

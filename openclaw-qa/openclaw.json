@@ -235,7 +235,6 @@
     }
   },
   "gateway": {
-    "name": "测试部门 (QA)",
     "mode": "local",
     "auth": {
       "mode": "token",

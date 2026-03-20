@@ -235,7 +235,6 @@
     }
   },
   "gateway": {
-    "name": "组内专家组 (Expert)",
     "mode": "local",
     "auth": {
       "mode": "token",

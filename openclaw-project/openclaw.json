@@ -235,7 +235,6 @@
     }
   },
   "gateway": {
-    "name": "项目部门 (Project)",
     "mode": "local",
     "auth": {
       "mode": "token",
