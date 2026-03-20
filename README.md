@@ -10,7 +10,7 @@ ClawTeam 是一个为软件开发公司打造的 **“联邦式全生命周期 A
 *   **联邦式中枢调度 (Orchestrator-Led):** 采用统一协调中枢接收前端（企业微信/钉钉）请求，通过意图识别和向量匹配，精准将任务路由给后端的专业 Agent（产品、研发、测试等）。
 *   **Docker 物理级隔离与沙箱:** 所有的专业 Agent 作为独立的 Docker 容器运行，针对涉及代码执行的高危 Agent（如 Developer Helper、Auto-Tester）默认采用 `sandbox` / `sandbox-browser` 隔离镜像，保障宿主机安全。
 *   **PostgreSQL 统一知识底座:** 放弃分散的本地文件记忆，所有 Agent 接入搭载 `pgvector` 扩展的统一 PostgreSQL 数据库。
-*   **RLS 行级安全与 Schema 隔离:** 在数据库层为不同 Agent 分配专属 Schema（如 `pm_schema`, `dev_schema`）保护私有知识，并通过 行级安全策略 (RLS) 实现细粒度的共享表（如 `shared.requirements`）读写协同。
+*   **RLS 行级安全与 Schema 隔离:** 在数据库层为不同 Agent 分配专属 Schema（如 `pm_schema`, `dev_schema`）保护私有知识，并通过 行级安全策略 (RLS) 实现细粒度的共享表（如 `shared.tasks`）读写协同。
 *   **大模型算力池化 (Coding Plan 优化):** 所有 Agent 共享统一的阿里云 Dashscope API Key，但在各自的 `openclaw.json` 中配置最匹配岗位的模型（如研发配置 `qwen2.5-coder` / `glm-5`，中枢配置 `qwen-max`），并强制启用 Fallback 防限流降级链。
 
 ## 团队成员 (Agent Roster)
