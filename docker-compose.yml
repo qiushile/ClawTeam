@@ -58,6 +58,7 @@ services:
       - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
     volumes:
       - ./openclaw-orchestrator:/home/node/.openclaw
+      - ./openclaw-orchestrator/workspace:/workspace
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./sentinel/credentials:/home/node/.openclaw/credentials
 
