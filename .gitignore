@@ -92,3 +92,21 @@ backups/
 
 # 设备配对凭证（敏感）
 openclaw-*/devices/
+
+# 测试脚本（可能包含敏感信息）
+test-db*.js
+*/test_db.js
+*-test.js
+test_*.js
+*.test.js
+
+# 运行时数据
+openclaw-*/delivery-queue/
+openclaw-*/workspace/memory/
+*-summary.md
+*daily_*.md
+*report_*.md
+
+# 缓存
+.clawhub/
+**/.clawhub/
