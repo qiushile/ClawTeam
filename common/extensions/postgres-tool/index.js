@@ -87,7 +87,14 @@ class PostgresTool {
           properties: { sql: { type: 'string' } },
           required: ['sql']
         },
-        execute: async ({ sql }) => this.#query(sql)
+        execute: async (args) => {
+          const sql = args?.sql;
+          if (!sql) {
+            this.#logger.error(`database_query called with invalid sql: ${JSON.stringify(args)}`);
+            throw new Error('database_query: sql parameter is required');
+          }
+          return this.#query(sql);
+        }
       },
 
       // 2. 任务流转机制
