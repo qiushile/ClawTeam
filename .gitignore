@@ -27,6 +27,14 @@ logs/
 .cache/
 .tmp/
 
+# 图片文件
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.webp
+
 # 构建产物
 dist/
 build/
