@@ -118,3 +118,6 @@ openclaw-*/workspace/memory/
 # 缓存
 .clawhub/
 **/.clawhub/
+
+# 开发测试目录
+openclaw-dev/dbtest/
