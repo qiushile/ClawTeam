@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "pg": "^8.20.0"
+  },
+  "dependencies": {
+    "pg-types": "^4.1.0",
+    "postgres-array": "^3.0.4"
+  }
+}
