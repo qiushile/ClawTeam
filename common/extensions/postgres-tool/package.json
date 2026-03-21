@@ -4,6 +4,7 @@
   "description": "Shared Postgres tool for OpenClaw",
   "main": "index.js",
   "dependencies": {
+    "@sinclair/typebox": "^0.34.48",
     "pg": "^8.11.0"
   }
 }
