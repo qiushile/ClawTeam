@@ -114,14 +114,32 @@ class PostgresTool {
           required: ['title', 'assignee']
         },
         execute: async (params) => {
+          // 严格参数验证
+          const title = typeof params?.title === 'string' ? params.title.trim() : '';
+          const assignee = typeof params?.assignee === 'string' ? params.assignee.trim() : '';
+          
+          if (!title) {
+            this.#logger.error(`send_task called with invalid title: ${JSON.stringify(params)}`);
+            throw new Error('send_task: title is required and must be a non-empty string');
+          }
+          if (!assignee) {
+            this.#logger.error(`send_task called with invalid assignee: ${JSON.stringify(params)}`);
+            throw new Error('send_task: assignee is required and must be a non-empty string');
+          }
+          
           const sql = `
             INSERT INTO shared.tasks (title, description, assignee, requester, priority, tags, parent_task_id)
             VALUES ($1, $2, $3, $4, $5, $6, $7)
             RETURNING id, status, created_at;
           `;
           const values = [
-            params.title, params.description || '', params.assignee, this.#dbUsername,
-            params.priority || 'P2', params.tags || [], params.parent_task_id || null
+            title,
+            typeof params?.description === 'string' ? params.description : '',
+            assignee,
+            this.#dbUsername,
+            typeof params?.priority === 'string' ? params.priority : 'P2',
+            Array.isArray(params?.tags) ? params.tags : [],
+            typeof params?.parent_task_id === 'number' ? params.parent_task_id : null
           ];
           return this.#query(sql, values);
         }
