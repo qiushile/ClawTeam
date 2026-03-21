@@ -32,25 +32,6 @@
             }
           },
           {
-            "id": "qwen3-max-2026-01-23",
-            "name": "qwen3-max-2026-01-23",
-            "reasoning": true,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 262144,
-            "maxTokens": 65536,
-            "compat": {
-              "thinkingFormat": "qwen"
-            }
-          },
-          {
             "id": "qwen3-coder-plus",
             "name": "qwen3-coder-plus",
             "reasoning": false,
@@ -189,7 +170,6 @@
       },
       "models": {
         "aliyun/qwen3.5-plus": {},
-        "aliyun/qwen3-max-2026-01-23": {},
         "aliyun/qwen3-coder-plus": {},
         "aliyun/qwen3-coder-next": {},
         "zhipu/glm-5": {},
