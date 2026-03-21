@@ -87,10 +87,9 @@ class PostgresTool {
           properties: { sql: { type: 'string' } },
           required: ['sql']
         },
-        execute: async (args) => {
-          const sql = args?.sql;
-          if (!sql) {
-            this.#logger.error(`database_query called with invalid sql: ${JSON.stringify(args)}`);
+        execute: async ({ sql }) => {
+          if (!sql || typeof sql !== 'string') {
+            this.#logger.error(`database_query called with invalid sql`);
             throw new Error('database_query: sql parameter is required');
           }
           return this.#query(sql);
@@ -113,17 +112,17 @@ class PostgresTool {
           },
           required: ['title', 'assignee']
         },
-        execute: async (params) => {
+        execute: async ({ title, description, assignee, priority, tags, parent_task_id }) => {
           // 严格参数验证
-          const title = typeof params?.title === 'string' ? params.title.trim() : '';
-          const assignee = typeof params?.assignee === 'string' ? params.assignee.trim() : '';
+          const safeTitle = typeof title === 'string' ? title.trim() : '';
+          const safeAssignee = typeof assignee === 'string' ? assignee.trim() : '';
           
-          if (!title) {
-            this.#logger.error(`send_task called with invalid title: ${JSON.stringify(params)}`);
+          if (!safeTitle) {
+            this.#logger.error(`send_task called with invalid title`);
             throw new Error('send_task: title is required and must be a non-empty string');
           }
-          if (!assignee) {
-            this.#logger.error(`send_task called with invalid assignee: ${JSON.stringify(params)}`);
+          if (!safeAssignee) {
+            this.#logger.error(`send_task called with invalid assignee`);
             throw new Error('send_task: assignee is required and must be a non-empty string');
           }
           
@@ -133,13 +132,13 @@ class PostgresTool {
             RETURNING id, status, created_at;
           `;
           const values = [
-            title,
-            typeof params?.description === 'string' ? params.description : '',
-            assignee,
+            safeTitle,
+            typeof description === 'string' ? description : '',
+            safeAssignee,
             this.#dbUsername,
-            typeof params?.priority === 'string' ? params.priority : 'P2',
-            Array.isArray(params?.tags) ? params.tags : [],
-            typeof params?.parent_task_id === 'number' ? params.parent_task_id : null
+            typeof priority === 'string' ? priority : 'P2',
+            Array.isArray(tags) ? tags : [],
+            typeof parent_task_id === 'number' ? parent_task_id : null
           ];
           return this.#query(sql, values);
         }
@@ -210,17 +209,16 @@ class PostgresTool {
           },
           required: ['msg_type', 'payload']
         },
-        execute: async (params) => {
+        execute: async ({ to_agent, msg_type, payload }) => {
           // 严格参数验证
-          const msgType = typeof params?.msg_type === 'string' ? params.msg_type.trim() : '';
-          const payload = params?.payload;
+          const safeMsgType = typeof msg_type === 'string' ? msg_type.trim() : '';
           
-          if (!msgType) {
-            this.#logger.error(`send_message called with invalid msg_type: ${JSON.stringify(params)}`);
+          if (!safeMsgType) {
+            this.#logger.error(`send_message called with invalid msg_type`);
             throw new Error('send_message: msg_type is required and must be a non-empty string');
           }
           if (payload === undefined || payload === null || typeof payload !== 'object') {
-            this.#logger.error(`send_message called with invalid payload: ${JSON.stringify(params)}`);
+            this.#logger.error(`send_message called with invalid payload`);
             throw new Error('send_message: payload is required and must be an object');
           }
           
@@ -229,7 +227,7 @@ class PostgresTool {
             VALUES ($1, $2, $3, $4)
             RETURNING id, created_at;
           `;
-          return this.#query(sql, [this.#dbUsername, typeof params?.to_agent === 'string' ? params.to_agent : null, msgType, payload]);
+          return this.#query(sql, [this.#dbUsername, typeof to_agent === 'string' ? to_agent : null, safeMsgType, payload]);
         }
       },
       {
