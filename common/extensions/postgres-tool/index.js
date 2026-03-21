@@ -211,12 +211,25 @@ class PostgresTool {
           required: ['msg_type', 'payload']
         },
         execute: async (params) => {
+          // 严格参数验证
+          const msgType = typeof params?.msg_type === 'string' ? params.msg_type.trim() : '';
+          const payload = params?.payload;
+          
+          if (!msgType) {
+            this.#logger.error(`send_message called with invalid msg_type: ${JSON.stringify(params)}`);
+            throw new Error('send_message: msg_type is required and must be a non-empty string');
+          }
+          if (payload === undefined || payload === null || typeof payload !== 'object') {
+            this.#logger.error(`send_message called with invalid payload: ${JSON.stringify(params)}`);
+            throw new Error('send_message: payload is required and must be an object');
+          }
+          
           const sql = `
             INSERT INTO shared.inter_agent_messages (from_agent, to_agent, msg_type, payload)
             VALUES ($1, $2, $3, $4)
             RETURNING id, created_at;
           `;
-          return this.#query(sql, [this.#dbUsername, params.to_agent || null, params.msg_type, params.payload]);
+          return this.#query(sql, [this.#dbUsername, typeof params?.to_agent === 'string' ? params.to_agent : null, msgType, payload]);
         }
       },
       {
