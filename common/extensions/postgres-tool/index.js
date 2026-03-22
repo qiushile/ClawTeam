@@ -32,7 +32,7 @@ export async function initPostgresTool(api) {
     logger.info(`PostgresTool: Connected to DB as ${dbUsername}.`);
 
     // 启动专属监听客户端
-    await startListener(connectionString);
+    await startListener();
   } catch (e) {
     logger.error(`PostgresTool: Initialization failed. Error: ${e.message}`);
     return null;
@@ -43,9 +43,12 @@ export async function initPostgresTool(api) {
 
 // --- Start async listener for realtime notifications ---
 let listenerClient = null;
-async function startListener(connectionString) {
+async function startListener() {
+  if (!dbPool) return;
+  
   try {
-    listenerClient = new Pool({ connectionString });
+    // 使用专用的 Client 进行监听，必须从 Pool 获取并持久持有
+    listenerClient = await dbPool.connect();
     
     listenerClient.on('notification', (msg) => {
       try {
@@ -56,12 +59,26 @@ async function startListener(connectionString) {
       }
     });
 
+    listenerClient.on('error', (err) => {
+      logger.error('PostgresTool: Listener client error', err);
+      // 可以在这里尝试重连
+      reconnectListener();
+    });
+
     await listenerClient.query('LISTEN task_channel');
     await listenerClient.query('LISTEN message_channel');
     logger.info(`PostgresTool: Listening to task_channel and message_channel.`);
   } catch (e) {
     logger.error(`PostgresTool: Listener setup failed. Error: ${e.message}`);
   }
+}
+
+async function reconnectListener() {
+  if (listenerClient) {
+    try { listenerClient.release(); } catch (e) {}
+    listenerClient = null;
+  }
+  setTimeout(startListener, 5000); // 5秒后重连
 }
 
 // --- Helper to execute queries safely (闭包版本) ---
@@ -359,7 +376,7 @@ export function buildPostgresTools() {
 
 export async function shutdownPostgresTool() {
   if (listenerClient) {
-    await listenerClient.end();
+    listenerClient.release();
     listenerClient = null;
   }
   if (dbPool) {
