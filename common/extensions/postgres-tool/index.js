@@ -1,7 +1,7 @@
 /**
  * Shared Postgres Tool for OpenClaw Instances
  * Includes raw SQL capability + High-level semantic tools for multi-agent collaboration.
- * Includes飞书消息推送功能.
+ * LISTEN/NOTIFY support only.
  */
 import { Type } from "@sinclair/typebox";
 import { Pool } from 'pg';
@@ -10,29 +10,7 @@ import { Pool } from 'pg';
 let dbPool = null;
 let dbUsername = 'unknown';
 let logger = null;
-
-// 飞书消息发送函数（异步执行，不阻塞主任务）
-function sendFeishuMessage(userId, message) {
-  const { exec } = require('child_process');
-  const cmd = `openclaw message send --channel feishu --target ${userId} --message "${message.replace(/"/g, '\\"')}"`;
-  
-  exec(cmd, (error, stdout, stderr) => {
-    if (error) {
-      logger?.warn(`[Feishu] Failed to send message: ${error.message}`);
-    } else {
-      logger?.info(`[Feishu] Message sent to ${userId}`);
-    }
-  });
-}
-
-// 构建飞书消息
-function buildFeishuTaskMessage(task) {
-  return `📝 [任务通知]\n⚠️ 你被分配了新任务\n📌 标题: ${task.title}\n🔢 ID: ${task.id}\n📋 优先级: ${task.priority || 'P2'}`;
-}
-
-function buildFeishuCompletionMessage(task) {
-  return `✅ [任务完成]\n📌 任务: ${task.title}\n🔢 ID: ${task.id}\n📊 结果: ${task.result || '已完成'}`;
-}
+let listenerClient = null;
 
 export async function initPostgresTool(api) {
   const connectionString = process.env.DATABASE_URL;
@@ -56,7 +34,7 @@ export async function initPostgresTool(api) {
     logger.info(`PostgresTool: Connected to DB as ${dbUsername}.`);
 
     // 启动专属监听客户端
-    await startListener(connectionString);
+    await startListener();
   } catch (e) {
     logger.error(`PostgresTool: Initialization failed. Error: ${e.message}`);
     return null;
@@ -66,15 +44,14 @@ export async function initPostgresTool(api) {
 }
 
 // --- Start async listener for realtime notifications ---
-let listenerClient = null;
-async function startListener(connectionString) {
+async function startListener() {
   if (!dbPool) {
     logger.error('PostgresTool: dbPool not initialized.');
     return;
   }
   
   try {
-    // 使用 dbPool.connect() 获取持久连接，而不是创建新 Pool
+    // 使用 dbPool.connect() 获取持久连接
     listenerClient = await dbPool.connect();
     
     listenerClient.on('notification', (msg) => {
@@ -89,11 +66,6 @@ async function startListener(connectionString) {
         // 特定 channel 处理逻辑
         if (msg.channel === 'task_channel') {
           handleTaskNotification(payload);
-        }
-        
-        // 特定通知类型处理
-        if (payload.type === 'TEST_NOTIFICATION' && payload.to === dbUsername) {
-          handleTestNotification(payload);
         }
       } catch (err) {
         logger.error(`Failed to parse notification payload: ${msg.payload}`, err);
@@ -115,20 +87,7 @@ async function handleTaskNotification(payload) {
   // 根据通知类型自动处理
   switch (payload.type) {
     case 'TASK_ASSIGNED': {
-      // 1. 推送到飞书（异步，不阻塞）
-      try {
-        const feishuUser = payload.to || dbUsername.replace('_user', '');
-        const message = buildFeishuTaskMessage({
-          title: payload.title,
-          id: payload.task_id,
-          priority: payload.priority
-        });
-        sendFeishuMessage(feishuUser, message);
-      } catch (e) {
-        logger.warn(`[TASK NOTIFY] Failed to send Feishu message: ${e.message}`);
-      }
-      
-      // 2. 自动将任务更新为 IN_PROGRESS
+      // 自动将任务更新为 IN_PROGRESS
       try {
         const sql = `
           UPDATE shared.tasks 
@@ -147,29 +106,39 @@ async function handleTaskNotification(payload) {
     }
       
     case 'TASK_COMPLETED': {
-      // 推送到飞书
+      // 标记任务为 COMPLETED
       try {
-        const feishuUser = payload.to || dbUsername.replace('_user', '');
-        const message = buildFeishuCompletionMessage({
-          title: payload.title,
-          id: payload.task_id,
-          result: payload.result
-        });
-        sendFeishuMessage(feishuUser, message);
+        const sql = `
+          UPDATE shared.tasks 
+          SET status = 'COMPLETED'
+          WHERE id = $1 AND assignee = $2
+          RETURNING id, title, status;
+        `;
+        const result = await query(sql, [payload.task_id, dbUsername]);
+        if (result.length > 0) {
+          logger.info(`[TASK NOTIFY] Task ${payload.task_id} updated to COMPLETED`);
+        }
       } catch (e) {
-        logger.warn(`[TASK NOTIFY] Failed to send completion message: ${e.message}`);
+        logger.error(`[TASK NOTIFY] Failed to update task ${payload.task_id}: ${e.message}`);
       }
       break;
     }
       
     case 'TASK_FAILED': {
-      // 推送到飞书
+      // 标记任务为 FAILED
       try {
-        const feishuUser = payload.to || dbUsername.replace('_user', '');
-        const message = `❌ [任务失败]\n📌 任务: ${payload.title}\n🔢 ID: ${payload.task_id}\n⚠️ 原因: ${payload.error || '未知错误'}`;
-        sendFeishuMessage(feishuUser, message);
+        const sql = `
+          UPDATE shared.tasks 
+          SET status = 'FAILED'
+          WHERE id = $1 AND assignee = $2
+          RETURNING id, title, status;
+        `;
+        const result = await query(sql, [payload.task_id, dbUsername]);
+        if (result.length > 0) {
+          logger.info(`[TASK NOTIFY] Task ${payload.task_id} updated to FAILED`);
+        }
       } catch (e) {
-        logger.warn(`[TASK NOTIFY] Failed to send failure message: ${e.message}`);
+        logger.error(`[TASK NOTIFY] Failed to update task ${payload.task_id}: ${e.message}`);
       }
       break;
     }
@@ -183,21 +152,7 @@ async function handleTaskNotification(payload) {
   }
 }
 
-// --- Test notification handler ---
-function handleTestNotification(payload) {
-  logger.info(`[TEST NOTIFY] Received test notification: ${payload.message}`);
-  
-  // 推送到飞书
-  try {
-    const feishuUser = payload.from || dbUsername.replace('_user', '');
-    const message = `🧪 [测试通知]\n${payload.message}\n⏰ ${payload.timestamp || new Date().toISOString()}`;
-    sendFeishuMessage(feishuUser, message);
-  } catch (e) {
-    logger.warn(`[TEST NOTIFY] Failed to send Feishu message: ${e.message}`);
-  }
-}
-
-// --- Helper to execute queries safely (闭包版本) ---
+// --- Helper to execute queries safely ---
 async function query(text, params = [], timeoutMs = 30000) {
   if (!dbPool) throw new Error('Database not connected.');
 
@@ -492,7 +447,9 @@ export function buildPostgresTools() {
 
 export async function shutdownPostgresTool() {
   if (listenerClient) {
-    await listenerClient.end();
+    await listenerClient.query('UNLISTEN task_channel');
+    await listenerClient.query('UNLISTEN message_channel');
+    await listenerClient.release();
     listenerClient = null;
   }
   if (dbPool) {
