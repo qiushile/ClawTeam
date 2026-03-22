@@ -68,12 +68,22 @@ export async function initPostgresTool(api) {
 // --- Start async listener for realtime notifications ---
 let listenerClient = null;
 async function startListener(connectionString) {
+  if (!dbPool) {
+    logger.error('PostgresTool: dbPool not initialized.');
+    return;
+  }
+  
   try {
-    listenerClient = new Pool({ connectionString });
+    // 使用 dbPool.connect() 获取持久连接，而不是创建新 Pool
+    listenerClient = await dbPool.connect();
     
     listenerClient.on('notification', (msg) => {
       try {
-        const payload = JSON.parse(msg.payload);
+        // 兼容空 payload
+        let payload = {};
+        if (msg.payload && msg.payload.trim() !== '') {
+          payload = JSON.parse(msg.payload);
+        }
         logger.info(`[DB NOTIFY] Channel: ${msg.channel} | Payload:`, payload);
         
         // 特定 channel 处理逻辑
