@@ -1,0 +1,10 @@
+{
+  "name": "task-notifier",
+  "version": "1.0.0",
+  "description": "Task Notifier - Listen to task notifications and send to Feishu",
+  "main": "index.js",
+  "type": "module",
+  "dependencies": {
+    "pg": "^8.11.0"
+  }
+}

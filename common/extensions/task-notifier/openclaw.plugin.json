@@ -1,0 +1,11 @@
+{
+  "id": "task-notifier",
+  "name": "Task Notifier",
+  "kind": "utility",
+  "description": "Listener for task notifications andFeishu message sender",
+  "uiHints": {},
+  "configSchema": {
+    "type": "object",
+    "properties": {}
+  }
+}
