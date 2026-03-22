@@ -179,7 +179,15 @@
         "zhipu/glm-4.7": {},
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
-      }
+      },
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "remote": {
+          "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          "apiKey": "sk-88e0f59019a148869f0e48d490bd42c4"
+        }
+      },
     }
   },
   "tools": {
