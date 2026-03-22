@@ -227,14 +227,18 @@
   },
   "plugins": {
     "allow": [
-      "feishu",
-      "postgres-tool"
+      "postgres-tool",
+      "task-notifier",
+      "feishu"
     ],
     "entries": {
-      "feishu": {
+      "postgres-tool": {
         "enabled": true
       },
-      "postgres-tool": {
+      "task-notifier": {
+          "enabled": true
+        },
+      "feishu": {
         "enabled": true
       }
     }

@@ -230,10 +230,14 @@
   "plugins": {
     "allow": [
       "postgres-tool",
+      "task-notifier",
       "feishu"
     ],
     "entries": {
       "postgres-tool": {
+        "enabled": true
+      },
+      "task-notifier": {
         "enabled": true
       },
       "feishu": {
