@@ -239,8 +239,17 @@
     "allow": [
       "postgres-tool",
       "task-notifier",
-      "feishu"
+      "feishu",
+      "memory-core"
     ],
+    "load": {
+      "paths": [
+        "/opt/openclaw/extensions/memory-core"
+      ]
+    },
+    "slots": {
+      "memory": "memory-core"
+    },
     "entries": {
       "postgres-tool": {
         "enabled": true
@@ -250,6 +259,18 @@
       },
       "feishu": {
         "enabled": true
+      },
+      "memory-core": {
+        "enabled": true
+      }
+    },
+    "installs": {
+      "memory-core": {
+        "source": "path",
+        "spec": "memory-core",
+        "sourcePath": "/opt/openclaw/extensions/memory-core",
+        "installPath": "/opt/openclaw/extensions/memory-core",
+        "installedAt": "2026-03-08T11:55:59.581Z"
       }
     }
   }
