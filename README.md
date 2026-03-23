@@ -57,7 +57,9 @@ cd ClawTeam
 # 根据模板创建环境变量文件
 cp .env.example .env
 ```
-编辑 `.env` 文件，填入你的 `DASHSCOPE_API_KEY` (阿里云百炼)、数据库密码以及用于跨容器内网调用的 `SECRET_GATEWAY_TOKEN`。
+编辑 `.env` 文件，填入你的 `ALIYUN_API_KEY` / `ALIYUN_BASE_URL`（阿里云百炼）、数据库密码以及用于跨容器内网调用的 `SECRET_GATEWAY_TOKEN`。
+
+对于 Sentinel / MoltGuard 场景，仓库内配置已支持直接使用 `ALIYUN_*` 变量，无需再额外准备 `OPENAI_*` 别名。
 
 ### 2. 启动底层服务与 Agent 联邦
 一键拉起包括 PostgreSQL 底座在内的所有核心服务：

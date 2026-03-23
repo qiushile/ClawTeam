@@ -135,6 +135,16 @@ openclaw cron status
 openclaw gateway restart
 ```
 
+### Sentinel 启动提示缺少模型密钥
+
+如果日志提示缺少 `OPENAI_API_KEY`，现在可以直接提供阿里云变量：
+```bash
+export ALIYUN_API_KEY='你的阿里云密钥'
+export ALIYUN_BASE_URL='https://coding.dashscope.aliyuncs.com/v1'
+systemctl --user import-environment ALIYUN_API_KEY ALIYUN_BASE_URL
+systemctl --user restart openclaw-gateway.service
+```
+
 ### 飞书通知未发送
 
 检查飞书插件配置：

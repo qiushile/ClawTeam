@@ -33,6 +33,13 @@ export function loadConfig(configPath) {
  * Load backend configs from environment variables
  */
 function loadFromEnv(config) {
+    const openAiCompatibleApiKey = process.env.OPENAI_API_KEY ||
+        process.env.ALIYUN_API_KEY ||
+        process.env.ALIYUN_COMPAT_KEY;
+    const openAiCompatibleBaseUrl = process.env.OPENAI_BASE_URL ||
+        process.env.ALIYUN_BASE_URL ||
+        process.env.ALIYUN_COMPAT_URL ||
+        "https://api.openai.com";
     // Anthropic
     if (process.env.ANTHROPIC_API_KEY) {
         config.backends.anthropic = {
@@ -41,11 +48,11 @@ function loadFromEnv(config) {
             type: "anthropic",
         };
     }
-    // OpenAI
-    if (process.env.OPENAI_API_KEY) {
+    // OpenAI-compatible backends (OpenAI / Aliyun DashScope)
+    if (openAiCompatibleApiKey) {
         config.backends.openai = {
-            baseUrl: process.env.OPENAI_BASE_URL || "https://api.openai.com",
-            apiKey: process.env.OPENAI_API_KEY,
+            baseUrl: openAiCompatibleBaseUrl,
+            apiKey: openAiCompatibleApiKey,
             type: "openai",
         };
     }
