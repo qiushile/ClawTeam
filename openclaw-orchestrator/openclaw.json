@@ -12,9 +12,9 @@
   "models": {
     "mode": "merge",
     "providers": {
-      "bailian": {
-        "baseUrl": "${ALIYUN_COMPAT_URL}",
-        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      "aliyun": {
+        "baseUrl": "${ALIYUN_BASE_URL}",
+        "apiKey": "${ALIYUN_API_KEY}",
         "api": "openai-completions",
         "models": [
           {
