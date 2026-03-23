@@ -242,11 +242,6 @@
       "feishu",
       "memory-core"
     ],
-    "load": {
-      "paths": [
-        "/home/node/.openclaw/extensions/memory-core"
-      ]
-    },
     "slots": {
       "memory": "memory-core"
     },

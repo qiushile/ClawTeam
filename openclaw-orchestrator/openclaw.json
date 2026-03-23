@@ -240,11 +240,6 @@
       "feishu",
       "memory-core"
     ],
-    "load": {
-      "paths": [
-        "/home/node/.openclaw/extensions/memory-core"
-      ]
-    },
     "slots": {
       "memory": "memory-core"
     },
@@ -253,22 +248,13 @@
         "enabled": true
       },
       "task-notifier": {
-          "enabled": true
-        },
+        "enabled": true
+      },
       "feishu": {
         "enabled": true
       },
       "memory-core": {
         "enabled": true
-      }
-    },
-    "installs": {
-      "memory-core": {
-        "source": "path",
-        "spec": "memory-core",
-        "sourcePath": "/home/node/.openclaw/extensions/memory-core",
-        "installPath": "/home/node/.openclaw/extensions/memory-core",
-        "installedAt": "2026-03-08T11:55:59.581Z"
       }
     }
   }
