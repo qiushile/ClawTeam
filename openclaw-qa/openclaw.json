@@ -242,6 +242,7 @@
       "postgres-tool",
       "task-notifier",
       "feishu",
+      "openai",
       "memory-lancedb"
     ],
     "slots": {
@@ -255,6 +256,9 @@
         "enabled": true
       },
       "feishu": {
+        "enabled": true
+      },
+      "openai": {
         "enabled": true
       },
       "memory-lancedb": {
