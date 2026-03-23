@@ -20,7 +20,7 @@ export async function initTaskNotifier(api) {
   try {
     dbPool = new Pool({ connectionString });
     logger.info('TaskNotifier: Connected to DB.');
-    
+
     // 启动监听器
     await startListener();
   } catch (e) {
@@ -36,10 +36,10 @@ async function startListener() {
     logger.error('TaskNotifier: dbPool not initialized.');
     return;
   }
-  
+
   try {
     listenerClient = await dbPool.connect();
-    
+
     listenerClient.on('notification', (msg) => {
       try {
         let payload = {};
@@ -52,7 +52,7 @@ async function startListener() {
           }
         }
         logger.info(`[TASK NOTIFIER] Channel: ${msg.channel} | Payload:`, payload);
-        
+
         if (msg.channel === 'task_channel') {
           handleTaskNotification(payload);
         }
@@ -71,35 +71,35 @@ async function startListener() {
 
 async function handleTaskNotification(payload) {
   logger.info(`[TASK NOTIFIER] Processing:`, payload);
-  
+
   // 统一发给邱世乐
-  const userId = 'ou_bc7f642790a280d7eaca1db98ccb74cb';
-  
+  const userId = 'ou_4f0a58aacca29baf2c22946e7c226746';
+
   switch (payload.type) {
     case 'TASK_ASSIGNED': {
       const message = `📝 [新任务分配]\n⚠️ 你被分配了新任务\n📌 标题: ${payload.title}\n🔢 ID: ${payload.task_id}\n📋 优先级: ${payload.priority || 'P2'}\n⏰ ${new Date().toISOString()}`;
       sendFeishuMessage(userId, message);
       break;
     }
-    
+
     case 'TASK_COMPLETED': {
       const message = `✅ [任务完成]\n📌 任务: ${payload.title}\n🔢 ID: ${payload.task_id}\n📊 结果: ${payload.result || '已完成'}\n⏰ ${new Date().toISOString()}`;
       sendFeishuMessage(userId, message);
       break;
     }
-    
+
     case 'TASK_FAILED': {
       const message = `❌ [任务失败]\n📌 任务: ${payload.title}\n🔢 ID: ${payload.task_id}\n⚠️ 原因: ${payload.error || '未知错误'}\n⏰ ${new Date().toISOString()}`;
       sendFeishuMessage(userId, message);
       break;
     }
-    
+
     case 'TEST_NOTIFICATION': {
       const message = `🧪 [测试通知]\n${payload.message || '收到测试通知'}\n⏰ ${payload.timestamp || new Date().toISOString()}`;
       sendFeishuMessage(userId, message);
       break;
     }
-    
+
     case 'TEXT_NOTIFICATION': {
       // 处理纯文本消息（非JSON格式的NOTIFY）
       const raw = payload.raw || '';
@@ -107,7 +107,7 @@ async function handleTaskNotification(payload) {
       sendFeishuMessage(userId, message);
       break;
     }
-    
+
     default: {
       const message = `📋 [未知通知]\n类型: ${payload.type}\n内容: ${JSON.stringify(payload)}\n⏰ ${new Date().toISOString()}`;
       sendFeishuMessage(userId, message);
@@ -118,7 +118,7 @@ async function handleTaskNotification(payload) {
 function sendFeishuMessage(userId, message) {
   const { exec } = require('child_process');
   const cmd = `openclaw message send --channel feishu --target ${userId} --message "${message.replace(/"/g, '\\"')}"`;
-  
+
   exec(cmd, (error, stdout, stderr) => {
     if (error) {
       logger?.warn(`[Feishu] Failed to send message: ${error.message}`);
@@ -145,14 +145,14 @@ export default {
   id: "task-notifier",
   register(api) {
     const initPromise = initTaskNotifier(api);
-    
+
     // Register shutdown hook
     process.on('SIGTERM', async () => {
       logger?.info('[TASK NOTIFIER] Shutdown signal received');
       await shutdownTaskNotifier();
       process.exit(0);
     });
-    
+
     initPromise.then(() => {
       logger?.info('TaskNotifier: registered successfully');
     }).catch(err => {
