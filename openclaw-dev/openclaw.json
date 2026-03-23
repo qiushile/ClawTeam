@@ -196,7 +196,8 @@
       "group:runtime",
       "read",
       "write",
-      "edit"
+      "edit",
+      "feishu_chat"
     ],
     "deny": [
       "file_delete"
