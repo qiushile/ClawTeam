@@ -217,7 +217,7 @@
         "default": {
           "appId": "${FEISHU_SPATIAL_APP_ID}",
           "appSecret": "${FEISHU_SPATIAL_APP_SECRET}",
-          "botName": "空间部助手"
+          "botName": "\u7a7a\u95f4\u90e8\u52a9\u624b"
         }
       }
     }
@@ -234,7 +234,6 @@
       "postgres-tool",
       "task-notifier",
       "feishu",
-      "openai",
       "memory-lancedb"
     ],
     "slots": {
@@ -248,9 +247,6 @@
         "enabled": true
       },
       "feishu": {
-        "enabled": true
-      },
-      "openai": {
         "enabled": true
       },
       "memory-lancedb": {

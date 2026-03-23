@@ -1,271 +1,268 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedVersion": "2026.3.11"
     "lastTouchedAt": "2026-03-18T12:10:00.000Z"
-  },
+  }
   "models": {
-    "mode": "merge",
+    "mode": "merge"
     "providers": {
       "aliyun": {
-        "baseUrl": "${ALIYUN_BASE_URL}",
-        "apiKey": "${ALIYUN_API_KEY}",
-        "api": "openai-completions",
+        "baseUrl": "${ALIYUN_BASE_URL}"
+        "apiKey": "${ALIYUN_API_KEY}"
+        "api": "openai-completions"
         "models": [
           {
-            "id": "qwen3.5-plus",
-            "name": "qwen3.5-plus",
-            "reasoning": true,
+            "id": "qwen3.5-plus"
+            "name": "qwen3.5-plus"
+            "reasoning": true
             "input": [
-              "text",
+              "text"
               "image"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 1000000,
-            "maxTokens": 65536,
+            }
+            "contextWindow": 1000000
+            "maxTokens": 65536
             "compat": {
               "thinkingFormat": "qwen"
             }
-          },
+          }
           {
-            "id": "qwen3-coder-plus",
-            "name": "qwen3-coder-plus",
-            "reasoning": false,
+            "id": "qwen3-coder-plus"
+            "name": "qwen3-coder-plus"
+            "reasoning": false
             "input": [
               "text"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 1000000,
+            }
+            "contextWindow": 1000000
             "maxTokens": 65536
-          },
+          }
           {
-            "id": "qwen3-coder-next",
-            "name": "qwen3-coder-next",
-            "reasoning": false,
+            "id": "qwen3-coder-next"
+            "name": "qwen3-coder-next"
+            "reasoning": false
             "input": [
               "text"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 262144,
+            }
+            "contextWindow": 262144
             "maxTokens": 65536
           }
         ]
-      },
+      }
       "zhipu": {
-        "baseUrl": "${ZHIPU_BASE_URL}",
-        "apiKey": "${ZHIPU_API_KEY}",
-        "api": "openai-completions",
+        "baseUrl": "${ZHIPU_BASE_URL}"
+        "apiKey": "${ZHIPU_API_KEY}"
+        "api": "openai-completions"
         "models": [
           {
-            "id": "glm-5",
-            "name": "glm-5",
-            "reasoning": true,
+            "id": "glm-5"
+            "name": "glm-5"
+            "reasoning": true
             "input": [
               "text"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 202752,
-            "maxTokens": 16384,
+            }
+            "contextWindow": 202752
+            "maxTokens": 16384
             "compat": {
               "thinkingFormat": "qwen"
             }
-          },
+          }
           {
-            "id": "glm-4.7",
-            "name": "glm-4.7",
-            "reasoning": true,
+            "id": "glm-4.7"
+            "name": "glm-4.7"
+            "reasoning": true
             "input": [
               "text"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 202752,
-            "maxTokens": 16384,
+            }
+            "contextWindow": 202752
+            "maxTokens": 16384
             "compat": {
               "thinkingFormat": "qwen"
             }
           }
         ]
-      },
+      }
       "kimi": {
-        "baseUrl": "${KIMI_BASE_URL}",
-        "apiKey": "${KIMI_API_KEY}",
-        "api": "openai-completions",
+        "baseUrl": "${KIMI_BASE_URL}"
+        "apiKey": "${KIMI_API_KEY}"
+        "api": "openai-completions"
         "models": [
           {
-            "id": "kimi-k2.5",
-            "name": "kimi-k2.5",
-            "reasoning": true,
+            "id": "kimi-k2.5"
+            "name": "kimi-k2.5"
+            "reasoning": true
             "input": [
-              "text",
+              "text"
               "image"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 262144,
-            "maxTokens": 32768,
+            }
+            "contextWindow": 262144
+            "maxTokens": 32768
             "compat": {
               "thinkingFormat": "qwen"
             }
           }
         ]
-      },
+      }
       "minimax": {
-        "baseUrl": "${MINIMAX_BASE_URL}",
-        "apiKey": "${MINIMAX_API_KEY}",
-        "api": "openai-completions",
+        "baseUrl": "${MINIMAX_BASE_URL}"
+        "apiKey": "${MINIMAX_API_KEY}"
+        "api": "openai-completions"
         "models": [
           {
-            "id": "MiniMax-M2.5",
-            "name": "MiniMax-M2.5",
-            "reasoning": true,
+            "id": "MiniMax-M2.5"
+            "name": "MiniMax-M2.5"
+            "reasoning": true
             "input": [
               "text"
-            ],
+            ]
             "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
+              "input": 0
+              "output": 0
+              "cacheRead": 0
               "cacheWrite": 0
-            },
-            "contextWindow": 196608,
+            }
+            "contextWindow": 196608
             "maxTokens": 32768
           }
         ]
       }
     }
-  },
+  }
   "agents": {
     "defaults": {
       "model": {
-        "primary": "aliyun/qwen3.5-plus",
+        "primary": "aliyun/qwen3.5-plus"
         "fallbacks": []
-      },
+      }
       "compaction": {
         "mode": "safeguard"
-      },
+      }
       "models": {
-        "aliyun/qwen3.5-plus": {},
-        "aliyun/qwen3-coder-plus": {},
-        "aliyun/qwen3-coder-next": {},
-        "zhipu/glm-5": {},
-        "zhipu/glm-4.7": {},
-        "kimi/kimi-k2.5": {},
+        "aliyun/qwen3.5-plus": {}
+        "aliyun/qwen3-coder-plus": {}
+        "aliyun/qwen3-coder-next": {}
+        "zhipu/glm-5": {}
+        "zhipu/glm-4.7": {}
+        "kimi/kimi-k2.5": {}
         "minimax/MiniMax-M2.5": {}
-      },
+      }
       "memorySearch": {
-        "provider": "openai",
-        "model": "text-embedding-v4",
+        "provider": 
+        "model": "text-embedding-v4"
         "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
+          "baseUrl": "${ALIYUN_COMPAT_URL}"
           "apiKey": "${ALIYUN_COMPAT_KEY}"
         }
-      },
+      }
     }
-  },
+  }
   "tools": {
     "deny": [
-      "exec",
-      "bash",
-      "process",
+      "exec"
+      "bash"
+      "process"
       "file_delete"
     ]
-  },
+  }
   "commands": {
-    "native": "auto",
-    "nativeSkills": "auto",
-    "restart": true,
+    "native": "auto"
+    "nativeSkills": "auto"
+    "restart": true
     "ownerDisplay": "raw"
-  },
+  }
   "channels": {
     "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
+      "enabled": true
+      "dmPolicy": "pairing"
+      "groupPolicy": "open"
       "accounts": {
         "default": {
-          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
-          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
+          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}"
+          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}"
           "botName": "指挥官"
         }
       }
     }
-  },
+  }
   "gateway": {
-    "port": 18789,
-    "bind": "lan",
+    "port": 18789
+    "bind": "lan"
     "controlUi": {
       "allowedOrigins": [
-        "http://localhost:18789",
+        "http://localhost:18789"
         "http://127.0.0.1:18789"
       ]
-    },
+    }
     "auth": {
-      "mode": "token",
+      "mode": "token"
       "token": "my_super_secret_token_2026"
-    },
+    }
     "mode": "local"
-  },
+  }
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
-      "feishu",
-      "openai",
+      "postgres-tool"
+      "task-notifier"
+      "feishu"
+      
       "memory-lancedb"
-    ],
+    ]
     "slots": {
       "memory": "memory-lancedb"
-    },
+    }
     "entries": {
       "postgres-tool": {
         "enabled": true
-      },
+      }
       "task-notifier": {
         "enabled": true
-      },
+      }
       "feishu": {
         "enabled": true
-      },
-      "openai": {
-        "enabled": true
-      },
+      }
       "memory-lancedb": {
-        "enabled": true,
+        "enabled": true
         "config": {
           "embedding": {
-            "apiKey": "${ALIYUN_COMPAT_KEY}",
-            "model": "text-embedding-v4",
+            "apiKey": "${ALIYUN_COMPAT_KEY}"
+            "model": "text-embedding-v4"
             "baseUrl": "${ALIYUN_COMPAT_URL}"
-          },
-          "autoCapture": true,
+          }
+          "autoCapture": true
           "autoRecall": true
         }
       }

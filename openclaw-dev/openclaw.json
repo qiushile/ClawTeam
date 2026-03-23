@@ -177,7 +177,6 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-
       "compaction": {
         "mode": "safeguard"
       }
@@ -218,7 +217,7 @@
         "default": {
           "appId": "${FEISHU_DEV_APP_ID}",
           "appSecret": "${FEISHU_DEV_APP_SECRET}",
-          "botName": "研发部助手"
+          "botName": "\u7814\u53d1\u90e8\u52a9\u624b"
         }
       }
     }
@@ -235,7 +234,6 @@
       "postgres-tool",
       "task-notifier",
       "feishu",
-      "openai",
       "memory-lancedb"
     ],
     "slots": {
@@ -251,17 +249,13 @@
       "feishu": {
         "enabled": true
       },
-      "openai": {
-        "enabled": true
-      },
       "memory-lancedb": {
         "enabled": true,
         "config": {
           "embedding": {
-            "baseUrl": "${${ALIYUN_COMPAT_URL}}",
+            "baseUrl": "${ALIYUN_COMPAT_URL}",
             "apiKey": "${ALIYUN_COMPAT_KEY}",
-            "model": "text-embedding-v4",
-            "baseUrl": "${ALIYUN_COMPAT_URL}"
+            "model": "text-embedding-v4"
           },
           "autoCapture": true,
           "autoRecall": true

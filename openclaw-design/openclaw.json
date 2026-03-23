@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-17T16:55:00.131Z"
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-23T10:25:34.206Z"
   },
   "models": {
     "mode": "merge",
@@ -26,6 +26,25 @@
               "cacheWrite": 0
             },
             "contextWindow": 1000000,
+            "maxTokens": 65536,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
+          },
+          {
+            "id": "qwen3-max-2026-01-23",
+            "name": "qwen3-max-2026-01-23",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
             "maxTokens": 65536,
             "compat": {
               "thinkingFormat": "qwen"
@@ -170,20 +189,13 @@
       },
       "models": {
         "aliyun/qwen3.5-plus": {},
+        "aliyun/qwen3-max-2026-01-23": {},
         "aliyun/qwen3-coder-plus": {},
         "aliyun/qwen3-coder-next": {},
         "zhipu/glm-5": {},
         "zhipu/glm-4.7": {},
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
-      },
-      "memorySearch": {
-        "provider": "openai",
-        "model": "text-embedding-v4",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        }
       },
       "compaction": {
         "mode": "safeguard"
@@ -232,47 +244,14 @@
   "plugins": {
     "allow": [
       "postgres-tool",
-      "task-notifier",
-      "feishu",
-      "openai",
-      "memory-lancedb"
+      "feishu"
     ],
-    "slots": {
-      "memory": "memory-lancedb"
-    },
     "entries": {
       "postgres-tool": {
         "enabled": true
       },
-      "task-notifier": {
-        "enabled": true
-      },
       "feishu": {
         "enabled": true
-      },
-      "openai": {
-        "enabled": true
-      },
-      "memory-lancedb": {
-        "enabled": true,
-        "config": {
-          "embedding": {
-            "apiKey": "${ALIYUN_COMPAT_KEY}",
-            "model": "text-embedding-v4",
-            "baseUrl": "${ALIYUN_COMPAT_URL}"
-          },
-          "autoCapture": true,
-          "autoRecall": true
-        }
-      }
-    },
-    "installs": {
-      "memory-lancedb": {
-        "source": "path",
-        "spec": "memory-lancedb",
-        "sourcePath": "/home/node/.openclaw/extensions/memory-lancedb",
-        "installPath": "/home/node/.openclaw/extensions/memory-lancedb",
-        "installedAt": "2026-03-23T16:00:00.000Z"
       }
     }
   }

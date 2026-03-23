@@ -1,0 +1,304 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-17T04:53:55.386Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-06T17:59:59.361Z",
+    "lastRunVersion": "2026.3.3",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "bailian": {
+        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
+        "apiKey": "sk-sp-a6bb4addf4994b769cb53b1f32bd3c8d",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3.5-plus",
+            "name": "qwen3.5-plus",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 65536
+          },
+          {
+            "id": "qwen3-max-2026-01-23",
+            "name": "qwen3-max-2026-01-23",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 65536
+          },
+          {
+            "id": "qwen3-coder-next",
+            "name": "qwen3-coder-next",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 65536
+          },
+          {
+            "id": "qwen3-coder-plus",
+            "name": "qwen3-coder-plus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 65536
+          },
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax-M2.5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 196608,
+            "maxTokens": 32768
+          },
+          {
+            "id": "glm-5",
+            "name": "glm-5",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202752,
+            "maxTokens": 16384
+          },
+          {
+            "id": "glm-4.7",
+            "name": "glm-4.7",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202752,
+            "maxTokens": 16384
+          },
+          {
+            "id": "kimi-k2.5",
+            "name": "kimi-k2.5",
+            "reasoning": false,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "bailian/qwen3.5-plus"
+      },
+      "models": {
+        "bailian/qwen3.5-plus": {},
+        "bailian/qwen3-max-2026-01-23": {},
+        "bailian/qwen3-coder-next": {},
+        "bailian/qwen3-coder-plus": {},
+        "bailian/MiniMax-M2.5": {},
+        "bailian/glm-5": {},
+        "bailian/glm-4.7": {},
+        "bailian/kimi-k2.5": {}
+      },
+      "workspace": "/root/.openclaw/workspace",
+      "compaction": {
+        "mode": "safeguard"
+      },
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-v4",
+        "remote": {
+          "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+          "apiKey": "sk-88e0f59019a148869f0e48d490bd42c4"
+        }
+      }
+    }
+  },
+  "tools": {
+    "profile": "full"
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "cron": {
+    "enabled": true
+  },
+  "channels": {
+    "telegram": {
+      "enabled": false,
+      "dmPolicy": "pairing",
+      "botToken": "8503286742:AAGJXVye3p8xJEsxofdApZKMV3_5De1NRnw",
+      "groupPolicy": "open",
+      "streaming": "partial",
+      "webhookUrl": "https://openclawd.x.whhe.xin/gateways/telegram",
+      "webhookSecret": "8503286742:AAGJXVye3p8xJEsxofdApZKMV3_5De1NRnw"
+    },
+    "feishu": {
+      "enabled": true,
+      "appId": "cli_a92682269af8dbdf",
+      "appSecret": "0YhY1JpeQSyiuXJbxlVvqe2lac4bNhio",
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "requireMention": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "allowFrom": [],
+      "groupAllowFrom": []
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789",
+        "https://openclawd.x.whhe.xin"
+      ]
+    },
+    "auth": {
+      "mode": "token",
+      "token": "7758268a123456798."
+    },
+    "trustedProxies": [
+      "127.0.0.1",
+      "192.168.0.2"
+    ],
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    }
+  },
+  "plugins": {
+    "allow": [
+      "feishu",
+      "memory-core"
+    ],
+    "slots": {
+      "memory": "memory-core"
+    },
+    "entries": {
+      "telegram": {
+        "enabled": false
+      },
+      "feishu": {
+        "enabled": true
+      },
+      "memory-core": {
+        "enabled": true
+      },
+      "memory-lancedb": {
+        "enabled": false
+      },
+      "moltguard": {
+        "enabled": false
+      }
+    },
+    "installs": {
+      "memory-core": {
+        "source": "path",
+        "spec": "memory-core",
+        "sourcePath": "/opt/openclaw/extensions/memory-core",
+        "installPath": "/opt/openclaw/extensions/memory-core",
+        "installedAt": "2026-03-08T11:55:59.581Z"
+      },
+      "moltguard": {
+        "source": "npm",
+        "spec": "@openguardrails/moltguard",
+        "installPath": "/root/.openclaw/extensions/moltguard",
+        "version": "6.8.21",
+        "resolvedName": "@openguardrails/moltguard",
+        "resolvedVersion": "6.8.21",
+        "resolvedSpec": "@openguardrails/moltguard@6.8.21",
+        "integrity": "sha512-5XydTbTxptyb1ZiwYWNupLfm0fBtNy8fkenk+Qt8Kvv8boU7VVuM7Gc6CUX0wqZcUDXgDbVx5Mb3oAk63NohTQ==",
+        "shasum": "3bec3dcb130e70f1b2a26901cc3deae0eeb8ad3e",
+        "resolvedAt": "2026-03-17T04:51:58.469Z",
+        "installedAt": "2026-03-17T04:53:54.088Z"
+      }
+    }
+  }
+}

@@ -223,7 +223,7 @@
         "default": {
           "appId": "${FEISHU_PM_APP_ID}",
           "appSecret": "${FEISHU_PM_APP_SECRET}",
-          "botName": "产品部助手"
+          "botName": "\u4ea7\u54c1\u90e8\u52a9\u624b"
         }
       }
     }
@@ -240,7 +240,6 @@
       "postgres-tool",
       "task-notifier",
       "feishu",
-      "openai",
       "memory-lancedb"
     ],
     "slots": {
@@ -254,9 +253,6 @@
         "enabled": true
       },
       "feishu": {
-        "enabled": true
-      },
-      "openai": {
         "enabled": true
       },
       "memory-lancedb": {
