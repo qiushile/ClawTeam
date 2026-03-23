@@ -3,6 +3,7 @@
  * 监听 LISTEN/NOTIFY 并推送飞书消息
  */
 import { Pool } from 'pg';
+import { execFile } from 'child_process';
 
 let dbPool = null;
 let listenerClient = null;
@@ -72,8 +73,11 @@ async function startListener() {
 async function handleTaskNotification(payload) {
   logger.info(`[TASK NOTIFIER] Processing:`, payload);
 
-  // 统一发给邱世乐
-  const userId = 'ou_4f0a58aacca29baf2c22946e7c226746';
+  const userId = resolveTargetUserId(payload);
+  if (!userId) {
+    logger?.warn('[TASK NOTIFIER] Missing Feishu userId in notification payload, skip sending.');
+    return;
+  }
 
   switch (payload.type) {
     case 'TASK_ASSIGNED': {
@@ -115,11 +119,31 @@ async function handleTaskNotification(payload) {
   }
 }
 
-function sendFeishuMessage(userId, message) {
-  const { exec } = require('child_process');
-  const cmd = `openclaw message send --channel feishu --target ${userId} --message "${message.replace(/"/g, '\\"')}"`;
+function resolveTargetUserId(payload = {}) {
+  const candidates = [
+    payload.userId,
+    payload.user_id,
+    payload.targetUserId,
+    payload.target_user_id,
+    payload.feishuUserId,
+    payload.feishu_user_id,
+    payload.openId,
+    payload.open_id,
+    payload.receive_id,
+    payload.target
+  ];
 
-  exec(cmd, (error, stdout, stderr) => {
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim() !== '') {
+      return candidate.trim();
+    }
+  }
+
+  return null;
+}
+
+function sendFeishuMessage(userId, message) {
+  execFile('openclaw', ['message', 'send', '--channel', 'feishu', '--target', userId, '--message', message], (error) => {
     if (error) {
       logger?.warn(`[Feishu] Failed to send message: ${error.message}`);
     } else {
