@@ -244,7 +244,7 @@
     ],
     "load": {
       "paths": [
-        "/opt/openclaw/extensions/memory-core"
+        "/home/node/.openclaw/extensions/memory-core"
       ]
     },
     "slots": {
@@ -268,8 +268,8 @@
       "memory-core": {
         "source": "path",
         "spec": "memory-core",
-        "sourcePath": "/opt/openclaw/extensions/memory-core",
-        "installPath": "/opt/openclaw/extensions/memory-core",
+        "sourcePath": "/home/node/.openclaw/extensions/memory-core",
+        "installPath": "/home/node/.openclaw/extensions/memory-core",
         "installedAt": "2026-03-08T11:55:59.581Z"
       }
     }

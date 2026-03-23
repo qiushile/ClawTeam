@@ -61,6 +61,7 @@ services:
       - ./openclaw-orchestrator/workspace:/workspace
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
       - ./sentinel/credentials:/home/node/.openclaw/credentials
 
   # 2. 研发部 dev
@@ -84,6 +85,7 @@ services:
       - ./openclaw-dev:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
       - ~/code-repo:/app/repo
 
   # 3. 产品部 pm
@@ -107,6 +109,7 @@ services:
       - ./openclaw-pm:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 4. 设计部 design
   openclaw-design:
@@ -129,6 +132,7 @@ services:
       - ./openclaw-design:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 5. 投放部 ads
   openclaw-ads:
@@ -151,6 +155,7 @@ services:
       - ./openclaw-ads:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 6. 销售部 sales
   openclaw-sales:
@@ -173,6 +178,7 @@ services:
       - ./openclaw-sales:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 7. 市场部 marketing
   openclaw-marketing:
@@ -195,6 +201,7 @@ services:
       - ./openclaw-marketing:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 8. 项目部 project
   openclaw-project:
@@ -217,6 +224,7 @@ services:
       - ./openclaw-project:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 9. 测试部 qa
   openclaw-qa:
@@ -239,6 +247,7 @@ services:
       - ./openclaw-qa:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 10. 支撑部 support
   openclaw-support:
@@ -261,6 +270,7 @@ services:
       - ./openclaw-support:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 11. 空间部 spatial
   openclaw-spatial:
@@ -283,6 +293,7 @@ services:
       - ./openclaw-spatial:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 12. 专家组 expert
   openclaw-expert:
@@ -305,6 +316,7 @@ services:
       - ./openclaw-expert:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
   # 13. 游戏部 game
   openclaw-game:
@@ -327,6 +339,7 @@ services:
       - ./openclaw-game:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/memory-core:/home/node/.openclaw/extensions/memory-core
 
 networks:
   openclaw-net:
