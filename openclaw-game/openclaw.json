@@ -197,7 +197,12 @@
       "read",
       "write",
       "edit",
-      "feishu_chat"
+      "database_query",
+      "feishu_doc",
+      "feishu_chat",
+      "feishu_wiki",
+      "feishu_drive",
+      "feishu_bitable"
     ],
     "deny": [
       "file_delete"
