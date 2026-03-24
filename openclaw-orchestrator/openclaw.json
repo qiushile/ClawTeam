@@ -1,36 +1,39 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11"
-    "lastTouchedAt": "2026-03-18T12:10:00.000Z"
-  }
+    "lastTouchedVersion": "2026.3.11",
+    "lastTouchedAt": "2026-03-17T04:53:55.386Z"
+  },
+  "wizard": {
+    "lastRunAt": "2026-03-06T17:59:59.361Z",
+    "lastRunVersion": "2026.3.3",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
   "models": {
-    "mode": "merge"
+    "mode": "merge",
     "providers": {
-      "aliyun": {
-        "baseUrl": "${ALIYUN_BASE_URL}"
-        "apiKey": "${ALIYUN_API_KEY}"
-        "api": "openai-completions"
+      "bailian": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+        "api": "openai-completions",
         "models": [
           {
-            "id": "qwen3.5-plus"
-            "name": "qwen3.5-plus"
-            "reasoning": true
+            "id": "qwen3.5-plus",
+            "name": "qwen3.5-plus",
+            "reasoning": false,
             "input": [
-              "text"
+              "text",
               "image"
-            ]
+            ],
             "cost": {
-              "input": 0
-              "output": 0
-              "cacheRead": 0
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
               "cacheWrite": 0
-            }
-            "contextWindow": 1000000
+            },
+            "contextWindow": 1000000,
             "maxTokens": 65536
-            "compat": {
-              "thinkingFormat": "qwen"
-            }
-          }
+          },
           {
             "id": "qwen3-coder-plus"
             "name": "qwen3-coder-plus"
@@ -181,15 +184,15 @@
         "minimax/MiniMax-M2.5": {}
       }
       "memorySearch": {
-        "provider": 
-        "model": "text-embedding-v4"
+        "provider": "openai",
+        "model": "text-embedding-v4",
         "remote": {
           "baseUrl": "${ALIYUN_COMPAT_URL}"
           "apiKey": "${ALIYUN_COMPAT_KEY}"
         }
       }
     }
-  }
+  },
   "tools": {
     "deny": [
       "exec"
@@ -199,73 +202,90 @@
     ]
   }
   "commands": {
-    "native": "auto"
-    "nativeSkills": "auto"
-    "restart": true
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
     "ownerDisplay": "raw"
-  }
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "cron": {
+    "enabled": true
+  },
   "channels": {
     "feishu": {
-      "enabled": true
-      "dmPolicy": "pairing"
-      "groupPolicy": "open"
-      "accounts": {
-        "default": {
-          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}"
-          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}"
-          "botName": "指挥官"
-        }
-      }
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
+      "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "requireMention": true,
+      "allowFrom": [],
+      "groupAllowFrom": []
     }
-  }
+  },
   "gateway": {
-    "port": 18789
-    "bind": "lan"
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
     "controlUi": {
       "allowedOrigins": [
-        "http://localhost:18789"
+        "http://localhost:18789",
         "http://127.0.0.1:18789"
       ]
-    }
+    },
     "auth": {
-      "mode": "token"
+      "mode": "token",
       "token": "my_super_secret_token_2026"
+    },
+    "trustedProxies": [
+      "127.0.0.1",
+      "192.168.0.2"
+    ],
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
     }
-    "mode": "local"
-  }
+  },
   "plugins": {
     "allow": [
+      "feishu",
+      "memory-lancedb",
       "postgres-tool"
-      "task-notifier"
-      "feishu"
-      
-      "memory-lancedb"
-    ]
+    ],
     "slots": {
       "memory": "memory-lancedb"
-    }
+    },
     "entries": {
+      "telegram": {
+        "enabled": false
+      },
+      "feishu": {
+        "enabled": true
+      },
+      "memory-lancedb": {
+        "enabled": false
+      },
       "postgres-tool": {
         "enabled": true
       }
-      "task-notifier": {
-        "enabled": true
-      }
-      "feishu": {
-        "enabled": true
-      }
-      "memory-lancedb": {
-        "enabled": true
-        "config": {
-          "embedding": {
-            "apiKey": "${ALIYUN_COMPAT_KEY}"
-            "model": "text-embedding-v4"
-            "baseUrl": "${ALIYUN_COMPAT_URL}"
-          }
-          "autoCapture": true
-          "autoRecall": true
-        }
-      }
+    },
+    "installs": {
+
     }
   }
 }

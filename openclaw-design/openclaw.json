@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.13",
-    "lastTouchedAt": "2026-03-23T10:25:34.206Z"
+    "lastTouchedAt": "2026-03-24T00:54:03.802Z"
   },
   "models": {
     "mode": "merge",
@@ -197,6 +197,14 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
+      "memorySearch": {
+        "provider": "openai",
+        "remote": {
+          "baseUrl": "${ALIYUN_COMPAT_URL}",
+          "apiKey": "${ALIYUN_COMPAT_KEY}"
+        },
+        "model": "text-embedding-v4"
+      },
       "compaction": {
         "mode": "safeguard"
       }
@@ -236,6 +244,13 @@
   },
   "gateway": {
     "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789"
+      ]
+    },
     "auth": {
       "mode": "token",
       "token": "7dccf9bf3d215e00c5827bc4784f2b7f6786e552638338c4"
@@ -244,14 +259,30 @@
   "plugins": {
     "allow": [
       "postgres-tool",
-      "feishu"
+      "feishu",
+      "memory-lancedb"
     ],
+    "slots": {
+      "memory": "memory-lancedb"
+    },
     "entries": {
       "postgres-tool": {
         "enabled": true
       },
       "feishu": {
         "enabled": true
+      },
+      "memory-lancedb": {
+        "enabled": true,
+        "config": {
+          "embedding": {
+            "apiKey": "${ALIYUN_COMPAT_KEY}",
+            "model": "text-embedding-v4",
+            "baseUrl": "${ALIYUN_COMPAT_URL}"
+          },
+          "autoCapture": true,
+          "autoRecall": true
+        }
       }
     }
   }

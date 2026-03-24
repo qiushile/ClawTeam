@@ -217,7 +217,7 @@
         "default": {
           "appId": "${FEISHU_PROJECT_APP_ID}",
           "appSecret": "${FEISHU_PROJECT_APP_SECRET}",
-          "botName": "\u9879\u76ee\u90e8\u52a9\u624b"
+          "botName": "项目部助手"
         }
       }
     }

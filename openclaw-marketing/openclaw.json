@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-17T16:54:58.592Z"
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-24T00:53:44.129Z"
   },
   "models": {
     "mode": "merge",
@@ -225,13 +225,20 @@
         "default": {
           "appId": "${FEISHU_MARKETING_APP_ID}",
           "appSecret": "${FEISHU_MARKETING_APP_SECRET}",
-          "botName": "\u5e02\u573a\u90e8\u52a9\u624b"
+          "botName": "市场部助手"
         }
       }
     }
   },
   "gateway": {
     "mode": "local",
+    "bind": "lan",
+    "controlUi": {
+      "allowedOrigins": [
+        "http://localhost:18789",
+        "http://127.0.0.1:18789"
+      ]
+    },
     "auth": {
       "mode": "token",
       "token": "7dccf9bf3d215e00c5827bc4784f2b7f6786e552638338c4"

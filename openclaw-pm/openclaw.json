@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-17T16:54:59.177Z"
+    "lastTouchedVersion": "2026.3.13",
+    "lastTouchedAt": "2026-03-23T13:52:16.524Z"
   },
   "models": {
     "mode": "merge",
@@ -223,7 +223,7 @@
         "default": {
           "appId": "${FEISHU_PM_APP_ID}",
           "appSecret": "${FEISHU_PM_APP_SECRET}",
-          "botName": "\u4ea7\u54c1\u90e8\u52a9\u624b"
+          "botName": "产品部助手"
         }
       }
     }
