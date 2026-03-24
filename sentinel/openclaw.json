@@ -12,7 +12,7 @@
   "models": {
     "mode": "merge",
     "providers": {
-      "bailian": {
+      "aliyun": {
         "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
         "apiKey": "sk-sp-a6bb4addf4994b769cb53b1f32bd3c8d",
         "api": "openai-completions",
@@ -154,17 +154,17 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "bailian/qwen3.5-plus"
+        "primary": "aliyun/qwen3.5-plus"
       },
       "models": {
-        "bailian/qwen3.5-plus": {},
-        "bailian/qwen3-max-2026-01-23": {},
-        "bailian/qwen3-coder-next": {},
-        "bailian/qwen3-coder-plus": {},
-        "bailian/MiniMax-M2.5": {},
-        "bailian/glm-5": {},
-        "bailian/glm-4.7": {},
-        "bailian/kimi-k2.5": {}
+        "aliyun/qwen3.5-plus": {},
+        "aliyun/qwen3-max-2026-01-23": {},
+        "aliyun/qwen3-coder-next": {},
+        "aliyun/qwen3-coder-plus": {},
+        "aliyun/MiniMax-M2.5": {},
+        "aliyun/glm-5": {},
+        "aliyun/glm-4.7": {},
+        "aliyun/kimi-k2.5": {}
       },
       "workspace": "/root/.openclaw/workspace",
       "compaction": {
