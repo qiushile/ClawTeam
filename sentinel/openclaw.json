@@ -289,13 +289,6 @@
       }
     },
     "installs": {
-      "memory-core": {
-        "source": "path",
-        "spec": "memory-core",
-        "sourcePath": "/opt/openclaw/extensions/memory-core",
-        "installPath": "/opt/openclaw/extensions/memory-core",
-        "installedAt": "2026-03-08T11:55:59.581Z"
-      },
       "moltguard": {
         "source": "npm",
         "spec": "@openguardrails/moltguard",
