@@ -172,7 +172,7 @@
       },
       "memorySearch": {
         "provider": "openai",
-        "model": "text-embedding-v4",
+        "model": "text-embedding-3-small",
         "remote": {
           "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
           "apiKey": "sk-88e0f59019a148869f0e48d490bd42c4"
@@ -276,6 +276,18 @@
       },
       "moltguard": {
         "enabled": false
+      },
+     "memory-lancedb": {
+       "enabled": true,
+       "config": {
+         "embedding": {
+           "apiKey": "${ALIYUN_COMPAT_KEY}",
+           "model": "text-embedding-3-small",
+           "baseUrl": "${ALIYUN_COMPAT_URL}"
+         },
+         "autoCapture": true,
+         "autoRecall": true
+       }
       }
     },
     "installs": {

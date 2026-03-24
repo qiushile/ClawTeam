@@ -177,6 +177,14 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
+      "memorySearch": {
+        "provider": "openai",
+        "model": "text-embedding-3-small",
+        "remote": {
+          "baseUrl": "${ALIYUN_COMPAT_URL}",
+          "apiKey": "${ALIYUN_COMPAT_KEY}"
+        }
+      },
       "compaction": {
         "mode": "safeguard"
       }
@@ -255,7 +263,7 @@
           "embedding": {
             "baseUrl": "${ALIYUN_COMPAT_URL}",
             "apiKey": "${ALIYUN_COMPAT_KEY}",
-            "model": "text-embedding-v4"
+            "model": "text-embedding-3-small"
           },
           "autoCapture": true,
           "autoRecall": true

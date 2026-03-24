@@ -183,7 +183,7 @@
           "baseUrl": "${ALIYUN_COMPAT_URL}",
           "apiKey": "${ALIYUN_COMPAT_KEY}"
         },
-        "model": "text-embedding-v4"
+        "model": "text-embedding-3-small"
       },
       "compaction": {
         "mode": "safeguard"
@@ -258,7 +258,7 @@
         "config": {
           "embedding": {
             "apiKey": "${ALIYUN_COMPAT_KEY}",
-            "model": "text-embedding-v4",
+            "model": "text-embedding-3-small",
             "baseUrl": "${ALIYUN_COMPAT_URL}"
           },
           "autoCapture": true,

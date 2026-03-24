@@ -179,7 +179,7 @@
       },
       "memorySearch": {
         "provider": "openai",
-        "model": "text-embedding-v4",
+        "model": "text-embedding-3-small",
         "remote": {
           "baseUrl": "${ALIYUN_COMPAT_URL}",
           "apiKey": "${ALIYUN_COMPAT_KEY}"
@@ -260,7 +260,7 @@
         "config": {
           "embedding": {
             "apiKey": "${ALIYUN_COMPAT_KEY}",
-            "model": "text-embedding-v4",
+            "model": "text-embedding-3-small",
             "baseUrl": "${ALIYUN_COMPAT_URL}"
           },
           "autoCapture": true,
