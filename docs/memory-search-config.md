@@ -198,6 +198,7 @@ for agent in "${AGENTS[@]}"; do
         .agents.defaults.memorySearch = {
             "provider": "openai",
             "model": "text-embedding-v4",
+            "dimensions": 1024,
             "remote": {
                 "baseUrl": $base_url,
                 "apiKey": $api_key
