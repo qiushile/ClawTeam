@@ -27,6 +27,7 @@ services:
     image: pgvector/pgvector:pg16
     container_name: openclaw-postgres
     restart: always
+    command: ["postgres", "-c", "max_connections=200"]
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       TZ: Asia/Shanghai

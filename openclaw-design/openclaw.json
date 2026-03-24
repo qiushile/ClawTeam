@@ -239,15 +239,18 @@
   "plugins": {
     "allow": [
       "postgres-tool",
+      "task-notifier",
       "feishu",
       "memory-lancedb"
-      "task-notifier",
     ],
     "slots": {
       "memory": "memory-lancedb"
     },
     "entries": {
       "postgres-tool": {
+        "enabled": true
+      },
+      "task-notifier": {
         "enabled": true
       },
       "feishu": {
@@ -264,6 +267,15 @@
           "autoCapture": true,
           "autoRecall": true
         }
+      }
+    },
+    "installs": {
+      "memory-lancedb": {
+        "source": "path",
+        "spec": "memory-lancedb",
+        "sourcePath": "/home/node/.openclaw/extensions/memory-lancedb",
+        "installPath": "/home/node/.openclaw/extensions/memory-lancedb",
+        "installedAt": "2026-03-23T16:00:00.000Z"
       }
     }
   }

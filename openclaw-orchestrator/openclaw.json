@@ -195,12 +195,12 @@
   },
   "tools": {
     "deny": [
-      "exec"
-      "bash"
-      "process"
+      "exec",
+      "bash",
+      "process",
       "file_delete"
     ]
-  }
+  },
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
@@ -279,14 +279,16 @@
       },
       "memory-lancedb": {
         "enabled": true,
-                           "config": {
-                             "embedding": {
-                               "apiKey": "${ALIYUN_COMPAT_KEY}",
-                               "model": "text-embedding-3-small",
-                               "baseUrl": "${ALIYUN_COMPAT_URL}"
+        "config": {
+          "embedding": {
+            "apiKey": "${ALIYUN_COMPAT_KEY}",
+            "model": "text-embedding-3-small",
+            "baseUrl": "${ALIYUN_COMPAT_URL}"
+          },
+          "autoCapture": true,
+          "autoRecall": true
+        }
       },
-      "autoCapture": true,
-      "autoRecall": true,
       "postgres-tool": {
         "enabled": true
       }
