@@ -256,7 +256,6 @@
   "plugins": {
     "allow": [
       "feishu",
-      "memory-core",
       "memory-lancedb"
     ],
     "slots": {
@@ -267,9 +266,6 @@
         "enabled": false
       },
       "feishu": {
-        "enabled": true
-      },
-      "memory-core": {
         "enabled": true
       },
       "memory-lancedb": {
