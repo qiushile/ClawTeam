@@ -134,3 +134,20 @@ openclaw-dev/dbtest/
 **/workspace/test-*.js
 **/workspace/*-test.js
 **/workspace/*.test.js
+
+# 远端工作树运行时状态
+/monitor/*-state.json
+
+# Agent 运行时记忆与日报产物
+openclaw-*/memory/
+openclaw-*/workspace/daily_reports/
+
+# QA 下载的 GitHub CLI 安装包
+openclaw-qa/workspace/gh_*.tar.gz
+openclaw-qa/workspace/gh_*/
+
+# Moltguard 损坏数据库备份
+sentinel/extensions/moltguard/data/*.db.corrupted.*
+
+# 额外备份后缀
+*.bak[0-9]*
