@@ -49,22 +49,6 @@
             },
             "contextWindow": 1000000,
             "maxTokens": 65536
-          },
-          {
-            "id": "qwen3-coder-next",
-            "name": "qwen3-coder-next",
-            "reasoning": false,
-            "input": [
-              "text"
-            ],
-            "cost": {
-              "input": 0,
-              "output": 0,
-              "cacheRead": 0,
-              "cacheWrite": 0
-            },
-            "contextWindow": 262144,
-            "maxTokens": 65536
           }
         ]
       },
@@ -177,7 +161,6 @@
       "models": {
         "aliyun/qwen3.5-plus": {},
         "aliyun/qwen3-coder-plus": {},
-        "aliyun/qwen3-coder-next": {},
         "zhipu/glm-5": {},
         "zhipu/glm-4.7": {},
         "kimi/kimi-k2.5": {},

@@ -75,7 +75,7 @@ services:
     environment:
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3-coder-next
+      - OPENAI_MODEL=qwen3.5-plus
       - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_DEV_APP_ID}
