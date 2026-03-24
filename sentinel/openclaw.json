@@ -256,10 +256,11 @@
   "plugins": {
     "allow": [
       "feishu",
-      "memory-core"
+      "memory-core",
+      "memory-lancedb"
     ],
     "slots": {
-      "memory": "memory-core"
+      "memory": "memory-lancedb"
     },
     "entries": {
       "telegram": {
@@ -272,22 +273,19 @@
         "enabled": true
       },
       "memory-lancedb": {
-        "enabled": false
+        "enabled": true,
+        "config": {
+          "embedding": {
+            "apiKey": "${ALIYUN_COMPAT_KEY}",
+            "model": "text-embedding-3-small",
+            "baseUrl": "${ALIYUN_COMPAT_URL}"
+          },
+          "autoCapture": true,
+          "autoRecall": true
+        }
       },
       "moltguard": {
         "enabled": false
-      },
-     "memory-lancedb": {
-       "enabled": true,
-       "config": {
-         "embedding": {
-           "apiKey": "${ALIYUN_COMPAT_KEY}",
-           "model": "text-embedding-3-small",
-           "baseUrl": "${ALIYUN_COMPAT_URL}"
-         },
-         "autoCapture": true,
-         "autoRecall": true
-       }
       }
     },
     "installs": {
