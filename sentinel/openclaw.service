@@ -10,6 +10,8 @@ WorkingDirectory=/opt/openclaw
 EnvironmentFile=-/opt/openclaw-team/.env
 Environment="PATH=/www/server/nodejs/v24.14.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 Environment="NODE_ENV=production"
+# 避免与同网 docker openclaw 实例的 mDNS 名称冲突
+Environment="OPENCLAW_MDNS_HOSTNAME=openclaw-sentinel"
 ExecStart=/www/server/nodejs/v24.14.0/bin/node scripts/run-node.mjs gateway --force
 Restart=always
 RestartSec=10
