@@ -1,157 +1,171 @@
-# OpenClaw Agent Team 监控系统
+# OpenClaw Team 定时检查系统
 
-## 📁 文件结构
+## 📅 检查时间
+
+每天自动执行 3 次：
+- **07:50** - 早晨检查
+- **11:50** - 中午检查
+- **17:50** - 傍晚检查
+
+## 🎯 功能
+
+### 1. Git 状态检查
+- 检测修改的文件
+- 检测未跟踪的文件
+- 统计变更数量
+
+### 2. 敏感信息检测
+自动检测以下类型的敏感信息：
+- OpenAI API Keys (`sk-...`)
+- GitHub Tokens (`ghp_...`, `gho_...`)
+- GitLab Tokens (`glpat-...`)
+- 其他 API 密钥和凭证
+
+**注意：** 已自动排除：
+- `.gitignore` 中的文件
+- `.example` / `.sample` 示例文件
+- `workspace/*-config.json` 配置文件
+- `workspace/memory-*.json` 记忆配置
+
+### 3. 文件分类
+
+#### 必要文件（自动提交）
+- `openclaw.json` - Agent 配置文件
+- `docker-compose.yml` - Docker 编排配置
+- `.env` - 环境变量
+- `init.sql` - 数据库初始化脚本
+- `monitor/*.sh` - 监控脚本
+
+#### 可选文件（需要确认）
+- `workspace/*.md` - 文档
+- `workspace/*.log` - 日志
+- `memory/*.md` - 记忆文件
+- `skills/` - 技能目录
+- `extensions/` - 扩展目录
+- `*.bak*` - 备份文件
+
+### 4. 自动提交
+- 必要文件自动提交并推送
+- 提交信息包含日期和文件列表
+- 推送失败时记录警告
+
+### 5. 报告生成
+每次检查生成详细报告：
+- 位置：`/opt/openclaw-team/monitor/logs/daily-check-YYYY-MM-DD.md`
+- 状态文件：`/opt/openclaw-team/monitor/daily-check-state.json`
+
+## 📂 文件结构
 
 ```
 /opt/openclaw-team/monitor/
-├── health-check.sh        # 健康检查主脚本
-├── heartbeat-trigger.sh   # Heartbeat 触发器（带通知逻辑）
-├── health-state.json      # 最新检查状态（自动生成）
-└── README.md              # 本文档
+├── daily-check.sh          # 主检查脚本
+├── daily-check-state.json  # 检查状态
+├── heartbeat-trigger.sh    # 健康检查触发器
+├── daily-report.sh         # 每日汇报脚本
+└── logs/
+    ├── daily-check-YYYY-MM-DD.md  # 检查报告
+    └── cron-daily-check.log       # Cron 日志
 ```
 
-## 🔍 检查内容
-
-| 检查项 | 频率 | 说明 |
-|--------|------|------|
-| 容器状态 | 5 分钟 | 检查 3 个 agent 容器是否运行 |
-| Gateway 端口 | 5 分钟 | 检查 18001/18002/18003 端口 |
-| Web UI 端口 | 5 分钟 | 检查 13000/13001/13002（可选） |
-| 日志错误 | 5 分钟 | 扫描最近 5 分钟 ERROR/FATAL |
-| 资源使用 | 5 分钟 | CPU/内存使用率 |
-| 数据库 | 5 分钟 | PostgreSQL 容器状态 |
-
-## ⚙️ 配置位置
-
-| 配置项 | 位置 |
-|--------|------|
-| Cron 任务 | `/root/.openclaw/workspace/cron/jobs.json` |
-| Heartbeat | `/root/.openclaw/workspace/HEARTBEAT.md` |
-| Gateway 配置 | `/root/.openclaw/openclaw.json` |
-
-## 🚀 手动运行
+## 🔧 手动运行
 
 ```bash
-# 运行健康检查
-/opt/openclaw-team/monitor/health-check.sh
+# 手动执行检查
+/opt/openclaw-team/monitor/daily-check.sh
 
-# 纯文本输出（适合脚本调用）
-/opt/openclaw-team/monitor/health-check.sh --plain
+# 查看最新报告
+cat /opt/openclaw-team/monitor/logs/daily-check-$(date +%Y-%m-%d).md
 
-# 运行完整触发器（带通知逻辑）
-/opt/openclaw-team/monitor/heartbeat-trigger.sh
+# 查看 Cron 日志
+tail -f /opt/openclaw-team/monitor/logs/cron-daily-check.log
 ```
 
-## 📊 状态文件
-
-`health-state.json` 记录最新检查结果：
-
-```json
-{
-  "timestamp": "2026-03-14 16:05:29",
-  "status": "CRITICAL",
-  "exitCode": 1
-}
-```
-
-**状态值：**
-- `HEALTHY` - 一切正常
-- `WARNING` - 有警告（重启次数多、日志错误等）
-- `CRITICAL` - 严重问题（容器宕机、端口不可用）
-
-## 🔔 告警规则
-
-| 级别 | 条件 | 通知 |
-|------|------|------|
-| CRITICAL | 容器宕机、端口不可用、数据库异常 | 立即飞书通知 |
-| WARNING | 重启次数>3、错误日志增多 | 记录，可配置通知 |
-| HEALTHY | 所有检查通过 | 静默 |
-
-## 🛠️ 修改检查频率
-
-编辑 `/root/.openclaw/workspace/cron/jobs.json`：
-
-```json
-{
-  "jobs": [
-    {
-      "name": "agent-team-health-check",
-      "schedule": "*/5 * * * *",  // 修改这里
-      ...
-    }
-  ]
-}
-```
-
-**Cron 表达式示例：**
-- `*/5 * * * *` - 每 5 分钟
-- `*/10 * * * *` - 每 10 分钟
-- `0 * * * *` - 每小时整点
-- `0 9 * * *` - 每天早上 9 点
-
-## 📝 查看历史状态
+## 📋 Cron 配置
 
 ```bash
-# 查看最新状态
-cat /opt/openclaw-team/monitor/health-state.json
+# 查看当前配置
+crontab -l | grep daily-check
+
+# 配置内容
+50 7 * * * /opt/openclaw-team/monitor/daily-check.sh
+50 11 * * * /opt/openclaw-team/monitor/daily-check.sh
+50 17 * * * /opt/openclaw-team/monitor/daily-check.sh
+```
+
+## ⚠️ 敏感信息处理
+
+如果检测到敏感信息：
+1. 脚本会发出警告
+2. 不会自动提交该文件
+3. 需要人工审查确认
+4. 建议将敏感文件添加到 `.gitignore`
+
+### 常见敏感文件位置
+```
+workspace/*-config.json      # 包含 API 配置
+workspace/credentials/       # 凭证目录
+workspace/.env              # 本地环境变量
+*.key, *.pem                # 密钥文件
+```
+
+## 📊 报告示例
+
+```markdown
+# OpenClaw Team 每日检查报告
+
+**检查时间：** 2026-03-24 11:26:36
+
+## 📊 概览
+- 修改的文件：1 个必要 + 0 个可选
+- 未跟踪的文件：34 个
+- 敏感信息警告：1 个
+
+## ✅ 已自动提交
+  - .gitignore
+
+## 🚨 敏感信息警告
+  - openclaw-marketing/workspace/memory-test-report.md
+```
+
+## 🔐 安全建议
+
+1. **定期审查报告** - 每天查看检查报告
+2. **及时处理警告** - 敏感信息警告需要立即处理
+3. **完善 .gitignore** - 将敏感文件加入忽略列表
+4. **使用环境变量** - 敏感配置使用 `${VAR}` 引用
+5. **定期清理 workspace** - 删除不必要的测试文件
+
+## 🛠️ 故障排除
+
+### Cron 不执行
+```bash
+# 检查 cron 服务
+systemctl status cron
 
 # 查看 cron 日志
-openclaw cron logs
+grep CRON /var/log/syslog | tail -20
 ```
 
-## 📊 端口配置
-
-| 容器 | Gateway 端口 | Web UI 端口 |
-|------|-------------|-------------|
-| **orchestrator** | 18001 | 13000 |
-| **agent-dev** | 18002 | 13001 |
-| **agent-pm** | 18003 | 13002 |
-
-所有 Gateway 端口仅绑定 `127.0.0.1`，不暴露到公网。
-
-## 🔧 故障排除
-
-### 容器正常运行但端口不可用
-
-检查容器端口映射：
+### 脚本执行失败
 ```bash
-docker port openclaw-dev
+# 检查脚本权限
+ls -la /opt/openclaw-team/monitor/daily-check.sh
+
+# 手动执行查看错误
+bash -x /opt/openclaw-team/monitor/daily-check.sh
 ```
 
-检查容器日志：
+### Git 推送失败
 ```bash
-docker logs --tail 50 openclaw-dev
-```
+# 检查 Git 配置
+cd /opt/openclaw-team
+git remote -v
+git status
 
-### Cron 任务未执行
-
-检查 cron 状态：
-```bash
-openclaw cron status
-```
-
-重启 Gateway：
-```bash
-openclaw gateway restart
-```
-
-### Sentinel 启动提示缺少模型密钥
-
-如果日志提示缺少 `OPENAI_API_KEY`，现在可以直接提供阿里云变量：
-```bash
-export ALIYUN_API_KEY='你的阿里云密钥'
-export ALIYUN_BASE_URL='https://coding.dashscope.aliyuncs.com/v1'
-systemctl --user import-environment ALIYUN_API_KEY ALIYUN_BASE_URL
-systemctl --user restart openclaw-gateway.service
-```
-
-### 飞书通知未发送
-
-检查飞书插件配置：
-```bash
-cat /root/.openclaw/openclaw.json | jq '.channels.feishu'
+# 检查认证
+gh auth status
 ```
 
 ---
 
-最后更新：2026-03-14
+*最后更新：2026-03-24*
