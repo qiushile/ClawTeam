@@ -49,6 +49,7 @@ services:
       - "18001:18789"
       - "13001:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-orchestrator
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3.5-plus
@@ -73,6 +74,7 @@ services:
       - "18002:18789"
       - "13002:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-dev
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3.5-plus
@@ -96,6 +98,7 @@ services:
       - "18003:18789"
       - "13003:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-pm
       - OPENAI_API_KEY=${MINIMAX_API_KEY}
       - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
       - OPENAI_MODEL=MiniMax-M2.5
@@ -118,6 +121,7 @@ services:
       - "18004:18789"
       - "13004:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-design
       - OPENAI_API_KEY=${KIMI_API_KEY}
       - OPENAI_BASE_URL=${KIMI_BASE_URL}
       - OPENAI_MODEL=kimi-k2.5
@@ -140,6 +144,7 @@ services:
       - "18005:18789"
       - "13005:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-ads
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3.5-plus
@@ -162,6 +167,7 @@ services:
       - "18006:18789"
       - "13006:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-sales
       - OPENAI_API_KEY=${ZHIPU_API_KEY}
       - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
       - OPENAI_MODEL=glm-4.7
@@ -184,6 +190,7 @@ services:
       - "18007:18789"
       - "13007:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-marketing
       - OPENAI_API_KEY=${KIMI_API_KEY}
       - OPENAI_BASE_URL=${KIMI_BASE_URL}
       - OPENAI_MODEL=kimi-k2.5
@@ -206,6 +213,7 @@ services:
       - "18008:18789"
       - "13008:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-project
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3.5-plus
@@ -228,6 +236,7 @@ services:
       - "18009:18789"
       - "13009:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-qa
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3-coder-plus
@@ -250,6 +259,7 @@ services:
       - "18010:18789"
       - "13010:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-support
       - OPENAI_API_KEY=${MINIMAX_API_KEY}
       - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
       - OPENAI_MODEL=MiniMax-M2.5
@@ -272,6 +282,7 @@ services:
       - "18011:18789"
       - "13011:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-spatial
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3.5-plus
@@ -294,6 +305,7 @@ services:
       - "18012:18789"
       - "13012:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-expert
       - OPENAI_API_KEY=${ZHIPU_API_KEY}
       - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
       - OPENAI_MODEL=glm-5
@@ -316,6 +328,7 @@ services:
       - "18013:18789"
       - "13013:3000"
     environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-game
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
       - OPENAI_MODEL=qwen3-coder-plus

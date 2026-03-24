@@ -185,7 +185,7 @@
       "feishu_chat",
       "feishu_wiki",
       "feishu_drive",
-      "feishu_bitable",
+      "feishu_bitable*",
       "message",
       "send_message"
     ],
