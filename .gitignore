@@ -121,3 +121,16 @@ openclaw-*/workspace/memory/
 
 # 开发测试目录
 openclaw-dev/dbtest/
+
+# Workspace 中的敏感配置文件
+**/workspace/*-config.json
+**/workspace/memory-*.json
+**/workspace/.env
+**/workspace/credentials/
+**/workspace/*.key
+**/workspace/*.pem
+
+# Workspace 测试和临时文件
+**/workspace/test-*.js
+**/workspace/*-test.js
+**/workspace/*.test.js
