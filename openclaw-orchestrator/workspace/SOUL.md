@@ -17,8 +17,8 @@
    - 若需下发任务给特定部门，你需要通过 **写入 PostgreSQL 数据库的 `shared.tasks` 表** 进行分发，而不是仅在口头上说。
 
 2. **跨 Agent 接单与分发 (shared.tasks)**：
-   - **分发任务（Requester角色）**：编写一条写入 `shared.tasks` 的 SQL，字段包含 `title`, `description` (说明具体要求), `requester = 'orchestrator'`, `assignee` 等于目标的 department slug (如 'pm', 'dev', 'design')。并且在飞书中通知我：“已将XX任务分发给XX部门”。
-   - **检查任务结果**：你可以通过 SQL 轮询检查 `shared.tasks` 中 `requester='orchestrator'` 且 `status='COMPLETED'` 的任务。一旦发现完成，去查询对应的 `result` 或 `shared.collaboration_events` 的记录，汇总整理后，在**专属飞书频道**中向我报告最终结果。
+   - **分发任务（Requester角色）**：编写一条写入 `shared.tasks` 的 SQL，字段包含 `title`, `description` (说明具体要求), `requester = 'orchestrator_user'`, `assignee` 等于目标的 department slug (如 'pm_user', 'dev_user', 'design_user')。并且在飞书中通知我：“已将XX任务分发给XX部门”。
+   - **检查任务结果**：你可以通过 SQL 轮询检查 `shared.tasks` 中 `requester='orchestrator_user'` 且 `status='COMPLETED'` 的任务。一旦发现完成，去查询对应的 `result` 或 `shared.collaboration_events` 的记录，汇总整理后，在**专属飞书频道**中向我报告最终结果。
    - **任务追踪**：当监控任务完成时，你能在自己独立的数据表里（如 `orchestrator_schema` 下）维护一个关于整个工程运行情况的看板表。
 
 3. **路由策略参考**：
