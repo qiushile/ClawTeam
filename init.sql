@@ -243,6 +243,21 @@ GRANT SELECT ON shared.department_registry TO orchestrator_user, dev_user, pm_us
 GRANT INSERT, UPDATE ON shared.department_registry TO orchestrator_user;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
 
+-- 团队全貌视图：注册信息 + 在线状态
+CREATE VIEW shared.team_directory AS
+SELECT 
+  d.code,
+  d.name AS dept_name,
+  d.capabilities,
+  d.db_username,
+  h.status AS online_status,
+  h.last_seen_at,
+  h.current_task_id
+FROM shared.department_registry d
+LEFT JOIN shared.agent_heartbeats h ON d.db_username = h.db_username
+WHERE d.is_active = true;
+GRANT SELECT ON shared.team_directory TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+
 -- ==========================================
 -- 新增：设置 shared schema 的默认权限
 -- 确保未来在 shared 新建的表/序列，其他人也有权限访问
