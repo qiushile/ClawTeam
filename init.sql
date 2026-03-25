@@ -229,13 +229,17 @@ INSERT INTO shared.department_registry (code, db_username, name, capabilities) V
 -- 统一授予所有用户对 shared 的基础权限
 -- ==========================================
 GRANT USAGE ON SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT CREATE ON SCHEMA shared TO orchestrator_user;
 
 -- 对 shared 表授权
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.tasks TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
 GRANT TRIGGER ON shared.tasks TO orchestrator_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.collaboration_events TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT TRIGGER ON shared.collaboration_events TO orchestrator_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.knowledge_base TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT TRIGGER ON shared.knowledge_base TO orchestrator_user;
 GRANT SELECT ON shared.department_registry TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT INSERT, UPDATE ON shared.department_registry TO orchestrator_user;
 GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
 
 -- ==========================================
@@ -373,9 +377,13 @@ CREATE INDEX idx_comments_task ON shared.task_comments(task_id, created_at);
 --   但为了向后兼容对现有存在的表显式赋权更为保险）
 -- ==========================================
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.agent_heartbeats TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT TRIGGER ON shared.agent_heartbeats TO orchestrator_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.inter_agent_messages TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT TRIGGER ON shared.inter_agent_messages TO orchestrator_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.shared_artifacts TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT TRIGGER ON shared.shared_artifacts TO orchestrator_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.task_comments TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT TRIGGER ON shared.task_comments TO orchestrator_user;
 
 
 -- ==========================================
