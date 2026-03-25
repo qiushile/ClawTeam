@@ -180,6 +180,25 @@
     }
   },
   "tools": {
+    "allow": [
+      "read",
+      "write",
+      "edit",
+      "database_query",
+      "feishu_doc",
+      "feishu_chat",
+      "feishu_wiki",
+      "feishu_drive",
+      "feishu_bitable*",
+      "feishu_app_scopes",
+      "memory_recall",
+      "memory_store",
+      "memory_forget",
+      "message",
+      "send_message",
+      "web_search",
+      "web_fetch"
+    ],
     "deny": [
       "exec",
       "bash",
@@ -204,13 +223,13 @@
       "enabled": true,
       "dmPolicy": "pairing",
       "groupPolicy": "open",
-      "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
-      "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
-      "domain": "feishu",
-      "connectionMode": "websocket",
-      "requireMention": true,
-      "allowFrom": [],
-      "groupAllowFrom": []
+      "accounts": {
+        "default": {
+          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
+          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
+          "botName": "协调中枢"
+        }
+      }
     }
   },
   "gateway": {
