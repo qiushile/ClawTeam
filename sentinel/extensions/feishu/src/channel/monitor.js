@@ -51,9 +51,31 @@ async function monitorSingleAccount(params) {
     log(`feishu[${accountId}]: starting WebSocket connection...`);
     // Create LarkClient instance — manages SDK client, WS, and bot identity.
     const lark = LarkClient.fromAccount(account);
+    
+    // Probe with retry to ensure botOpenId is resolved correctly
+    // Issue: v2026.3.23-2 probe sometimes times out on first attempt (13ms)
+    // due to SDK initialization race condition. Retry fixes this.
+    log(`feishu[${accountId}]: probing bot identity...`);
+    let probeResult;
+    const maxRetries = 3;
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+        probeResult = await lark.probe();
+        if (probeResult.ok && probeResult.botOpenId) {
+            log(`feishu[${accountId}]: bot probe succeeded on attempt ${attempt}: ${probeResult.botOpenId}`);
+            break;
+        }
+        if (attempt < maxRetries) {
+            log(`feishu[${accountId}]: bot probe attempt ${attempt} failed (${probeResult.error}), retrying in 500ms...`);
+            await new Promise(resolve => setTimeout(resolve, 500));
+        } else {
+            log(`feishu[${accountId}]: ⚠️  bot probe failed after ${maxRetries} attempts: ${probeResult.error}`);
+        }
+    }
+    
     /** Per-chat history maps (used for group-chat context window). */
     const chatHistories = new Map();
     await lark.startWS({
+        autoProbe: false,  // Skip auto-probe since we already probed with retry
         handlers: {
             "im.message.receive_v1": async (data) => {
                 try {
