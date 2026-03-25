@@ -171,7 +171,51 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "qa",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "qa-evidence-collector",
+        "workspace": "/home/node/.openclaw/workspace-qa-evidence-collector"
+      },
+      {
+        "id": "qa-accessibility-auditor",
+        "workspace": "/home/node/.openclaw/workspace-qa-accessibility-auditor"
+      },
+      {
+        "id": "qa-tool-evaluator",
+        "workspace": "/home/node/.openclaw/workspace-qa-tool-evaluator"
+      },
+      {
+        "id": "qa-performance-benchmarker",
+        "workspace": "/home/node/.openclaw/workspace-qa-performance-benchmarker"
+      },
+      {
+        "id": "qa-workflow-optimizer",
+        "workspace": "/home/node/.openclaw/workspace-qa-workflow-optimizer"
+      },
+      {
+        "id": "qa-api-tester",
+        "workspace": "/home/node/.openclaw/workspace-qa-api-tester"
+      },
+      {
+        "id": "qa-test-results-analyzer",
+        "workspace": "/home/node/.openclaw/workspace-qa-test-results-analyzer"
+      },
+      {
+        "id": "qa-reality-checker",
+        "workspace": "/home/node/.openclaw/workspace-qa-reality-checker"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -208,7 +252,7 @@
         "default": {
           "appId": "${FEISHU_QA_APP_ID}",
           "appSecret": "${FEISHU_QA_APP_SECRET}",
-          "botName": "\u6d4b\u8bd5\u90e8\u52a9\u624b"
+          "botName": "测试部助手"
         }
       }
     }
@@ -254,7 +298,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "qa",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

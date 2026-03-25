@@ -171,7 +171,99 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "game",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "game-unity-editor-tool-developer",
+        "workspace": "/home/node/.openclaw/workspace-game-unity-editor-tool-developer"
+      },
+      {
+        "id": "game-blender-add-on-engineer",
+        "workspace": "/home/node/.openclaw/workspace-game-blender-add-on-engineer"
+      },
+      {
+        "id": "game-unity-architect",
+        "workspace": "/home/node/.openclaw/workspace-game-unity-architect"
+      },
+      {
+        "id": "game-level-designer",
+        "workspace": "/home/node/.openclaw/workspace-game-level-designer"
+      },
+      {
+        "id": "game-unity-multiplayer-engineer",
+        "workspace": "/home/node/.openclaw/workspace-game-unity-multiplayer-engineer"
+      },
+      {
+        "id": "game-game-audio-engineer",
+        "workspace": "/home/node/.openclaw/workspace-game-game-audio-engineer"
+      },
+      {
+        "id": "game-roblox-systems-scripter",
+        "workspace": "/home/node/.openclaw/workspace-game-roblox-systems-scripter"
+      },
+      {
+        "id": "game-unreal-world-builder",
+        "workspace": "/home/node/.openclaw/workspace-game-unreal-world-builder"
+      },
+      {
+        "id": "game-narrative-designer",
+        "workspace": "/home/node/.openclaw/workspace-game-narrative-designer"
+      },
+      {
+        "id": "game-roblox-experience-designer",
+        "workspace": "/home/node/.openclaw/workspace-game-roblox-experience-designer"
+      },
+      {
+        "id": "game-godot-multiplayer-engineer",
+        "workspace": "/home/node/.openclaw/workspace-game-godot-multiplayer-engineer"
+      },
+      {
+        "id": "game-godot-shader-developer",
+        "workspace": "/home/node/.openclaw/workspace-game-godot-shader-developer"
+      },
+      {
+        "id": "game-technical-artist",
+        "workspace": "/home/node/.openclaw/workspace-game-technical-artist"
+      },
+      {
+        "id": "game-unreal-multiplayer-architect",
+        "workspace": "/home/node/.openclaw/workspace-game-unreal-multiplayer-architect"
+      },
+      {
+        "id": "game-unreal-systems-engineer",
+        "workspace": "/home/node/.openclaw/workspace-game-unreal-systems-engineer"
+      },
+      {
+        "id": "game-godot-gameplay-scripter",
+        "workspace": "/home/node/.openclaw/workspace-game-godot-gameplay-scripter"
+      },
+      {
+        "id": "game-game-designer",
+        "workspace": "/home/node/.openclaw/workspace-game-game-designer"
+      },
+      {
+        "id": "game-unreal-technical-artist",
+        "workspace": "/home/node/.openclaw/workspace-game-unreal-technical-artist"
+      },
+      {
+        "id": "game-roblox-avatar-creator",
+        "workspace": "/home/node/.openclaw/workspace-game-roblox-avatar-creator"
+      },
+      {
+        "id": "game-unity-shader-graph-artist",
+        "workspace": "/home/node/.openclaw/workspace-game-unity-shader-graph-artist"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -208,7 +300,7 @@
         "default": {
           "appId": "${FEISHU_GAME_APP_ID}",
           "appSecret": "${FEISHU_GAME_APP_SECRET}",
-          "botName": "\u6e38\u620f\u90e8\u52a9\u624b"
+          "botName": "游戏部助手"
         }
       }
     }
@@ -254,7 +346,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "game",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

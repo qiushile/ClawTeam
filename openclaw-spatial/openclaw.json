@@ -171,7 +171,43 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "spatial",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "spatial-xr-interface-architect",
+        "workspace": "/home/node/.openclaw/workspace-spatial-xr-interface-architect"
+      },
+      {
+        "id": "spatial-visionos-spatial-engineer",
+        "workspace": "/home/node/.openclaw/workspace-spatial-visionos-spatial-engineer"
+      },
+      {
+        "id": "spatial-xr-immersive-developer",
+        "workspace": "/home/node/.openclaw/workspace-spatial-xr-immersive-developer"
+      },
+      {
+        "id": "spatial-xr-cockpit-interaction-specialist",
+        "workspace": "/home/node/.openclaw/workspace-spatial-xr-cockpit-interaction-specialist"
+      },
+      {
+        "id": "spatial-terminal-integration-specialist",
+        "workspace": "/home/node/.openclaw/workspace-spatial-terminal-integration-specialist"
+      },
+      {
+        "id": "spatial-macos-spatial-metal-engineer",
+        "workspace": "/home/node/.openclaw/workspace-spatial-macos-spatial-metal-engineer"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -200,7 +236,7 @@
         "default": {
           "appId": "${FEISHU_SPATIAL_APP_ID}",
           "appSecret": "${FEISHU_SPATIAL_APP_SECRET}",
-          "botName": "\u7a7a\u95f4\u90e8\u52a9\u624b"
+          "botName": "空间部助手"
         }
       }
     }
@@ -246,7 +282,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "spatial",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

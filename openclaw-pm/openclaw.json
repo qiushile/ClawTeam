@@ -171,7 +171,39 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "pm",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "pm-sprint-prioritizer",
+        "workspace": "/home/node/.openclaw/workspace-pm-sprint-prioritizer"
+      },
+      {
+        "id": "pm-product-manager",
+        "workspace": "/home/node/.openclaw/workspace-pm-product-manager"
+      },
+      {
+        "id": "pm-feedback-synthesizer",
+        "workspace": "/home/node/.openclaw/workspace-pm-feedback-synthesizer"
+      },
+      {
+        "id": "pm-trend-researcher",
+        "workspace": "/home/node/.openclaw/workspace-pm-trend-researcher"
+      },
+      {
+        "id": "pm-behavioral-nudge-engine",
+        "workspace": "/home/node/.openclaw/workspace-pm-behavioral-nudge-engine"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -252,7 +284,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "pm",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

@@ -171,7 +171,43 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "support",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "support-executive-summary-generator",
+        "workspace": "/home/node/.openclaw/workspace-support-executive-summary-generator"
+      },
+      {
+        "id": "support-analytics-reporter",
+        "workspace": "/home/node/.openclaw/workspace-support-analytics-reporter"
+      },
+      {
+        "id": "support-infrastructure-maintainer",
+        "workspace": "/home/node/.openclaw/workspace-support-infrastructure-maintainer"
+      },
+      {
+        "id": "support-support-responder",
+        "workspace": "/home/node/.openclaw/workspace-support-support-responder"
+      },
+      {
+        "id": "support-finance-tracker",
+        "workspace": "/home/node/.openclaw/workspace-support-finance-tracker"
+      },
+      {
+        "id": "support-legal-compliance-checker",
+        "workspace": "/home/node/.openclaw/workspace-support-legal-compliance-checker"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -200,7 +236,7 @@
         "default": {
           "appId": "${FEISHU_SUPPORT_APP_ID}",
           "appSecret": "${FEISHU_SUPPORT_APP_SECRET}",
-          "botName": "\u652f\u6491\u90e8\u52a9\u624b"
+          "botName": "支撑部助手"
         }
       }
     }
@@ -246,7 +282,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "support",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

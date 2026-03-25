@@ -171,7 +171,111 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "dev",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "dev-security-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-security-engineer"
+      },
+      {
+        "id": "dev-incident-response-commander",
+        "workspace": "/home/node/.openclaw/workspace-dev-incident-response-commander"
+      },
+      {
+        "id": "dev-autonomous-optimization-architect",
+        "workspace": "/home/node/.openclaw/workspace-dev-autonomous-optimization-architect"
+      },
+      {
+        "id": "dev-database-optimizer",
+        "workspace": "/home/node/.openclaw/workspace-dev-database-optimizer"
+      },
+      {
+        "id": "dev-wechat-mini-program-developer",
+        "workspace": "/home/node/.openclaw/workspace-dev-wechat-mini-program-developer"
+      },
+      {
+        "id": "dev-ai-data-remediation-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-ai-data-remediation-engineer"
+      },
+      {
+        "id": "dev-frontend-developer",
+        "workspace": "/home/node/.openclaw/workspace-dev-frontend-developer"
+      },
+      {
+        "id": "dev-sre-site-reliability-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-sre-site-reliability-engineer"
+      },
+      {
+        "id": "dev-embedded-firmware-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-embedded-firmware-engineer"
+      },
+      {
+        "id": "dev-software-architect",
+        "workspace": "/home/node/.openclaw/workspace-dev-software-architect"
+      },
+      {
+        "id": "dev-devops-automator",
+        "workspace": "/home/node/.openclaw/workspace-dev-devops-automator"
+      },
+      {
+        "id": "dev-backend-architect",
+        "workspace": "/home/node/.openclaw/workspace-dev-backend-architect"
+      },
+      {
+        "id": "dev-data-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-data-engineer"
+      },
+      {
+        "id": "dev-rapid-prototyper",
+        "workspace": "/home/node/.openclaw/workspace-dev-rapid-prototyper"
+      },
+      {
+        "id": "dev-threat-detection-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-threat-detection-engineer"
+      },
+      {
+        "id": "dev-mobile-app-builder",
+        "workspace": "/home/node/.openclaw/workspace-dev-mobile-app-builder"
+      },
+      {
+        "id": "dev-git-workflow-master",
+        "workspace": "/home/node/.openclaw/workspace-dev-git-workflow-master"
+      },
+      {
+        "id": "dev-code-reviewer",
+        "workspace": "/home/node/.openclaw/workspace-dev-code-reviewer"
+      },
+      {
+        "id": "dev-feishu-integration-developer",
+        "workspace": "/home/node/.openclaw/workspace-dev-feishu-integration-developer"
+      },
+      {
+        "id": "dev-solidity-smart-contract-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-solidity-smart-contract-engineer"
+      },
+      {
+        "id": "dev-technical-writer",
+        "workspace": "/home/node/.openclaw/workspace-dev-technical-writer"
+      },
+      {
+        "id": "dev-ai-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-ai-engineer"
+      },
+      {
+        "id": "dev-senior-developer",
+        "workspace": "/home/node/.openclaw/workspace-dev-senior-developer"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -208,7 +312,7 @@
         "default": {
           "appId": "${FEISHU_DEV_APP_ID}",
           "appSecret": "${FEISHU_DEV_APP_SECRET}",
-          "botName": "\u7814\u53d1\u90e8\u52a9\u624b"
+          "botName": "研发部助手"
         }
       }
     }
@@ -254,7 +358,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "dev",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

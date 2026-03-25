@@ -171,7 +171,43 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "project",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "project-studio-operations",
+        "workspace": "/home/node/.openclaw/workspace-project-studio-operations"
+      },
+      {
+        "id": "project-experiment-tracker",
+        "workspace": "/home/node/.openclaw/workspace-project-experiment-tracker"
+      },
+      {
+        "id": "project-senior-project-manager",
+        "workspace": "/home/node/.openclaw/workspace-project-senior-project-manager"
+      },
+      {
+        "id": "project-project-shepherd",
+        "workspace": "/home/node/.openclaw/workspace-project-project-shepherd"
+      },
+      {
+        "id": "project-studio-producer",
+        "workspace": "/home/node/.openclaw/workspace-project-studio-producer"
+      },
+      {
+        "id": "project-jira-workflow-steward",
+        "workspace": "/home/node/.openclaw/workspace-project-jira-workflow-steward"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -246,7 +282,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "project",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

@@ -171,7 +171,51 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "design",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "design-inclusive-visuals-specialist",
+        "workspace": "/home/node/.openclaw/workspace-design-inclusive-visuals-specialist"
+      },
+      {
+        "id": "design-image-prompt-engineer",
+        "workspace": "/home/node/.openclaw/workspace-design-image-prompt-engineer"
+      },
+      {
+        "id": "design-brand-guardian",
+        "workspace": "/home/node/.openclaw/workspace-design-brand-guardian"
+      },
+      {
+        "id": "design-visual-storyteller",
+        "workspace": "/home/node/.openclaw/workspace-design-visual-storyteller"
+      },
+      {
+        "id": "design-ux-researcher",
+        "workspace": "/home/node/.openclaw/workspace-design-ux-researcher"
+      },
+      {
+        "id": "design-whimsy-injector",
+        "workspace": "/home/node/.openclaw/workspace-design-whimsy-injector"
+      },
+      {
+        "id": "design-ui-designer",
+        "workspace": "/home/node/.openclaw/workspace-design-ui-designer"
+      },
+      {
+        "id": "design-ux-architect",
+        "workspace": "/home/node/.openclaw/workspace-design-ux-architect"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -253,7 +297,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "design",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

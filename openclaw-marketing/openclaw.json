@@ -171,7 +171,123 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "marketing",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "marketing-reddit-community-builder",
+        "workspace": "/home/node/.openclaw/workspace-marketing-reddit-community-builder"
+      },
+      {
+        "id": "marketing-book-co-author",
+        "workspace": "/home/node/.openclaw/workspace-marketing-book-co-author"
+      },
+      {
+        "id": "marketing-kuaishou-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-kuaishou-strategist"
+      },
+      {
+        "id": "marketing-douyin-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-douyin-strategist"
+      },
+      {
+        "id": "marketing-app-store-optimizer",
+        "workspace": "/home/node/.openclaw/workspace-marketing-app-store-optimizer"
+      },
+      {
+        "id": "marketing-growth-hacker",
+        "workspace": "/home/node/.openclaw/workspace-marketing-growth-hacker"
+      },
+      {
+        "id": "marketing-carousel-growth-engine",
+        "workspace": "/home/node/.openclaw/workspace-marketing-carousel-growth-engine"
+      },
+      {
+        "id": "marketing-content-creator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-content-creator"
+      },
+      {
+        "id": "marketing-wechat-official-account-manager",
+        "workspace": "/home/node/.openclaw/workspace-marketing-wechat-official-account-manager"
+      },
+      {
+        "id": "marketing-tiktok-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-tiktok-strategist"
+      },
+      {
+        "id": "marketing-weibo-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-weibo-strategist"
+      },
+      {
+        "id": "marketing-baidu-seo-specialist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-baidu-seo-specialist"
+      },
+      {
+        "id": "marketing-social-media-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-social-media-strategist"
+      },
+      {
+        "id": "marketing-seo-specialist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-seo-specialist"
+      },
+      {
+        "id": "marketing-twitter-engager",
+        "workspace": "/home/node/.openclaw/workspace-marketing-twitter-engager"
+      },
+      {
+        "id": "marketing-zhihu-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-zhihu-strategist"
+      },
+      {
+        "id": "marketing-podcast-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-podcast-strategist"
+      },
+      {
+        "id": "marketing-china-e-commerce-operator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-china-e-commerce-operator"
+      },
+      {
+        "id": "marketing-livestream-commerce-coach",
+        "workspace": "/home/node/.openclaw/workspace-marketing-livestream-commerce-coach"
+      },
+      {
+        "id": "marketing-private-domain-operator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-private-domain-operator"
+      },
+      {
+        "id": "marketing-instagram-curator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-instagram-curator"
+      },
+      {
+        "id": "marketing-short-video-editing-coach",
+        "workspace": "/home/node/.openclaw/workspace-marketing-short-video-editing-coach"
+      },
+      {
+        "id": "marketing-xiaohongshu-specialist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-xiaohongshu-specialist"
+      },
+      {
+        "id": "marketing-cross-border-e-commerce-specialist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-cross-border-e-commerce-specialist"
+      },
+      {
+        "id": "marketing-bilibili-content-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-bilibili-content-strategist"
+      },
+      {
+        "id": "marketing-linkedin-content-creator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-linkedin-content-creator"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -261,7 +377,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "marketing",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

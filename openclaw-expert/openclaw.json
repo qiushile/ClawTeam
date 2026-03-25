@@ -171,7 +171,111 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "expert",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "expert-compliance-auditor",
+        "workspace": "/home/node/.openclaw/workspace-expert-compliance-auditor"
+      },
+      {
+        "id": "expert-agentic-identity-trust-architect",
+        "workspace": "/home/node/.openclaw/workspace-expert-agentic-identity-trust-architect"
+      },
+      {
+        "id": "expert-healthcare-marketing-compliance-specialist",
+        "workspace": "/home/node/.openclaw/workspace-expert-healthcare-marketing-compliance-specialist"
+      },
+      {
+        "id": "expert-recruitment-specialist",
+        "workspace": "/home/node/.openclaw/workspace-expert-recruitment-specialist"
+      },
+      {
+        "id": "expert-identity-graph-operator",
+        "workspace": "/home/node/.openclaw/workspace-expert-identity-graph-operator"
+      },
+      {
+        "id": "expert-blockchain-security-auditor",
+        "workspace": "/home/node/.openclaw/workspace-expert-blockchain-security-auditor"
+      },
+      {
+        "id": "expert-automation-governance-architect",
+        "workspace": "/home/node/.openclaw/workspace-expert-automation-governance-architect"
+      },
+      {
+        "id": "expert-report-distribution-agent",
+        "workspace": "/home/node/.openclaw/workspace-expert-report-distribution-agent"
+      },
+      {
+        "id": "expert-developer-advocate",
+        "workspace": "/home/node/.openclaw/workspace-expert-developer-advocate"
+      },
+      {
+        "id": "expert-cultural-intelligence-strategist",
+        "workspace": "/home/node/.openclaw/workspace-expert-cultural-intelligence-strategist"
+      },
+      {
+        "id": "expert-supply-chain-strategist",
+        "workspace": "/home/node/.openclaw/workspace-expert-supply-chain-strategist"
+      },
+      {
+        "id": "expert-zk-steward",
+        "workspace": "/home/node/.openclaw/workspace-expert-zk-steward"
+      },
+      {
+        "id": "expert-agents-orchestrator",
+        "workspace": "/home/node/.openclaw/workspace-expert-agents-orchestrator"
+      },
+      {
+        "id": "expert-data-consolidation-agent",
+        "workspace": "/home/node/.openclaw/workspace-expert-data-consolidation-agent"
+      },
+      {
+        "id": "expert-model-qa-specialist",
+        "workspace": "/home/node/.openclaw/workspace-expert-model-qa-specialist"
+      },
+      {
+        "id": "expert-accounts-payable-agent",
+        "workspace": "/home/node/.openclaw/workspace-expert-accounts-payable-agent"
+      },
+      {
+        "id": "expert-corporate-training-designer",
+        "workspace": "/home/node/.openclaw/workspace-expert-corporate-training-designer"
+      },
+      {
+        "id": "expert-document-generator",
+        "workspace": "/home/node/.openclaw/workspace-expert-document-generator"
+      },
+      {
+        "id": "expert-mcp-builder",
+        "workspace": "/home/node/.openclaw/workspace-expert-mcp-builder"
+      },
+      {
+        "id": "expert-sales-data-extraction-agent",
+        "workspace": "/home/node/.openclaw/workspace-expert-sales-data-extraction-agent"
+      },
+      {
+        "id": "expert-government-digital-presales-consultant",
+        "workspace": "/home/node/.openclaw/workspace-expert-government-digital-presales-consultant"
+      },
+      {
+        "id": "expert-study-abroad-advisor",
+        "workspace": "/home/node/.openclaw/workspace-expert-study-abroad-advisor"
+      },
+      {
+        "id": "expert-lsp-index-engineer",
+        "workspace": "/home/node/.openclaw/workspace-expert-lsp-index-engineer"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -200,7 +304,7 @@
         "default": {
           "appId": "${FEISHU_EXPERT_APP_ID}",
           "appSecret": "${FEISHU_EXPERT_APP_SECRET}",
-          "botName": "\u4e13\u5bb6\u7ec4\u52a9\u624b"
+          "botName": "专家组助手"
         }
       }
     }
@@ -246,7 +350,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "expert",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

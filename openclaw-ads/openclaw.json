@@ -171,7 +171,47 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "ads",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "ads-paid-media-auditor",
+        "workspace": "/home/node/.openclaw/workspace-ads-paid-media-auditor"
+      },
+      {
+        "id": "ads-ad-creative-strategist",
+        "workspace": "/home/node/.openclaw/workspace-ads-ad-creative-strategist"
+      },
+      {
+        "id": "ads-paid-social-strategist",
+        "workspace": "/home/node/.openclaw/workspace-ads-paid-social-strategist"
+      },
+      {
+        "id": "ads-search-query-analyst",
+        "workspace": "/home/node/.openclaw/workspace-ads-search-query-analyst"
+      },
+      {
+        "id": "ads-tracking-measurement-specialist",
+        "workspace": "/home/node/.openclaw/workspace-ads-tracking-measurement-specialist"
+      },
+      {
+        "id": "ads-ppc-campaign-strategist",
+        "workspace": "/home/node/.openclaw/workspace-ads-ppc-campaign-strategist"
+      },
+      {
+        "id": "ads-programmatic-display-buyer",
+        "workspace": "/home/node/.openclaw/workspace-ads-programmatic-display-buyer"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -200,7 +240,7 @@
         "default": {
           "appId": "${FEISHU_ADS_APP_ID}",
           "appSecret": "${FEISHU_ADS_APP_SECRET}",
-          "botName": "\u6295\u653e\u90e8\u52a9\u624b"
+          "botName": "投放部助手"
         }
       }
     }
@@ -246,7 +286,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "ads",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

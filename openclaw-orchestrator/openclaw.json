@@ -177,7 +177,19 @@
           "apiKey": "${ALIYUN_COMPAT_KEY}"
         }
       }
-    }
+    },
+    "list": [
+      {
+        "id": "orchestrator",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -299,7 +311,14 @@
         "enabled": true
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "orchestrator",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }

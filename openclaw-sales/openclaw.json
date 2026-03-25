@@ -171,7 +171,51 @@
       "compaction": {
         "mode": "safeguard"
       }
-    }
+    },
+    "list": [
+      {
+        "id": "sales",
+        "default": true,
+        "workspace": "/home/node/.openclaw/workspace",
+        "subagents": {
+          "allowAgents": [
+            "*"
+          ]
+        }
+      },
+      {
+        "id": "sales-proposal-strategist",
+        "workspace": "/home/node/.openclaw/workspace-sales-proposal-strategist"
+      },
+      {
+        "id": "sales-pipeline-analyst",
+        "workspace": "/home/node/.openclaw/workspace-sales-pipeline-analyst"
+      },
+      {
+        "id": "sales-sales-coach",
+        "workspace": "/home/node/.openclaw/workspace-sales-sales-coach"
+      },
+      {
+        "id": "sales-sales-engineer",
+        "workspace": "/home/node/.openclaw/workspace-sales-sales-engineer"
+      },
+      {
+        "id": "sales-outbound-strategist",
+        "workspace": "/home/node/.openclaw/workspace-sales-outbound-strategist"
+      },
+      {
+        "id": "sales-discovery-coach",
+        "workspace": "/home/node/.openclaw/workspace-sales-discovery-coach"
+      },
+      {
+        "id": "sales-account-strategist",
+        "workspace": "/home/node/.openclaw/workspace-sales-account-strategist"
+      },
+      {
+        "id": "sales-deal-strategist",
+        "workspace": "/home/node/.openclaw/workspace-sales-deal-strategist"
+      }
+    ]
   },
   "tools": {
     "allow": [
@@ -200,7 +244,7 @@
         "default": {
           "appId": "${FEISHU_SALES_APP_ID}",
           "appSecret": "${FEISHU_SALES_APP_SECRET}",
-          "botName": "\u9500\u552e\u90e8\u52a9\u624b"
+          "botName": "销售部助手"
         }
       }
     }
@@ -246,7 +290,14 @@
         }
       }
     },
-    "installs": {
+    "installs": {}
+  },
+  "bindings": [
+    {
+      "agentId": "sales",
+      "match": {
+        "channel": "feishu"
+      }
     }
-  }
+  ]
 }
