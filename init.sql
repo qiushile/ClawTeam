@@ -233,6 +233,7 @@ GRANT CREATE ON SCHEMA shared TO orchestrator_user;
 
 -- 对 shared 表授权
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.tasks TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+ALTER TABLE shared.tasks OWNER TO orchestrator_user;
 GRANT TRIGGER ON shared.tasks TO orchestrator_user;
 GRANT SELECT, INSERT, UPDATE, DELETE ON shared.collaboration_events TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
 GRANT TRIGGER ON shared.collaboration_events TO orchestrator_user;
