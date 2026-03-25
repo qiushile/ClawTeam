@@ -216,6 +216,26 @@
         "workspace": "/home/node/.openclaw/workspace-marketing-content-creator"
       },
       {
+        "id": "content-strategist",
+        "workspace": "/home/node/.openclaw/workspace-content-strategist"
+      },
+      {
+        "id": "material-collector",
+        "workspace": "/home/node/.openclaw/workspace-material-collector"
+      },
+      {
+        "id": "content-writer",
+        "workspace": "/home/node/.openclaw/workspace-content-writer"
+      },
+      {
+        "id": "content-editor",
+        "workspace": "/home/node/.openclaw/workspace-content-editor"
+      },
+      {
+        "id": "publisher",
+        "workspace": "/home/node/.openclaw/workspace-publisher"
+      },
+      {
         "id": "marketing-wechat-official-account-manager",
         "workspace": "/home/node/.openclaw/workspace-marketing-wechat-official-account-manager"
       },
