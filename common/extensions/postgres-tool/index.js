@@ -13,6 +13,12 @@ let logger = null;
 let listenerClient = null;
 
 export async function initPostgresTool(api) {
+  // 防止重复初始化 — plugins 可能加载多轮
+  if (dbPool) {
+    api.logger.info('PostgresTool: Already initialized, skipping.');
+    return true;
+  }
+
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
     api.logger.warn('PostgresTool: DATABASE_URL not found.');
@@ -30,7 +36,12 @@ export async function initPostgresTool(api) {
   logger = api.logger;
 
   try {
-    dbPool = new Pool({ connectionString });
+    dbPool = new Pool({
+      connectionString,
+      max: 3,                    // 每个容器最多 3 个连接
+      idleTimeoutMillis: 30000,  // 空闲 30 秒回收
+      connectionTimeoutMillis: 10000, // 连接超时 10 秒
+    });
     logger.info(`PostgresTool: Connected to DB as ${dbUsername}.`);
 
     // 启动专属监听客户端

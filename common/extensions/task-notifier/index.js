@@ -10,6 +10,12 @@ let listenerClient = null;
 let logger = null;
 
 export async function initTaskNotifier(api) {
+  // 防止重复初始化
+  if (dbPool) {
+    api.logger.info('TaskNotifier: Already initialized, skipping.');
+    return true;
+  }
+
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
     api.logger.warn('TaskNotifier: DATABASE_URL not found.');
@@ -19,7 +25,12 @@ export async function initTaskNotifier(api) {
   logger = api.logger;
 
   try {
-    dbPool = new Pool({ connectionString });
+    dbPool = new Pool({
+      connectionString,
+      max: 2,                    // 通知器只需 2 个连接（1 监听 + 1 备用）
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 10000,
+    });
     logger.info('TaskNotifier: Connected to DB.');
 
     // 启动监听器
