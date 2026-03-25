@@ -151,3 +151,9 @@ sentinel/extensions/moltguard/data/*.db.corrupted.*
 
 # 额外备份后缀
 *.bak[0-9]*
+
+# 运行时生成的媒体文件
+*/media/
+
+# 本地生成的 extensions 副本
+openclaw-dev/extensions/
