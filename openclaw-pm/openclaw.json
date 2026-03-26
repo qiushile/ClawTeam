@@ -217,7 +217,7 @@
       "feishu_chat",
       "feishu_wiki",
       "feishu_drive",
-      "feishu_bitable*"
+      "feishu_bitable_*"
     ],
     "deny": [
       "file_delete"

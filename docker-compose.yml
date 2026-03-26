@@ -111,6 +111,7 @@ services:
       - ./openclaw-pm:/home/node/.openclaw
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+      - /opt/openclaw/extensions/feishu:/home/node/.openclaw/extensions/feishu
 
   # 4. 设计部 design
   openclaw-design:
