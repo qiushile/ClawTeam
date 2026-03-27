@@ -27,7 +27,8 @@ CREATE TABLE shared.tasks (
     due_date TIMESTAMP,                      -- 截止时间
     parent_task_id INTEGER REFERENCES shared.tasks(id) ON DELETE CASCADE, -- 父任务关联
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    completed_at TIMESTAMP                             -- 任务完成时间
 );
 
 -- (2) 协作事件/消息表：跟踪交互过程，如通知用户、确认收到、提交结果等
@@ -38,6 +39,7 @@ CREATE TABLE shared.collaboration_events (
     to_role VARCHAR(50),
     event_type VARCHAR(50), -- 事件类型：如 'RECEIVED_ACK', 'NOTIFIED_USER', 'DELIVERED_TO_REQUESTER'
     message TEXT,           -- 具体的通知文本或沟通内容
+    description TEXT,       -- 事件描述
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
