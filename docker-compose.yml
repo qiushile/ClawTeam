@@ -35,7 +35,6 @@ services:
       - "15432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - openclaw-net
     logging: *default-logging
@@ -61,6 +60,7 @@ services:
     volumes:
       - ./openclaw-orchestrator:/home/node/.openclaw
       - ./openclaw-orchestrator/workspace:/workspace
+      - ./init.sql:/workspace/init.sql
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
       - ./sentinel/credentials:/home/node/.openclaw/credentials
