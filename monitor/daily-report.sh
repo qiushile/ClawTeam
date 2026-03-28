@@ -104,7 +104,7 @@ echo "" >> "$REPORT_FILE"
 echo "## 4. 🔌 端口可用性" >> "$REPORT_FILE"
 echo "" >> "$REPORT_FILE"
 
-PORTS=("18789:orchestrator" "18790:dev" "18791:pm" "5432:postgres")
+PORTS=("18001:orchestrator" "18002:dev" "18003:pm" "15432:postgres")
 for PORT_INFO in "${PORTS[@]}"; do
     PORT=$(echo "$PORT_INFO" | cut -d: -f1)
     SERVICE=$(echo "$PORT_INFO" | cut -d: -f2)
