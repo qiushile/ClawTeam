@@ -16,10 +16,12 @@ x-openclaw-base: &openclaw-base
   networks:
     - openclaw-net
   logging: *default-logging
+  environment:
+    - NODE_OPTIONS=--max-old-space-size=3072
   deploy:
     resources:
       limits:
-        memory: 2G
+        memory: 4G
 
 services:
   # 统一知识底座：PostgreSQL (带向量扩展)
