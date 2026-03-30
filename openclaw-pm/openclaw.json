@@ -231,16 +231,7 @@
   },
   "channels": {
     "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "accounts": {
-        "default": {
-          "appId": "${FEISHU_PM_APP_ID}",
-          "appSecret": "${FEISHU_PM_APP_SECRET}",
-          "botName": "产品部助手"
-        }
-      }
+      "enabled": false
     }
   },
   "gateway": {
@@ -268,7 +259,7 @@
         "enabled": true
       },
       "feishu": {
-        "enabled": true
+        "enabled": false
       },
       "memory-lancedb": {
         "enabled": true,

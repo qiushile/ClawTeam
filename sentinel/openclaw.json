@@ -189,16 +189,7 @@
       "webhookSecret": "8503286742:AAGJXVye3p8xJEsxofdApZKMV3_5De1NRnw"
     },
     "feishu": {
-      "enabled": true,
-      "appId": "cli_a92682269af8dbdf",
-      "appSecret": "0YhY1JpeQSyiuXJbxlVvqe2lac4bNhio",
-      "domain": "feishu",
-      "connectionMode": "websocket",
-      "requireMention": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "allowFrom": [],
-      "groupAllowFrom": []
+      "enabled": false
     }
   },
   "gateway": {
@@ -249,7 +240,7 @@
         "enabled": false
       },
       "feishu": {
-        "enabled": true
+        "enabled": false
       },
       "memory-lancedb": {
         "enabled": true,

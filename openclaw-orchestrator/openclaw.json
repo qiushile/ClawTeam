@@ -232,16 +232,7 @@
   },
   "channels": {
     "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "accounts": {
-        "default": {
-          "appId": "${FEISHU_ORCHESTRATOR_APP_ID}",
-          "appSecret": "${FEISHU_ORCHESTRATOR_APP_SECRET}",
-          "botName": "协调中枢"
-        }
-      }
+      "enabled": false
     }
   },
   "gateway": {
@@ -292,7 +283,7 @@
         "enabled": false
       },
       "feishu": {
-        "enabled": true
+        "enabled": false
       },
       "memory-lancedb": {
         "enabled": true,
