@@ -280,8 +280,8 @@ ${BLUE}注意:${NC}
   - 升级前会自动备份配置
   - 需要 root 权限运行
 
-${BLUE}升级哨兵自己:${NC}
-  请使用：/opt/openclaw-team/monitor/upgrade-sentinel.sh
+${BLUE}检查哨兵版本:${NC}
+  请使用：/opt/openclaw-team/monitor/check-sentinel.sh
 
 EOF
 }
