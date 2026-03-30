@@ -229,18 +229,9 @@
   },
   "channels": {
     "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "accounts": {
-        "default": {
-          "appId": "${FEISHU_SPATIAL_APP_ID}",
-          "appSecret": "${FEISHU_SPATIAL_APP_SECRET}",
-          "botName": "空间部助手"
-        }
-      }
+      "enabled": false
     }
-  },
+  }
   "gateway": {
     "mode": "local",
     "auth": {

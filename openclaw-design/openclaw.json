@@ -237,18 +237,9 @@
   },
   "channels": {
     "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "accounts": {
-        "default": {
-          "appId": "${FEISHU_DESIGN_APP_ID}",
-          "appSecret": "${FEISHU_DESIGN_APP_SECRET}",
-          "botName": "设计部助手"
-        }
-      }
+      "enabled": false
     }
-  },
+  }
   "gateway": {
     "mode": "local",
     "bind": "lan",

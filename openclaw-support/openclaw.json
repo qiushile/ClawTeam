@@ -229,18 +229,9 @@
   },
   "channels": {
     "feishu": {
-      "enabled": true,
-      "dmPolicy": "pairing",
-      "groupPolicy": "open",
-      "accounts": {
-        "default": {
-          "appId": "${FEISHU_SUPPORT_APP_ID}",
-          "appSecret": "${FEISHU_SUPPORT_APP_SECRET}",
-          "botName": "支撑部助手"
-        }
-      }
+      "enabled": false
     }
-  },
+  }
   "gateway": {
     "mode": "local",
     "auth": {
