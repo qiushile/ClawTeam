@@ -275,7 +275,8 @@ ${BLUE}示例:${NC}
 
 ${BLUE}注意:${NC}
   - 此脚本升级 /opt/openclaw-team 的 Docker 容器
-  - 不影响 /opt/openclaw 的哨兵源码
+  - 默认不修改 /opt/openclaw 的任何内容
+  - --rebuild 选项会读取 /opt/openclaw 源码构建镜像
   - 升级前会自动备份配置
   - 需要 root 权限运行
 
