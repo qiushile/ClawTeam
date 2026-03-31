@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-17T16:55:00.295Z"
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-31T04:13:27.155Z"
   },
   "models": {
     "mode": "merge",
@@ -162,11 +162,11 @@
       },
       "memorySearch": {
         "provider": "openai",
-        "model": "text-embedding-v4",
         "remote": {
           "baseUrl": "${ALIYUN_COMPAT_URL}",
           "apiKey": "${ALIYUN_COMPAT_KEY}"
-        }
+        },
+        "model": "text-embedding-v4"
       },
       "compaction": {
         "mode": "safeguard"
@@ -237,6 +237,14 @@
       "file_delete"
     ]
   },
+  "bindings": [
+    {
+      "agentId": "qa",
+      "match": {
+        "channel": "feishu"
+      }
+    }
+  ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
@@ -245,9 +253,17 @@
   },
   "channels": {
     "feishu": {
-      "enabled": false
+      "enabled": false,
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
     }
-  }
+  },
   "gateway": {
     "mode": "local",
     "auth": {
@@ -267,13 +283,12 @@
     },
     "entries": {
       "postgres-tool": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
       },
       "task-notifier": {
-        "enabled": true
-      },
-      "feishu": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
       },
       "memory-lancedb": {
         "enabled": true,
@@ -287,16 +302,12 @@
           "autoCapture": true,
           "autoRecall": true
         }
+      },
+      "feishu": {
+        "enabled": true,
+        "config": {}
       }
     },
     "installs": {}
-  },
-  "bindings": [
-    {
-      "agentId": "qa",
-      "match": {
-        "channel": "feishu"
-      }
-    }
-  ]
+  }
 }

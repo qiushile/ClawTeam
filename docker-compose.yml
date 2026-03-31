@@ -66,7 +66,8 @@ services:
       - ./init.sql:/workspace/init.sql
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
-      - ./sentinel/credentials:/home/node/.openclaw/credentials
+      - ./openclaw-orchestrator/credentials:/home/node/.openclaw/credentials
+      - /opt/openclaw/extensions/feishu:/home/node/.openclaw/extensions/feishu
 
   # 2. 研发部 dev
   openclaw-dev:
@@ -91,6 +92,7 @@ services:
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
       - ~/code-repo:/app/repo
+      - /opt/openclaw/extensions/feishu:/home/node/.openclaw/extensions/feishu
 
   # 3. 产品部 pm
   openclaw-pm:

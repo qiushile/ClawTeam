@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-17T04:53:55.386Z"
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-31T04:13:38.406Z"
   },
   "wizard": {
     "lastRunAt": "2026-03-06T17:59:59.361Z",
@@ -158,9 +158,6 @@
         "primary": "aliyun/qwen3.5-plus",
         "fallbacks": []
       },
-      "compaction": {
-        "mode": "safeguard"
-      },
       "models": {
         "aliyun/qwen3.5-plus": {},
         "aliyun/qwen3-coder-plus": {},
@@ -171,11 +168,14 @@
       },
       "memorySearch": {
         "provider": "openai",
-        "model": "text-embedding-v4",
         "remote": {
           "baseUrl": "${ALIYUN_COMPAT_URL}",
           "apiKey": "${ALIYUN_COMPAT_KEY}"
-        }
+        },
+        "model": "text-embedding-v4"
+      },
+      "compaction": {
+        "mode": "safeguard"
       }
     },
     "list": [
@@ -218,6 +218,14 @@
       "file_delete"
     ]
   },
+  "bindings": [
+    {
+      "agentId": "orchestrator",
+      "match": {
+        "channel": "feishu"
+      }
+    }
+  ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
@@ -232,7 +240,15 @@
   },
   "channels": {
     "feishu": {
-      "enabled": false
+      "enabled": true,
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
     }
   },
   "gateway": {
@@ -282,9 +298,6 @@
       "telegram": {
         "enabled": false
       },
-      "feishu": {
-        "enabled": false
-      },
       "memory-lancedb": {
         "enabled": true,
         "config": {
@@ -299,17 +312,14 @@
         }
       },
       "postgres-tool": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
+      },
+      "feishu": {
+        "enabled": true,
+        "config": {}
       }
     },
     "installs": {}
-  },
-  "bindings": [
-    {
-      "agentId": "orchestrator",
-      "match": {
-        "channel": "feishu"
-      }
-    }
-  ]
+  }
 }

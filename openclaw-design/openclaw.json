@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.13",
-    "lastTouchedAt": "2026-03-24T00:54:03.802Z"
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-31T04:13:27.628Z"
   },
   "models": {
     "mode": "merge",
@@ -229,6 +229,14 @@
       "file_delete"
     ]
   },
+  "bindings": [
+    {
+      "agentId": "design",
+      "match": {
+        "channel": "feishu"
+      }
+    }
+  ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
@@ -237,9 +245,17 @@
   },
   "channels": {
     "feishu": {
-      "enabled": false
+      "enabled": false,
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
     }
-  }
+  },
   "gateway": {
     "mode": "local",
     "bind": "lan",
@@ -266,13 +282,12 @@
     },
     "entries": {
       "postgres-tool": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
       },
       "task-notifier": {
-        "enabled": true
-      },
-      "feishu": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
       },
       "memory-lancedb": {
         "enabled": true,
@@ -286,16 +301,12 @@
           "autoCapture": true,
           "autoRecall": true
         }
+      },
+      "feishu": {
+        "enabled": true,
+        "config": {}
       }
     },
     "installs": {}
-  },
-  "bindings": [
-    {
-      "agentId": "design",
-      "match": {
-        "channel": "feishu"
-      }
-    }
-  ]
+  }
 }
