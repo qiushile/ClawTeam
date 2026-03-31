@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.11",
-    "lastTouchedAt": "2026-03-17T04:53:55.386Z"
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-31T04:50:00.000Z"
   },
   "wizard": {
     "lastRunAt": "2026-03-06T17:59:59.361Z",
@@ -13,14 +13,14 @@
     "mode": "merge",
     "providers": {
       "aliyun": {
-        "baseUrl": "https://coding.dashscope.aliyuncs.com/v1",
-        "apiKey": "sk-sp-a6bb4addf4994b769cb53b1f32bd3c8d",
+        "baseUrl": "${ALIYUN_BASE_URL}",
+        "apiKey": "${ALIYUN_API_KEY}",
         "api": "openai-completions",
         "models": [
           {
             "id": "qwen3.5-plus",
             "name": "qwen3.5-plus",
-            "reasoning": false,
+            "reasoning": true,
             "input": [
               "text",
               "image"
@@ -32,7 +32,10 @@
               "cacheWrite": 0
             },
             "contextWindow": 1000000,
-            "maxTokens": 65536
+            "maxTokens": 65536,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
           },
           {
             "id": "qwen3-max-2026-01-23",
@@ -85,7 +88,7 @@
           {
             "id": "glm-5",
             "name": "glm-5",
-            "reasoning": false,
+            "reasoning": true,
             "input": [
               "text"
             ],
@@ -96,12 +99,15 @@
               "cacheWrite": 0
             },
             "contextWindow": 202752,
-            "maxTokens": 16384
+            "maxTokens": 16384,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
           },
           {
             "id": "glm-4.7",
             "name": "glm-4.7",
-            "reasoning": false,
+            "reasoning": true,
             "input": [
               "text"
             ],
@@ -112,12 +118,15 @@
               "cacheWrite": 0
             },
             "contextWindow": 202752,
-            "maxTokens": 16384
+            "maxTokens": 16384,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
           },
           {
             "id": "kimi-k2.5",
             "name": "kimi-k2.5",
-            "reasoning": false,
+            "reasoning": true,
             "input": [
               "text",
               "image"
@@ -129,7 +138,10 @@
               "cacheWrite": 0
             },
             "contextWindow": 262144,
-            "maxTokens": 32768
+            "maxTokens": 32768,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
           }
         ]
       }
@@ -157,14 +169,37 @@
         "provider": "openai",
         "model": "text-embedding-v4",
         "remote": {
-          "baseUrl": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-          "apiKey": "sk-88e0f59019a148869f0e48d490bd42c4"
+          "baseUrl": "${ALIYUN_COMPAT_URL}",
+          "apiKey": "${ALIYUN_COMPAT_KEY}"
         }
       }
     }
   },
   "tools": {
-    "profile": "full"
+    "allow": [
+      "read",
+      "write",
+      "edit",
+      "exec",
+      "database_query",
+      "feishu_doc",
+      "feishu_chat",
+      "feishu_wiki",
+      "feishu_drive",
+      "feishu_bitable*",
+      "feishu_app_scopes",
+      "memory_recall",
+      "memory_store",
+      "memory_forget",
+      "message",
+      "send_message",
+      "web_search",
+      "web_fetch"
+    ],
+    "deny": [
+      "process",
+      "file_delete"
+    ]
   },
   "commands": {
     "native": "auto",
@@ -182,14 +217,22 @@
     "telegram": {
       "enabled": false,
       "dmPolicy": "pairing",
-      "botToken": "8503286742:AAGJXVye3p8xJEsxofdApZKMV3_5De1NRnw",
+      "botToken": "${TELEGRAM_BOT_TOKEN}",
       "groupPolicy": "open",
       "streaming": "partial",
-      "webhookUrl": "https://openclawd.x.whhe.xin/gateways/telegram",
-      "webhookSecret": "8503286742:AAGJXVye3p8xJEsxofdApZKMV3_5De1NRnw"
+      "webhookUrl": "${TELEGRAM_WEBHOOK_URL}",
+      "webhookSecret": "${TELEGRAM_BOT_TOKEN}"
     },
     "feishu": {
-      "enabled": false
+      "enabled": true,
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "pairing",
+      "groupPolicy": "allowlist",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true
     }
   },
   "gateway": {
@@ -205,7 +248,7 @@
     },
     "auth": {
       "mode": "token",
-      "token": "7758268a123456798."
+      "token": "${SECRET_GATEWAY_TOKEN}"
     },
     "trustedProxies": [
       "127.0.0.1",
@@ -230,7 +273,8 @@
   "plugins": {
     "allow": [
       "feishu",
-      "memory-lancedb"
+      "memory-lancedb",
+      "postgres-tool"
     ],
     "slots": {
       "memory": "memory-lancedb"
@@ -240,7 +284,8 @@
         "enabled": false
       },
       "feishu": {
-        "enabled": false
+        "enabled": true,
+        "config": {}
       },
       "memory-lancedb": {
         "enabled": true,
@@ -254,6 +299,10 @@
           "autoCapture": true,
           "autoRecall": true
         }
+      },
+      "postgres-tool": {
+        "enabled": true,
+        "config": {}
       },
       "moltguard": {
         "enabled": false
