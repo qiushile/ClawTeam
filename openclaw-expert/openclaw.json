@@ -297,7 +297,9 @@
   },
   "channels": {
     "feishu": {
-      "enabled": false
+      "enabled": false,
+      "appId": "${FEISHU_APP_ID}",
+      "appSecret": "${FEISHU_APP_SECRET}"
     }
   },
   "gateway": {
@@ -325,7 +327,8 @@
         "enabled": true
       },
       "feishu": {
-        "enabled": false
+        "enabled": false,
+        "config": {}
       },
       "memory-lancedb": {
         "enabled": true,

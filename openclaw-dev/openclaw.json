@@ -321,7 +321,9 @@
       "groupPolicy": "allowlist",
       "reactionNotifications": "own",
       "typingIndicator": true,
-      "resolveSenderNames": true
+      "resolveSenderNames": true,
+      "appId": "${FEISHU_APP_ID}",
+      "appSecret": "${FEISHU_APP_SECRET}"
     }
   },
   "gateway": {
