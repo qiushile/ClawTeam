@@ -237,7 +237,7 @@
   },
   "channels": {
     "feishu": {
-      "enabled": false,
+      "enabled": true,
       "domain": "feishu",
       "connectionMode": "websocket",
       "webhookPath": "/feishu/events",
