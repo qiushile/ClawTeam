@@ -234,7 +234,8 @@
       "typingIndicator": true,
       "resolveSenderNames": true,
       "appId": "${FEISHU_SENTINEL_APP_ID}",
-      "appSecret": "${FEISHU_SENTINEL_APP_SECRET}"
+      "appSecret": "${FEISHU_SENTINEL_APP_SECRET}",
+      "requireMention": true
     }
   },
   "gateway": {
