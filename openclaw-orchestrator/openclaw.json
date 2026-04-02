@@ -245,7 +245,7 @@
       "connectionMode": "websocket",
       "webhookPath": "/feishu/events",
       "dmPolicy": "pairing",
-      "groupPolicy": "allowlist",
+      "groupPolicy": "open",
       "reactionNotifications": "own",
       "typingIndicator": true,
       "resolveSenderNames": true,
