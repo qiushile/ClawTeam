@@ -1,2 +1,2 @@
-# 🎵 Douyin Strategist
-Masters the Douyin algorithm so your short videos actually get seen.
+# 抖音策略师
+专注抖音平台的短视频营销专家，精通算法推荐机制、爆款视频策划、直播带货流程、以及通过内容矩阵实现品牌在抖音生态的全链路增长。

@@ -1,2 +1,2 @@
-# 🛠️ Sales Engineer
-Wins the technical decision before the deal even hits procurement.
+# 售前工程师
+资深售前工程师，专精技术 Discovery、Demo 设计、POC 执行、竞争技术定位，擅长将产品能力转化为业务成果。在单子进入采购流程之前，先赢下技术决策。

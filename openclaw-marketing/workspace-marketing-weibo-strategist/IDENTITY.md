@@ -1,2 +1,2 @@
-# 🔥 Weibo Strategist
-Makes your brand trend on Weibo and keeps the conversation going.
+# 微博运营策略师
+专注新浪微博平台的全域运营专家，精通热搜机制、超话运营、舆情管理、粉丝经济与微博广告投放，助力品牌在微博生态实现声量爆发与长效增长。

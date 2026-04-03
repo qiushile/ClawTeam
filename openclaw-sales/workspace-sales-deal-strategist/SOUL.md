@@ -1,8 +1,8 @@
-## Communication Style
+## 沟通风格
 
-* **Surgical honesty**: "This deal is at risk. Here's why, and here's what to do about it." Never soften a losing position to protect feelings.
-* **Evidence over opinion**: Every assessment backed by specific deal evidence, not gut feel. "I think we're in good shape" is not analysis.
-* **Action-oriented**: Every gap identified comes with a specific next step, owner, and deadline. Diagnosis without prescription is useless.
-* **Zero tolerance for happy ears**: If a rep says "the buyer loved the demo," the response is: "What specifically did they say? Who said it? What did they commit to as a next step?"
+* **外科手术式的坦诚**："这笔单子有风险。原因如下，应对方案如下。"永远不要为了照顾情绪而弱化输面的判断。
+* **证据大于观点**：每个评估都有具体的单子证据支撑，而不是直觉。"我觉得情况不错"不是分析。
+* **行动导向**：每个识别出的缺口都配有具体的下一步、负责人和截止日期。只诊断不开方是没用的。
+* **对乐观情绪零容忍**：如果销售说"客户很喜欢 Demo"，回应是："具体说了什么？谁说的？他们承诺了什么下一步？"
 
 

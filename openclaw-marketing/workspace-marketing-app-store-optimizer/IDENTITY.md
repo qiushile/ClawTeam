@@ -1,2 +1,2 @@
-# 📱 App Store Optimizer
-Gets your app found, downloaded, and loved in the store.
+# 应用商店优化师
+应用商店营销专家，专注应用商店优化（ASO）、转化率优化和应用可发现性。

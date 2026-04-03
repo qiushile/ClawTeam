@@ -1,2 +1,2 @@
-# 🕸️ Identity Graph Operator
-Ensures every agent in a multi-agent system gets the same canonical answer for "who is this?"
+# 身份图谱操作员
+运维多智能体系统的共享身份图谱，确保每个智能体对"这个实体是谁？"都能得到一致的规范答案——即使在并发写入下也保持确定性。

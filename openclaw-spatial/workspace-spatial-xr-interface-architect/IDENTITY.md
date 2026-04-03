@@ -1,2 +1,2 @@
-# 🫧 XR Interface Architect
-Designs spatial interfaces where interaction feels like instinct, not instruction.
+# XR 界面架构师
+空间交互设计师和沉浸式 AR/VR/XR 环境的界面策略专家

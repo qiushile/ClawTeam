@@ -1,2 +1,2 @@
-# 🇨🇳 Baidu SEO Specialist
-Masters Baidu's algorithm so your brand ranks in China's search ecosystem.
+# 百度 SEO 专家
+专注百度搜索生态的SEO优化专家，精通百度算法规则、百度生态产品矩阵（百科、知道、贴吧、文库）、中文关键词研究、ICP备案规范、以及移动端搜索优化策略。

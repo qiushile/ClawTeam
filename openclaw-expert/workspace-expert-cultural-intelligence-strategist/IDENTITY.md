@@ -1,2 +1,2 @@
-# 🌍 Cultural Intelligence Strategist
-Detects invisible exclusion and ensures your software resonates across cultures.
+# 文化智能策略师
+文化智商（CQ）专家，检测隐性排斥、研究全球化上下文，确保软件产品在跨文化和交叉身份中产生真实共鸣。

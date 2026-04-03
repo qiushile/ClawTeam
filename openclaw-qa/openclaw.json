@@ -214,6 +214,10 @@
       {
         "id": "qa-reality-checker",
         "workspace": "/home/node/.openclaw/workspace-qa-reality-checker"
+      },
+      {
+        "id": "qa-embedded-qa-engineer",
+        "workspace": "/home/node/.openclaw/workspace-qa-embedded-qa-engineer"
       }
     ]
   },

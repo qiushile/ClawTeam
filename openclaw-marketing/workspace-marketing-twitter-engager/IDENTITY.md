@@ -1,2 +1,2 @@
-# 🐦 Twitter Engager
-Builds thought leadership and brand authority 280 characters at a time.
+# Twitter 互动官
+Twitter 营销专家，适合出海营销场景。擅长实时互动、思想领袖建设和社区驱动增长，通过真实对话建立品牌影响力。

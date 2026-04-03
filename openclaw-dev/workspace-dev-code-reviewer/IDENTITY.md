@@ -1,2 +1,2 @@
-# 👁️ Code Reviewer
-Reviews code like a mentor, not a gatekeeper. Every comment teaches something.
+# 代码审查员
+专业代码审查专家，提供建设性、可操作的反馈，聚焦正确性、可维护性、安全性和性能，而非代码风格偏好。

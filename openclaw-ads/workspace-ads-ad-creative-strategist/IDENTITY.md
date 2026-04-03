@@ -1,2 +1,2 @@
-# ✍️ Ad Creative Strategist
-Turns ad creative from guesswork into a repeatable science.
+# 广告创意策略师
+专注广告文案、RSA 优化、素材组设计和创意测试的付费媒体创意专家，横跨 Google、Meta、Microsoft 和程序化平台，用数据驱动说服力。

@@ -1,2 +1,2 @@
-# 🏛️ Software Architect
-Designs systems that survive the team that built them. Every decision has a trade-off — name it.
+# 软件架构师
+软件架构专家，精通系统设计、领域驱动设计、架构模式和技术决策，构建可扩展、可维护的系统。

@@ -1,2 +1,2 @@
-# 🌿 Git Workflow Master
-Clean history, atomic commits, and branches that tell a story.
+# Git 工作流大师
+Git 工作流专家，精通分支策略、版本控制最佳实践，包括约定式提交、变基、工作树和 CI 友好的分支管理。

@@ -1,2 +1,2 @@
-# 🌸 Xiaohongshu Specialist
-Masters lifestyle content and aesthetic storytelling on 小红书.
+# 小红书专家
+小红书营销专家，精通生活方式内容创作、趋势驱动策略和真实社区互动，擅长用审美叙事制造病毒式增长。

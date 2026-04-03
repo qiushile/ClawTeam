@@ -1,2 +1,2 @@
-# 💰 Finance Tracker
-Keeps the books clean, the cash flowing, and the forecasts honest.
+# 财务追踪员
+专业的财务分析与管控专家，擅长财务规划、预算管理和经营绩效分析。守住企业财务健康底线，优化现金流，为业务增长提供有数据支撑的财务洞察。

@@ -1,0 +1,291 @@
+{
+  "meta": {
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-31T04:13:28.600Z"
+  },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "aliyun": {
+        "baseUrl": "${ALIYUN_BASE_URL}",
+        "apiKey": "${ALIYUN_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "qwen3.5-plus",
+            "name": "qwen3.5-plus",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 65536,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
+          },
+          {
+            "id": "qwen3-coder-plus",
+            "name": "qwen3-coder-plus",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 1000000,
+            "maxTokens": 65536
+          }
+        ]
+      },
+      "zhipu": {
+        "baseUrl": "${ZHIPU_BASE_URL}",
+        "apiKey": "${ZHIPU_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "glm-5",
+            "name": "glm-5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202752,
+            "maxTokens": 16384,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
+          },
+          {
+            "id": "glm-4.7",
+            "name": "glm-4.7",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 202752,
+            "maxTokens": 16384,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
+          }
+        ]
+      },
+      "kimi": {
+        "baseUrl": "${KIMI_BASE_URL}",
+        "apiKey": "${KIMI_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "kimi-k2.5",
+            "name": "kimi-k2.5",
+            "reasoning": true,
+            "input": [
+              "text",
+              "image"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 262144,
+            "maxTokens": 32768,
+            "compat": {
+              "thinkingFormat": "qwen"
+            }
+          }
+        ]
+      },
+      "minimax": {
+        "baseUrl": "${MINIMAX_BASE_URL}",
+        "apiKey": "${MINIMAX_API_KEY}",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "MiniMax-M2.5",
+            "name": "MiniMax-M2.5",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 196608,
+            "maxTokens": 32768
+          }
+        ]
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "aliyun/qwen3.5-plus",
+        "fallbacks": []
+      },
+      "models": {
+        "aliyun/qwen3.5-plus": {},
+        "aliyun/qwen3-coder-plus": {},
+        "zhipu/glm-5": {},
+        "zhipu/glm-4.7": {},
+        "kimi/kimi-k2.5": {},
+        "minimax/MiniMax-M2.5": {}
+      },
+      "memorySearch": {
+        "provider": "openai",
+        "remote": {
+          "baseUrl": "${ALIYUN_COMPAT_URL}",
+          "apiKey": "${ALIYUN_COMPAT_KEY}"
+        },
+        "model": "text-embedding-v4"
+      },
+      "compaction": {
+        "mode": "safeguard"
+      }
+    },
+    "list": [
+      {
+        "id": "academic-narratologist",
+        "workspace": "/home/node/.openclaw/workspace-academic-narratologist",
+        "default": true
+      },
+      {
+        "id": "academic-anthropologist",
+        "workspace": "/home/node/.openclaw/workspace-academic-anthropologist"
+      },
+      {
+        "id": "academic-geographer",
+        "workspace": "/home/node/.openclaw/workspace-academic-geographer"
+      },
+      {
+        "id": "academic-psychologist",
+        "workspace": "/home/node/.openclaw/workspace-academic-psychologist"
+      },
+      {
+        "id": "academic-study-planner",
+        "workspace": "/home/node/.openclaw/workspace-academic-study-planner"
+      },
+      {
+        "id": "academic-historian",
+        "workspace": "/home/node/.openclaw/workspace-academic-historian"
+      }
+    ]
+  },
+  "tools": {
+    "allow": [
+      "group:fs",
+      "group:runtime",
+      "read",
+      "write",
+      "edit"
+    ],
+    "deny": [
+      "file_delete"
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "academic-narratologist",
+      "match": {
+        "channel": "feishu"
+      }
+    }
+  ],
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "channels": {
+    "feishu": {
+      "enabled": false,
+      "domain": "feishu",
+      "connectionMode": "websocket",
+      "webhookPath": "/feishu/events",
+      "dmPolicy": "pairing",
+      "groupPolicy": "open",
+      "reactionNotifications": "own",
+      "typingIndicator": true,
+      "resolveSenderNames": true,
+      "appId": "${FEISHU_APP_ID}",
+      "appSecret": "${FEISHU_APP_SECRET}",
+      "requireMention": true
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "7dccf9bf3d215e00c5827bc4784f2b7f6786e552638338c4"
+    }
+  },
+  "plugins": {
+    "allow": [
+      "postgres-tool",
+      "task-notifier",
+      "feishu",
+      "memory-lancedb"
+    ],
+    "slots": {
+      "memory": "memory-lancedb"
+    },
+    "entries": {
+      "postgres-tool": {
+        "enabled": true,
+        "config": {}
+      },
+      "task-notifier": {
+        "enabled": true,
+        "config": {}
+      },
+      "memory-lancedb": {
+        "enabled": true,
+        "config": {
+          "embedding": {
+            "apiKey": "${ALIYUN_COMPAT_KEY}",
+            "model": "text-embedding-v4",
+            "dimensions": 1024,
+            "baseUrl": "${ALIYUN_COMPAT_URL}"
+          },
+          "autoCapture": true,
+          "autoRecall": true
+        }
+      },
+      "feishu": {
+        "enabled": true,
+        "config": {}
+      }
+    },
+    "installs": {}
+  }
+}

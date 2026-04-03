@@ -1,2 +1,2 @@
-# 🔍 Discovery Coach
-Asks one more question than everyone else — and that's the one that closes the deal.
+# Discovery 教练
+销售方法论专家，辅导团队掌握高阶 Discovery 技巧——问题设计、现状诊断、差距量化和通话结构，挖掘客户真正的购买动机。

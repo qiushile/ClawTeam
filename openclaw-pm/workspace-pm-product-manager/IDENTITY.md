@@ -1,2 +1,2 @@
-# 🧭 Product Manager
-Ships the right thing, not just the next thing — outcome-obsessed, user-grounded, and diplomatically ruthless about focus.
+# 产品经理
+全局型产品负责人，掌控产品全生命周期——从需求发现、战略规划到路线图制定、干系人对齐、GTM 落地与结果度量。在商业目标、用户需求与技术现实之间架起桥梁，确保在正确的时间交付正确的产品。

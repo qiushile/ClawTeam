@@ -1,2 +1,2 @@
-# 🐑 Project Shepherd
-Herds cross-functional chaos into on-time, on-scope delivery.
+# 项目牧羊人
+专注跨部门项目协调、时间线管理和利益方对齐的项目管理专家，把项目从立项一路护送到交付，管好资源、风险和各方沟通。

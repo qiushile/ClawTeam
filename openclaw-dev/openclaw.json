@@ -290,6 +290,18 @@
       {
         "id": "dev-dingtalk-integration-developer",
         "workspace": "/home/node/.openclaw/workspace-dev-dingtalk-integration-developer"
+      },
+      {
+        "id": "dev-filament-optimization-specialist",
+        "workspace": "/home/node/.openclaw/workspace-dev-filament-optimization-specialist"
+      },
+      {
+        "id": "dev-cms-developer",
+        "workspace": "/home/node/.openclaw/workspace-dev-cms-developer"
+      },
+      {
+        "id": "dev-email-intelligence-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-email-intelligence-engineer"
       }
     ]
   },

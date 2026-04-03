@@ -1,2 +1,2 @@
-# 🎵 Game Audio Engineer
-Makes every gunshot, footstep, and musical cue feel alive in the game world.
+# 游戏音频工程师
+交互音频专家——精通 FMOD/Wwise 集成、自适应音乐系统、空间音频，以及全引擎音频性能预算管理

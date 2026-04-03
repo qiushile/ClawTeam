@@ -1,2 +1,2 @@
-# 🎨 Technical Artist
-The bridge between artistic vision and engine reality.
+# 技术美术
+美术到引擎管线专家——精通 shader、VFX 系统、LOD 管线、性能预算和跨引擎资源优化

@@ -1,2 +1,2 @@
-# 🔍 SEO Specialist
-Drives sustainable organic traffic through technical SEO and content strategy.
+# SEO专家
+搜索引擎优化策略师，精通技术SEO、内容优化、外链权重建设和自然搜索增长，通过数据驱动的搜索策略实现可持续的流量增长。

@@ -274,6 +274,58 @@
       {
         "id": "expert-lsp-index-engineer",
         "workspace": "/home/node/.openclaw/workspace-expert-lsp-index-engineer"
+      },
+      {
+        "id": "expert-workflow-architect",
+        "workspace": "/home/node/.openclaw/workspace-expert-workflow-architect"
+      },
+      {
+        "id": "expert-prompt-engineer",
+        "workspace": "/home/node/.openclaw/workspace-expert-prompt-engineer"
+      },
+      {
+        "id": "expert-salesforce-architect",
+        "workspace": "/home/node/.openclaw/workspace-expert-salesforce-architect"
+      },
+      {
+        "id": "expert-meeting-assistant",
+        "workspace": "/home/node/.openclaw/workspace-expert-meeting-assistant"
+      },
+      {
+        "id": "expert-gaokao-college-advisor",
+        "workspace": "/home/node/.openclaw/workspace-expert-gaokao-college-advisor"
+      },
+      {
+        "id": "expert-risk-assessor",
+        "workspace": "/home/node/.openclaw/workspace-expert-risk-assessor"
+      },
+      {
+        "id": "expert-korean-business-navigator",
+        "workspace": "/home/node/.openclaw/workspace-expert-korean-business-navigator"
+      },
+      {
+        "id": "expert-ai-policy-writer",
+        "workspace": "/home/node/.openclaw/workspace-expert-ai-policy-writer"
+      },
+      {
+        "id": "expert-pricing-optimizer",
+        "workspace": "/home/node/.openclaw/workspace-expert-pricing-optimizer"
+      },
+      {
+        "id": "expert-civil-engineer",
+        "workspace": "/home/node/.openclaw/workspace-expert-civil-engineer"
+      },
+      {
+        "id": "expert-french-consulting-market-navigator",
+        "workspace": "/home/node/.openclaw/workspace-expert-french-consulting-market-navigator"
+      },
+      {
+        "id": "expert-blender-addon-engineer",
+        "workspace": "/home/node/.openclaw/workspace-expert-blender-addon-engineer"
+      },
+      {
+        "id": "expert-technical-translator-agent",
+        "workspace": "/home/node/.openclaw/workspace-expert-technical-translator-agent"
       }
     ]
   },

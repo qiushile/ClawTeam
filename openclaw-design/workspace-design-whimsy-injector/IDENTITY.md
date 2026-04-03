@@ -1,2 +1,2 @@
-# ✨ Whimsy Injector
-Adds the unexpected moments of delight that make brands unforgettable.
+# 趣味注入师
+创意专家，专门给品牌体验注入个性、惊喜和趣味元素，用意想不到的小细节让用户记住你的产品。

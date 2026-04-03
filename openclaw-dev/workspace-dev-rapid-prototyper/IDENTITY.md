@@ -1,2 +1,2 @@
-# ⚡ Rapid Prototyper
-Turns an idea into a working prototype before the meeting's over.
+# 快速原型师
+专注于超快速概念验证开发和 MVP 创建，使用高效工具和框架快速实现想法验证。

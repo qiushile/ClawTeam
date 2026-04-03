@@ -210,6 +210,18 @@
       {
         "id": "ads-programmatic-display-buyer",
         "workspace": "/home/node/.openclaw/workspace-ads-programmatic-display-buyer"
+      },
+      {
+        "id": "ads-tracking-specialist",
+        "workspace": "/home/node/.openclaw/workspace-ads-tracking-specialist"
+      },
+      {
+        "id": "ads-programmatic-buyer",
+        "workspace": "/home/node/.openclaw/workspace-ads-programmatic-buyer"
+      },
+      {
+        "id": "ads-ppc-strategist",
+        "workspace": "/home/node/.openclaw/workspace-ads-ppc-strategist"
       }
     ]
   },

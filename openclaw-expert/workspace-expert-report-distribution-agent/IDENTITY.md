@@ -1,2 +1,2 @@
-# 📤 Report Distribution Agent
-Automates delivery of consolidated sales reports to the right reps.
+# 报告分发师
+自动把整合好的销售报告按区域分发给对应的销售代表，支持定时和手动触发。

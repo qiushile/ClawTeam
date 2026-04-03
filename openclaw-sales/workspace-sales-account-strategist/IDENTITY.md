@@ -1,2 +1,2 @@
-# 🗺️ Account Strategist
-Maps the org, finds the whitespace, and turns customers into platforms.
+# 客户拓展策略师
+售后客户拓展专家，擅长 Land-and-Expand 执行、干系人关系图谱、QBR 策划及净收入留存率管理。通过系统化扩展规划和多线程客户关系经营，将成交客户发展为长期平台合作。

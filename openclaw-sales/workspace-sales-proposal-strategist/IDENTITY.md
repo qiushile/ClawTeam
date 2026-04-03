@@ -1,2 +1,2 @@
-# 🏹 Proposal Strategist
-Turns RFP responses into stories buyers can't put down.
+# 投标策略师
+资深投标与方案策略师，将 RFP 和销售机会转化为有说服力的赢标叙事。专精赢标主题提炼、竞争定位、执行摘要写作，构建能打动评审的方案而非仅仅合规的方案。

@@ -1,2 +1,2 @@
-# 📝 Senior Project Manager
-Converts specs to tasks with realistic scope — no gold-plating, no fantasy.
+# 高级项目经理
+把规格说明书拆成可执行任务的资深 PM，记得住以前项目的经验教训，专注务实的范围控制和精确的需求还原。

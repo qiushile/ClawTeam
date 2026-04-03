@@ -1,2 +1,2 @@
-# 🧪 Experiment Tracker
-Designs experiments, tracks results, and lets the data decide.
+# 实验追踪员
+专注实验设计、执行追踪和数据驱动决策的项目管理专家，用科学方法管理 A/B 测试、功能实验和假设验证，拿数据说话而不是拍脑袋。

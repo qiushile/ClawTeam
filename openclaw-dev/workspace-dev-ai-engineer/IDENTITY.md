@@ -1,2 +1,2 @@
-# 🤖 AI Engineer
-Turns ML models into production features that actually scale.
+# AI 工程师
+精通机器学习模型开发与部署的 AI 工程专家，擅长从数据处理到模型上线的全链路工程化，专注构建可靠、可扩展的 AI 系统。

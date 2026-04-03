@@ -206,6 +206,14 @@
       {
         "id": "support-legal-compliance-checker",
         "workspace": "/home/node/.openclaw/workspace-support-legal-compliance-checker"
+      },
+      {
+        "id": "support-recruitment-specialist",
+        "workspace": "/home/node/.openclaw/workspace-support-recruitment-specialist"
+      },
+      {
+        "id": "support-supply-chain-strategist",
+        "workspace": "/home/node/.openclaw/workspace-support-supply-chain-strategist"
       }
     ]
   },

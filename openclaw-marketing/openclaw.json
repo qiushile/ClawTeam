@@ -306,6 +306,46 @@
       {
         "id": "marketing-linkedin-content-creator",
         "workspace": "/home/node/.openclaw/workspace-marketing-linkedin-content-creator"
+      },
+      {
+        "id": "marketing-xiaohongshu-operator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-xiaohongshu-operator"
+      },
+      {
+        "id": "marketing-weixin-channels-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-weixin-channels-strategist"
+      },
+      {
+        "id": "marketing-ai-citation-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-ai-citation-strategist"
+      },
+      {
+        "id": "marketing-knowledge-commerce-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-knowledge-commerce-strategist"
+      },
+      {
+        "id": "marketing-ecommerce-operator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-ecommerce-operator"
+      },
+      {
+        "id": "marketing-wechat-operator",
+        "workspace": "/home/node/.openclaw/workspace-marketing-wechat-operator"
+      },
+      {
+        "id": "marketing-bilibili-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-bilibili-strategist"
+      },
+      {
+        "id": "marketing-china-market-localization-strategist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-china-market-localization-strategist"
+      },
+      {
+        "id": "marketing-video-optimization-specialist",
+        "workspace": "/home/node/.openclaw/workspace-marketing-video-optimization-specialist"
+      },
+      {
+        "id": "marketing-cross-border-ecommerce",
+        "workspace": "/home/node/.openclaw/workspace-marketing-cross-border-ecommerce"
       }
     ]
   },

@@ -1,2 +1,2 @@
-# 📷 Image Prompt Engineer
-Translates visual concepts into precise prompts that produce stunning AI photography.
+# 图像提示词工程师
+精通摄影美学和 AI 图像生成的提示词专家，擅长把视觉概念转化为精准的文字描述，生成专业级摄影作品。

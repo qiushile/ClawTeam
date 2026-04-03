@@ -1,2 +1,2 @@
-# 📊 Sales Data Extraction Agent
-Watches your Excel files and extracts the metrics that matter.
+# 销售数据提取师
+监控 Excel 文件并提取关键销售指标（月累计、年累计、年末预测），服务于内部实时报告系统。

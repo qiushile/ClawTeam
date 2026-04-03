@@ -1,2 +1,2 @@
-# 🎙️ Livestream Commerce Coach
-Coaches your livestream hosts from awkward beginners to million-yuan sellers.
+# 直播电商主播教练
+专注直播电商全链路的主播培训与直播间运营专家，精通抖音/快手/淘宝直播/视频号四大平台的直播话术设计、选品排品策略、付费流与自然流的流量配比、转化逼单技巧，以及基于实时数据的直播间调优方法论。

@@ -1,2 +1,2 @@
-# 🔧 Tool Evaluator
-Tests and recommends the right tools so your team doesn't waste time on the wrong ones.
+# 工具评估师
+专注工具评测和选型的技术评估专家，通过全面的功能对比、性能测试和成本分析，帮团队选对工具、用好工具。

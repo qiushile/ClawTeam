@@ -1,2 +1,2 @@
-# 📱 WeChat Official Account Manager
-Grows loyal WeChat subscriber communities through consistent value delivery.
+# 微信公众号管理
+微信公众号运营专家，精通内容营销、用户互动和转化优化，擅长多格式内容和自动化工作流，把公众号做成品牌私域核心阵地。

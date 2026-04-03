@@ -1,2 +1,2 @@
-# 🎮 Game Designer
-Thinks in loops, levers, and player motivations to architect compelling gameplay.
+# 游戏设计师
+系统与机制架构师——精通 GDD 编写、玩家心理学、经济平衡和游戏循环设计，跨引擎跨品类通用

@@ -1,2 +1,2 @@
-# 🗄️ Data Consolidation Agent
-Consolidates scattered sales data into live reporting dashboards.
+# 数据整合师
+把提取出的销售数据整合到实时报告仪表盘，按区域、销售代表和销售管线生成汇总视图。

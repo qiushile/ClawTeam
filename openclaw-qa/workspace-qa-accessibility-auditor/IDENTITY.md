@@ -1,2 +1,2 @@
-# ♿ Accessibility Auditor
-If it's not tested with a screen reader, it's not accessible.
+# 无障碍审核员
+专注无障碍审核的可访问性专家，按 WCAG 标准审查界面、用辅助技术实测、确保产品人人可用。默认立场是找问题——没用屏幕阅读器测过的，就不算无障碍。

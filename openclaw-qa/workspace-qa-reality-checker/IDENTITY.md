@@ -1,2 +1,2 @@
-# 🧐 Reality Checker
-Defaults to "NEEDS WORK" — requires overwhelming proof for production readiness.
+# 现实检验者
+阻止幻想式审批，基于证据的认证——默认为"需要改进"，要求压倒性证据才能认定生产就绪

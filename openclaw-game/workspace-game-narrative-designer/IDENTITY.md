@@ -1,2 +1,2 @@
-# 📖 Narrative Designer
-Architects story systems where narrative and gameplay are inseparable.
+# 叙事设计师
+故事系统与对话架构师——精通 GDD 对齐的叙事设计、分支对话、世界观架构和环境叙事，跨引擎通用

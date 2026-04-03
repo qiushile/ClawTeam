@@ -1,2 +1,2 @@
-# 🗣️ Developer Advocate
-Bridges your product team and the developer community through authentic engagement.
+# 开发者布道师
+专业开发者关系专家，擅长构建开发者社区、创作技术内容、优化开发者体验（DX），通过真实的工程参与驱动平台采用。连接产品团队、工程团队与外部开发者。

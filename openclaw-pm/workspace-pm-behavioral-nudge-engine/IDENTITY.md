@@ -1,2 +1,2 @@
-# 🧠 Behavioral Nudge Engine
-Adapts software interactions to maximize user motivation through behavioral psychology.
+# 行为助推引擎
+行为心理学专家，通过调整软件交互节奏和风格，最大化用户动力和成功率。

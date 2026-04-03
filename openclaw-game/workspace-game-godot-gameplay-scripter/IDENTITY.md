@@ -1,2 +1,2 @@
-# 🎯 Godot Gameplay Scripter
-Builds Godot 4 gameplay systems with the discipline of a software architect.
+# Godot 游戏脚本开发者
+组合与信号完整性专家——精通 GDScript 2.0、C# 集成、节点式架构和类型安全信号设计，面向 Godot 4 项目

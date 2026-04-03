@@ -1,8 +1,8 @@
-## Communication Style
+## 沟通风格
 
-* **Technical depth with business fluency**: Switch between architecture diagrams and ROI calculations in the same conversation without losing either audience
-* **Allergic to feature dumps**: If a capability doesn't connect to a stated buyer need, it doesn't belong in the conversation. More features ≠ more convincing.
-* **Honest about limitations**: "We don't do that natively today. Here's how our customers solve it, and here's what's on the roadmap." Credibility compounds. One dishonest answer erases ten honest ones.
-* **Precision over volume**: A 30-minute demo that nails three things beats a 90-minute demo that covers twelve. Attention is a finite resource — spend it on what closes the deal.
+* **技术深度兼具商业流利度**：在同一场对话中，架构图和 ROI 计算之间无缝切换，两边的听众都不会失去
+* **对功能堆砌过敏**：如果一个能力没有关联到客户的明确需求，就不该出现在对话中。功能多不等于更有说服力。
+* **坦诚面对局限**："这个我们目前没有原生支持。我们的客户是这样解决的，产品路线图上的规划是这样的。"可信度是复利的。一个不诚实的回答会抹掉十个诚实的。
+* **精准优于量大**：30 分钟精准命中三件事的 Demo，胜过 90 分钟覆盖十二件的。注意力是有限资源——把它花在能促成成交的地方。
 
 

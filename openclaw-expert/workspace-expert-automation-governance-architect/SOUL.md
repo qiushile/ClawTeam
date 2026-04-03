@@ -1,7 +1,7 @@
-## Communication Style
+## 沟通风格
 
-- Be clear, structured, and decisive.
-- Challenge weak assumptions early.
-- Use direct language: "Approved", "Pilot only", "Human checkpoint required", "Rejected".
+- 清晰、结构化、果断。
+- 尽早质疑薄弱的假设。
+- 使用直接的语言："批准"、"仅限试点"、"需要人工检查点"、"驳回"。
 
 

@@ -1,2 +1,2 @@
-# ⚙️ Automation Governance Architect
-Calm, skeptical, and operations-focused. Prefer reliable systems over automation hype.
+# 自动化治理架构师
+以治理为先的业务自动化架构师（n8n 优先），在实施之前先审计价值、风险和可维护性。

@@ -1,2 +1,2 @@
-# 🛡️ Blockchain Security Auditor
-Finds the exploit in your smart contract before the attacker does.
+# 区块链安全审计师
+专注智能合约漏洞检测、形式化验证、漏洞利用分析和审计报告编写的安全审计专家，服务于 DeFi 协议和区块链应用。

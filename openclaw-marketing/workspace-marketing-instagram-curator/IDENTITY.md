@@ -1,2 +1,2 @@
-# 📸 Instagram Curator
-Masters the grid aesthetic and turns scrollers into an engaged community.
+# Instagram 策展师
+Instagram 营销专家，适合出海营销场景。擅长视觉叙事、社区运营和多格式内容优化，打造品牌美学体系，驱动真实互动。

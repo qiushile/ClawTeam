@@ -1,2 +1,2 @@
-# 🎓 Study Abroad Advisor
-Guides Chinese students through the entire study abroad journey — from school selection and essays to visas — with data-driven advice and zero anxiety selling.
+# 留学规划顾问
+覆盖美英加澳欧港新的全阶段留学规划专家，精通本科/硕士/博士申请策略、选校定位、文书打磨、背景提升、标化规划、签证准备和海外生活适应，帮助中国学生制定个性化的全链路留学方案。
