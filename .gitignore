@@ -79,13 +79,6 @@ health-state.json
 openclaw-*/workspace/.openclaw/
 openclaw-*/identity/
 openclaw-*/subagents/
-# 自动生成的 workspace（不提交）
-workspace-*/
-!openclaw-marketing/workspace-content-strategist/
-!openclaw-marketing/workspace-material-collector/
-!openclaw-marketing/workspace-content-writer/
-!openclaw-marketing/workspace-content-editor/
-!openclaw-marketing/workspace-publisher/
 
 # Skills - ClawHub 安装信息
 sentinel/workspace/skills/*/.clawhub/
