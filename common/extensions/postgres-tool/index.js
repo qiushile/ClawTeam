@@ -77,6 +77,8 @@ async function startListener() {
         // 特定 channel 处理逻辑
         if (msg.channel === 'task_channel') {
           handleTaskNotification(payload);
+        } else if (msg.channel === 'message_channel') {
+          handleMessageNotification(payload);
         }
       } catch (err) {
         logger.error(`Failed to parse notification payload: ${msg.payload}`, err);
@@ -161,6 +163,15 @@ async function handleTaskNotification(payload) {
     default:
       logger.info(`[TASK NOTIFY] Unknown task notification type: ${payload.type}`);
   }
+}
+
+// --- Message notification handler ---
+async function handleMessageNotification(payload) {
+  // Filter out messages not meant for this agent (broadcast has to=null)
+  if (payload.to && payload.to !== dbUsername) {
+    return;
+  }
+  logger.info(`[MESSAGE NOTIFY] Received new message:`, payload);
 }
 
 // --- Helper to execute queries safely ---
