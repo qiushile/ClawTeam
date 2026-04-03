@@ -274,6 +274,22 @@
       {
         "id": "dev-senior-developer",
         "workspace": "/home/node/.openclaw/workspace-dev-senior-developer"
+      },
+      {
+        "id": "dev-embedded-linux-driver-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-embedded-linux-driver-engineer"
+      },
+      {
+        "id": "dev-fpga-digital-design-engineer",
+        "workspace": "/home/node/.openclaw/workspace-dev-fpga-digital-design-engineer"
+      },
+      {
+        "id": "dev-iot-solution-architect",
+        "workspace": "/home/node/.openclaw/workspace-dev-iot-solution-architect"
+      },
+      {
+        "id": "dev-dingtalk-integration-developer",
+        "workspace": "/home/node/.openclaw/workspace-dev-dingtalk-integration-developer"
       }
     ]
   },
