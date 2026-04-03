@@ -209,6 +209,31 @@ CREATE USER game_user WITH PASSWORD 'game_pass_123';
 CREATE SCHEMA game_schema AUTHORIZATION game_user;
 ALTER ROLE game_user SET search_path TO game_schema, shared, public;
 
+-- 学术部 (Academic)
+CREATE USER academic_user WITH PASSWORD 'academic_pass_123';
+CREATE SCHEMA academic_schema AUTHORIZATION academic_user;
+ALTER ROLE academic_user SET search_path TO academic_schema, shared, public;
+
+-- 财务部 (Finance)
+CREATE USER finance_user WITH PASSWORD 'finance_pass_123';
+CREATE SCHEMA finance_schema AUTHORIZATION finance_user;
+ALTER ROLE finance_user SET search_path TO finance_schema, shared, public;
+
+-- 人事部 (HR)
+CREATE USER hr_user WITH PASSWORD 'hr_pass_123';
+CREATE SCHEMA hr_schema AUTHORIZATION hr_user;
+ALTER ROLE hr_user SET search_path TO hr_schema, shared, public;
+
+-- 合规部 (Legal)
+CREATE USER legal_user WITH PASSWORD 'legal_pass_123';
+CREATE SCHEMA legal_schema AUTHORIZATION legal_user;
+ALTER ROLE legal_user SET search_path TO legal_schema, shared, public;
+
+-- 供应链部 (Supply Chain)
+CREATE USER supply_chain_user WITH PASSWORD 'supply_chain_pass_123';
+CREATE SCHEMA supply_chain_schema AUTHORIZATION supply_chain_user;
+ALTER ROLE supply_chain_user SET search_path TO supply_chain_schema, shared, public;
+
 -- ==========================================
 -- 预填部门注册信息
 -- ==========================================
@@ -225,25 +250,30 @@ INSERT INTO shared.department_registry (code, db_username, name, capabilities) V
 ('support', 'support_user', '支撑部', '客户成功、工单处理、用户支持与常见问题知识库维护'),
 ('spatial', 'spatial_user', '空间部', 'AR/VR/XR 开发、三维资产管理、空间交互设计'),
 ('expert', 'expert_user', '专家组', '复杂难题攻坚、高管战略参谋、架构审计与行业技术前瞻'),
-('game', 'game_user', '游戏部', '游戏引擎(Unity/UE)开发、数值平衡、关卡设计与核心玩法迭代');
+('game', 'game_user', '游戏部', '游戏引擎(Unity/UE)开发、数值平衡、关卡设计与核心玩法迭代'),
+('academic', 'academic_user', '学术部', '学术前沿调研、论文库检索、知识沉淀与学术合规审计'),
+('finance', 'finance_user', '财务部', '预算控制、报销审计、财务分析、税务合规及资金调度策略'),
+('hr', 'hr_user', '人事部', '人才画像、简历初筛、面试协调、绩效考核管理与企业文化建设'),
+('legal', 'legal_user', '合规部', '合同合规审查、知识产权保护、法律风险评估及隐私政策审计'),
+('supply-chain', 'supply_chain_user', '供应链部', '供应商管理、物流跟踪、仓储优化与跨国贸易合规');
 
 -- ==========================================
 -- 统一授予所有用户对 shared 的基础权限
 -- ==========================================
-GRANT USAGE ON SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT USAGE ON SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT CREATE ON SCHEMA shared TO orchestrator_user;
 
 -- 对 shared 表授权
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.tasks TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.tasks TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 ALTER TABLE shared.tasks OWNER TO orchestrator_user;
 GRANT TRIGGER ON shared.tasks TO orchestrator_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.collaboration_events TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.collaboration_events TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT TRIGGER ON shared.collaboration_events TO orchestrator_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.knowledge_base TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.knowledge_base TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT TRIGGER ON shared.knowledge_base TO orchestrator_user;
-GRANT SELECT ON shared.department_registry TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT ON shared.department_registry TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT INSERT, UPDATE ON shared.department_registry TO orchestrator_user;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA shared TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 
 -- 团队全貌视图：注册信息 + 在线状态
 CREATE VIEW shared.team_directory AS
@@ -258,7 +288,7 @@ SELECT
 FROM shared.department_registry d
 LEFT JOIN shared.agent_heartbeats h ON d.db_username = h.db_username
 WHERE d.is_active = true;
-GRANT SELECT ON shared.team_directory TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT ON shared.team_directory TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 
 -- ==========================================
 -- 新增：设置 shared schema 的默认权限
@@ -266,14 +296,14 @@ GRANT SELECT ON shared.team_directory TO orchestrator_user, dev_user, pm_user, d
 -- ==========================================
 ALTER DEFAULT PRIVILEGES IN SCHEMA shared
     GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO
-    orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+    orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 
 ALTER DEFAULT PRIVILEGES IN SCHEMA shared
     GRANT USAGE, SELECT ON SEQUENCES TO
-    orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+    orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 
 -- 授予 pg_notify 权限，使得各部门都可以发送和监听事件
-GRANT EXECUTE ON FUNCTION pg_notify(text, text) TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT EXECUTE ON FUNCTION pg_notify(text, text) TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 
 -- ==========================================
 -- 开启并设置行级安全 (RLS) 
@@ -292,7 +322,7 @@ CREATE POLICY orchestrator_task_policy ON shared.tasks
 -- 这要求应用端填写的 assignee 必须是完整的数据库用户名，如 'dev_user'
 CREATE POLICY department_task_policy ON shared.tasks
     FOR ALL
-    TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user
+    TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user
     USING (
         assignee = CURRENT_USER
         OR requester = CURRENT_USER
@@ -394,13 +424,13 @@ CREATE INDEX idx_comments_task ON shared.task_comments(task_id, created_at);
 -- （因有 DEFAULT PRIVILEGES，其实这部分可以省略，
 --   但为了向后兼容对现有存在的表显式赋权更为保险）
 -- ==========================================
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.agent_heartbeats TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.agent_heartbeats TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT TRIGGER ON shared.agent_heartbeats TO orchestrator_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.inter_agent_messages TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.inter_agent_messages TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT TRIGGER ON shared.inter_agent_messages TO orchestrator_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.shared_artifacts TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.shared_artifacts TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT TRIGGER ON shared.shared_artifacts TO orchestrator_user;
-GRANT SELECT, INSERT, UPDATE, DELETE ON shared.task_comments TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user;
+GRANT SELECT, INSERT, UPDATE, DELETE ON shared.task_comments TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 GRANT TRIGGER ON shared.task_comments TO orchestrator_user;
 
 
@@ -421,17 +451,17 @@ CREATE POLICY orchestrator_comments_policy ON shared.task_comments FOR ALL TO or
 
 -- 部门用户权限：
 -- 1. Heartbeats: 可看所有，只能改自己的
-CREATE POLICY dept_heartbeats_select ON shared.agent_heartbeats FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (true);
-CREATE POLICY dept_heartbeats_modify ON shared.agent_heartbeats FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (db_username = CURRENT_USER) WITH CHECK (db_username = CURRENT_USER);
+CREATE POLICY dept_heartbeats_select ON shared.agent_heartbeats FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (true);
+CREATE POLICY dept_heartbeats_modify ON shared.agent_heartbeats FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (db_username = CURRENT_USER) WITH CHECK (db_username = CURRENT_USER);
 
 -- 2. Messages: 只能看发给自己的、自己发的，或者广播消息 (to_agent IS NULL)
-CREATE POLICY dept_messages_policy ON shared.inter_agent_messages FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (from_agent = CURRENT_USER OR to_agent = CURRENT_USER OR to_agent IS NULL) WITH CHECK (from_agent = CURRENT_USER);
+CREATE POLICY dept_messages_policy ON shared.inter_agent_messages FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (from_agent = CURRENT_USER OR to_agent = CURRENT_USER OR to_agent IS NULL) WITH CHECK (from_agent = CURRENT_USER);
 
 -- 3. Artifacts: 任何人都可以查看和评论关联任务的产物，但只有 Owner 能改
-CREATE POLICY dept_artifacts_select ON shared.shared_artifacts FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (true);
-CREATE POLICY dept_artifacts_modify ON shared.shared_artifacts FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (owner = CURRENT_USER) WITH CHECK (owner = CURRENT_USER);
+CREATE POLICY dept_artifacts_select ON shared.shared_artifacts FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (true);
+CREATE POLICY dept_artifacts_modify ON shared.shared_artifacts FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (owner = CURRENT_USER) WITH CHECK (owner = CURRENT_USER);
 
 -- 4. Comments: 任何人都可以查看，只有 Author 能改
-CREATE POLICY dept_comments_select ON shared.task_comments FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (true);
-CREATE POLICY dept_comments_modify ON shared.task_comments FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user USING (author = CURRENT_USER) WITH CHECK (author = CURRENT_USER);
+CREATE POLICY dept_comments_select ON shared.task_comments FOR SELECT TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (true);
+CREATE POLICY dept_comments_modify ON shared.task_comments FOR ALL TO dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user USING (author = CURRENT_USER) WITH CHECK (author = CURRENT_USER);
 

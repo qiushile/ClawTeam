@@ -348,6 +348,121 @@ services:
       - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
       - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
 
+  # 14. 学术部 academic
+  openclaw-academic:
+    <<: *openclaw-base
+    container_name: openclaw-academic
+    hostname: openclaw-academic
+    ports:
+      - "18014:18789"
+      - "13014:3000"
+    environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-academic
+      - OPENAI_API_KEY=${ZHIPU_API_KEY}
+      - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
+      - OPENAI_MODEL=glm-5
+      - DATABASE_URL=postgresql://academic_user:${ACADEMIC_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_ACADEMIC_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_ACADEMIC_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
+    volumes:
+      - ./openclaw-academic:/home/node/.openclaw
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
+      - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+
+  # 15. 财务部 finance
+  openclaw-finance:
+    <<: *openclaw-base
+    container_name: openclaw-finance
+    hostname: openclaw-finance
+    ports:
+      - "18015:18789"
+      - "13015:3000"
+    environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-finance
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3.5-plus
+      - DATABASE_URL=postgresql://finance_user:${FINANCE_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_FINANCE_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_FINANCE_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
+    volumes:
+      - ./openclaw-finance:/home/node/.openclaw
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
+      - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+
+  # 16. 人事部 hr
+  openclaw-hr:
+    <<: *openclaw-base
+    container_name: openclaw-hr
+    hostname: openclaw-hr
+    ports:
+      - "18016:18789"
+      - "13016:3000"
+    environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-hr
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3.5-plus
+      - DATABASE_URL=postgresql://hr_user:${HR_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_HR_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_HR_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
+    volumes:
+      - ./openclaw-hr:/home/node/.openclaw
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
+      - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+
+  # 17. 合规部 legal
+  openclaw-legal:
+    <<: *openclaw-base
+    container_name: openclaw-legal
+    hostname: openclaw-legal
+    ports:
+      - "18017:18789"
+      - "13017:3000"
+    environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-legal
+      - OPENAI_API_KEY=${MINIMAX_API_KEY}
+      - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
+      - OPENAI_MODEL=MiniMax-M2.5
+      - DATABASE_URL=postgresql://legal_user:${LEGAL_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_LEGAL_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_LEGAL_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
+    volumes:
+      - ./openclaw-legal:/home/node/.openclaw
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
+      - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+
+  # 18. 供应链部 supply-chain
+  openclaw-supply-chain:
+    <<: *openclaw-base
+    container_name: openclaw-supply-chain
+    hostname: openclaw-supply-chain
+    ports:
+      - "18018:18789"
+      - "13018:3000"
+    environment:
+      - OPENCLAW_MDNS_HOSTNAME=openclaw-supply-chain
+      - OPENAI_API_KEY=${ALIYUN_API_KEY}
+      - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
+      - OPENAI_MODEL=qwen3.5-plus
+      - DATABASE_URL=postgresql://supply_chain_user:${SUPPLY_CHAIN_DB_PASS}@postgres-db:5432/openclaw_db
+      - TZ=Asia/Shanghai
+      - FEISHU_APP_ID=${FEISHU_SUPPLY_CHAIN_APP_ID}
+      - FEISHU_APP_SECRET=${FEISHU_SUPPLY_CHAIN_APP_SECRET}
+      - SECRET_GATEWAY_TOKEN=${SECRET_GATEWAY_TOKEN}
+    volumes:
+      - ./openclaw-supply-chain:/home/node/.openclaw
+      - ./common/extensions/postgres-tool:/home/node/.openclaw/extensions/postgres-tool
+      - ./common/extensions/task-notifier:/home/node/.openclaw/extensions/task-notifier
+
 networks:
   openclaw-net:
     driver: bridge
