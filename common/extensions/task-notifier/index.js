@@ -54,22 +54,24 @@ async function startListener() {
 
     listenerClient.on('notification', (msg) => {
       try {
-        let payload = {};
-        if (msg.payload && msg.payload.trim() !== '') {
-          try {
-            payload = JSON.parse(msg.payload);
-          } catch (err) {
-            // 如果不是JSON，创建TEXT_NOTIFICATION类型
-            payload = { type: 'TEXT_NOTIFICATION', raw: msg.payload };
-          }
+        if (!msg.payload || msg.payload.trim() === '') return;
+        
+        let payload;
+        try {
+          payload = JSON.parse(msg.payload);
+        } catch (err) {
+          payload = { type: 'TEXT_NOTIFICATION', raw: msg.payload };
         }
+        
         logger.info(`[TASK NOTIFIER] Channel: ${msg.channel} | Payload:`, payload);
 
         if (msg.channel === 'task_channel') {
           handleTaskNotification(payload);
+        } else if (msg.channel === 'message_channel') {
+          handleMessageNotification(payload);
         }
       } catch (err) {
-        logger.error(`[TASK NOTIFIER] Failed to parse notification: ${msg.payload}`, err);
+        logger.error(`[TASK NOTIFIER] Error in notification handler`, err);
       }
     });
 
