@@ -113,22 +113,37 @@ RETURNS TRIGGER AS $$
 DECLARE
   payload json;
   should_notify boolean := false;
+  event_type text;
 BEGIN
   -- INSERT 时 OLD 为 NULL，必须单独判断
   IF (TG_OP = 'INSERT') THEN
     should_notify := true;
+    event_type := 'TASK_ASSIGNED';
   ELSIF (NEW.status <> OLD.status OR NEW.assignee <> OLD.assignee) THEN
     should_notify := true;
+    IF NEW.status = 'COMPLETED' THEN
+      event_type := 'TASK_COMPLETED';
+    ELSIF NEW.status = 'FAILED' THEN
+      event_type := 'TASK_FAILED';
+    ELSIF NEW.status = 'IN_PROGRESS' THEN
+      event_type := 'TASK_IN_PROGRESS';
+    ELSIF NEW.status = 'PENDING' AND NEW.assignee <> OLD.assignee THEN
+      event_type := 'TASK_ASSIGNED';
+    ELSE
+      event_type := 'TASK_UPDATED';
+    END IF;
   END IF;
 
   IF should_notify THEN
     payload = json_build_object(
+      'type', event_type,
       'task_id', NEW.id,
       'title', NEW.title,
       'status', NEW.status,
       'assignee', NEW.assignee,
       'requester', NEW.requester,
-      'action', TG_OP
+      'action', TG_OP,
+      'target', CASE WHEN event_type IN ('TASK_COMPLETED', 'TASK_FAILED') THEN NEW.requester ELSE NEW.assignee END
     );
     PERFORM pg_notify('task_channel', payload::text);
   END IF;
@@ -401,7 +416,8 @@ BEGIN
     'from', NEW.from_agent,
     'to', NEW.to_agent,
     'type', NEW.msg_type,
-    'channel', NEW.channel
+    'channel', NEW.channel,
+    'target', NEW.to_agent
   )::text);
   RETURN NEW;
 END;
