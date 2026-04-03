@@ -1,34 +1,38 @@
-# 研发与产品角色对照表
+# Agent 角色对照表
 
-本表整理了所有部门与对应 AI 智能体角色的中英文及标识对照。
+本表根据 [agents-zh](https://github.com/jnMetaCode/agents-zh) 项目整理，包含了所有部门与对应 AI 智能体角色的中英文及标识对照。
 
 ## 研发部 (`dev`)
 
-| 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
-|---|---|---|---|
-| 1 | 前端开发人员 | `frontend-developer` | `agency-frontend-developer` |
-| 2 | 后端架构师 | `backend-architect` | `agency-backend-architect` |
-| 3 | 移动应用构建器 | `mobile-app-builder` | `agency-mobile-app-builder` |
-| 4 | 人工智能工程师 | `ai-engineer` | `agency-ai-engineer` |
-| 5 | DevOps 自动化工具 | `devops-automator` | `agency-devops-automator` |
-| 6 | 快速原型机 | `rapid-prototyper` | `agency-rapid-prototyper` |
-| 7 | 高级开发人员 | `senior-developer` | `agency-senior-developer` |
-| 8 | 安全工程师 | `security-engineer` | `agency-security-engineer` |
-| 9 | 自主优化架构师 | `autonomous-optimization-architect` | `agency-autonomous-optimization-architect` |
-| 10 | 嵌入式固件工程师 | `embedded-firmware-engineer` | `agency-embedded-firmware-engineer` |
-| 11 | 事件响应指挥官 | `incident-response-commander` | `agency-incident-response-commander` |
-| 12 | Solidity 智能合约工程师 | `solidity-smart-contract-engineer` | `agency-solidity-smart-contract-engineer` |
-| 13 | 技术撰稿人 | `technical-writer` | `agency-technical-writer` |
-| 14 | 威胁检测工程师 | `threat-detection-engineer` | `agency-threat-detection-engineer` |
-| 15 | 微信小程序开发者 | `wechat-mini-program-developer` | `agency-wechat-mini-program-developer` |
-| 16 | 代码审查员 | `code-reviewer` | `agency-code-reviewer` |
-| 17 | 数据库优化器 | `database-optimizer` | `agency-database-optimizer` |
-| 18 | Git 工作流大师 | `git-workflow-master` | `agency-git-workflow-master` |
-| 19 | 软件架构师 | `software-architect` | `agency-software-architect` |
-| 20 | SRE | `sre-site-reliability-engineer` | `agency-sre-site-reliability-engineer` |
-| 21 | AI 数据修复工程师 | `ai-data-remediation-engineer` | `agency-ai-data-remediation-engineer` |
-| 22 | 数据工程师 | `data-engineer` | `agency-data-engineer` |
-| 23 | 飞书集成开发人员 | `feishu-integration-developer` | `agency-feishu-integration-developer` |
+| 序号 | 角色中文名             | Agent 标识 | 完整 Agent 目录名称 |
+|---|-------------------|---|---|
+| 1 | 前端开发人员            | `frontend-developer` | `agency-frontend-developer` |
+| 2 | 后端架构师             | `backend-architect` | `agency-backend-architect` |
+| 3 | 移动应用构建器           | `mobile-app-builder` | `agency-mobile-app-builder` |
+| 4 | 人工智能工程师           | `ai-engineer` | `agency-ai-engineer` |
+| 5 | DevOps 自动化工程师     | `devops-automator` | `agency-devops-automator` |
+| 6 | 快速原型师             | `rapid-prototyper` | `agency-rapid-prototyper` |
+| 7 | 高级开发人员            | `senior-developer` | `agency-senior-developer` |
+| 8 | 安全工程师             | `security-engineer` | `agency-security-engineer` |
+| 9 | 自主优化架构师           | `autonomous-optimization-architect` | `agency-autonomous-optimization-architect` |
+| 10 | 嵌入式固件工程师          | `embedded-firmware-engineer` | `agency-embedded-firmware-engineer` |
+| 11 | 嵌入式 Linux 驱动工程师   | `embedded-linux-driver-engineer` | `agency-embedded-linux-driver-engineer` |
+| 12 | FPGA/ASIC 数字设计工程师 | `fpga-digital-design-engineer` | `agency-fpga-digital-design-engineer` |
+| 13 | IoT 方案架构师         | `iot-solution-architect` | `agency-iot-solution-architect` |
+| 14 | 事件响应指挥官           | `incident-response-commander` | `agency-incident-response-commander` |
+| 15 | Solidity 智能合约工程师  | `solidity-smart-contract-engineer` | `agency-solidity-smart-contract-engineer` |
+| 16 | 技术撰稿人             | `technical-writer` | `agency-technical-writer` |
+| 17 | 威胁检测工程师           | `threat-detection-engineer` | `agency-threat-detection-engineer` |
+| 18 | 微信小程序开发者          | `wechat-mini-program-developer` | `agency-wechat-mini-program-developer` |
+| 19 | 代码审查员             | `code-reviewer` | `agency-code-reviewer` |
+| 20 | 数据库优化器            | `database-optimizer` | `agency-database-optimizer` |
+| 21 | Git 工作流大师         | `git-workflow-master` | `agency-git-workflow-master` |
+| 22 | 软件架构师             | `software-architect` | `agency-software-architect` |
+| 23 | SRE (站点可靠性工程师)    | `sre-site-reliability-engineer` | `agency-sre-site-reliability-engineer` |
+| 24 | AI 数据修复工程师        | `ai-data-remediation-engineer` | `agency-ai-data-remediation-engineer` |
+| 25 | 数据工程师             | `data-engineer` | `agency-data-engineer` |
+| 26 | 飞书集成开发人员          | `feishu-integration-developer` | `agency-feishu-integration-developer` |
+| 27 | 钉钉集成开发工程师         | `dingtalk-integration-developer` | `agency-dingtalk-integration-developer` |
 
 ## 设计部 (`design`)
 
@@ -52,7 +56,7 @@
 | 3 | 付费媒体审计员 | `paid-media-auditor` | `agency-paid-media-auditor` |
 | 4 | 跟踪与测量专家 | `tracking-measurement-specialist` | `agency-tracking-measurement-specialist` |
 | 5 | 广告创意策略师 | `ad-creative-strategist` | `agency-ad-creative-strategist` |
-| 6 | 程序化及展示广告买家 | `programmatic-display-buyer` | `agency-programmatic-display-buyer` |
+| 6 | 程序化广告采买专家 | `programmatic-display-buyer` | `agency-programmatic-display-buyer` |
 | 7 | 付费社交媒体策略师 | `paid-social-strategist` | `agency-paid-social-strategist` |
 
 ## 销售部 (`sales`)
@@ -81,23 +85,30 @@
 | 7 | App Store 优化器 | `app-store-optimizer` | `agency-app-store-optimizer` |
 | 8 | 社交媒体策略师 | `social-media-strategist` | `agency-social-media-strategist` |
 | 9 | 小红书专家 | `xiaohongshu-specialist` | `agency-xiaohongshu-specialist` |
-| 10 | 微信公众号经理 | `wechat-official-account-manager` | `agency-wechat-official-account-manager` |
-| 11 | 知乎策略师 | `zhihu-strategist` | `agency-zhihu-strategist` |
-| 12 | 百度 SEO 专家 | `baidu-seo-specialist` | `agency-baidu-seo-specialist` |
-| 13 | Bilibili 内容策略师 | `bilibili-content-strategist` | `agency-bilibili-content-strategist` |
-| 14 | 轮播图增长引擎 | `carousel-growth-engine` | `agency-carousel-growth-engine` |
-| 15 | LinkedIn 内容创作者 | `linkedin-content-creator` | `agency-linkedin-content-creator` |
-| 16 | 中国电子商务运营商 | `china-e-commerce-operator` | `agency-china-e-commerce-operator` |
-| 17 | 快手攻略 | `kuaishou-strategist` | `agency-kuaishou-strategist` |
-| 18 | SEO 专家 | `seo-specialist` | `agency-seo-specialist` |
-| 19 | 图书合著者 | `book-co-author` | `agency-book-co-author` |
-| 20 | 跨境电商专家 | `cross-border-e-commerce-specialist` | `agency-cross-border-e-commerce-specialist` |
-| 21 | 抖音策略师 | `douyin-strategist` | `agency-douyin-strategist` |
-| 22 | 直播电商教练 | `livestream-commerce-coach` | `agency-livestream-commerce-coach` |
-| 23 | 播客策略师 | `podcast-strategist` | `agency-podcast-strategist` |
-| 24 | 私有域名运营商 | `private-domain-operator` | `agency-private-domain-operator` |
-| 25 | 短视频剪辑教练 | `short-video-editing-coach` | `agency-short-video-editing-coach` |
-| 26 | 微博策略师 | `weibo-strategist` | `agency-weibo-strategist` |
+| 10 | 小红书运营专家 | `xiaohongshu-operator` | `agency-xiaohongshu-operator` |
+| 11 | 微信公众号经理 | `wechat-official-account-manager` | `agency-wechat-official-account-manager` |
+| 12 | 微信公众号运营 | `wechat-operator` | `agency-wechat-operator` |
+| 13 | 知乎策略师 | `zhihu-strategist` | `agency-zhihu-strategist` |
+| 14 | 百度 SEO 专家 | `baidu-seo-specialist` | `agency-baidu-seo-specialist` |
+| 15 | Bilibili 内容策略师 | `bilibili-content-strategist` | `agency-bilibili-content-strategist` |
+| 16 | B站策略师 | `bilibili-strategist` | `agency-bilibili-strategist` |
+| 17 | 轮播图增长引擎 | `carousel-growth-engine` | `agency-carousel-growth-engine` |
+| 18 | LinkedIn 内容创作者 | `linkedin-content-creator` | `agency-linkedin-content-creator` |
+| 19 | 中国电子商务运营商 | `china-e-commerce-operator` | `agency-china-e-commerce-operator` |
+| 20 | 电商运营师 | `ecommerce-operator` | `agency-ecommerce-operator` |
+| 21 | 快手攻略 | `kuaishou-strategist` | `agency-kuaishou-strategist` |
+| 22 | SEO 专家 | `seo-specialist` | `agency-seo-specialist` |
+| 23 | 图书合著者 | `book-co-author` | `agency-book-co-author` |
+| 24 | 跨境电商专家 | `cross-border-e-commerce-specialist` | `agency-cross-border-e-commerce-specialist` |
+| 25 | 抖音策略师 | `douyin-strategist` | `agency-douyin-strategist` |
+| 26 | 直播电商教练 | `livestream-commerce-coach` | `agency-livestream-commerce-coach` |
+| 27 | 播客策略师 | `podcast-strategist` | `agency-podcast-strategist` |
+| 28 | 私有域名运营商 | `private-domain-operator` | `agency-private-domain-operator` |
+| 29 | 短视频剪辑教练 | `short-video-editing-coach` | `agency-short-video-editing-coach` |
+| 30 | 微博策略师 | `weibo-strategist` | `agency-weibo-strategist` |
+| 31 | 微信视频号运营策略师 | `weixin-channels-strategist` | `agency-weixin-channels-strategist` |
+| 32 | 知识付费产品策划师 | `knowledge-commerce-strategist` | `agency-knowledge-commerce-strategist` |
+| 33 | AI 引文策略师 | `ai-citation-strategist` | `agency-ai-citation-strategist` |
 
 ## 产品部 (`pm`)
 
@@ -107,6 +118,7 @@
 | 2 | 趋势研究员 | `trend-researcher` | `agency-trend-researcher` |
 | 3 | 反馈合成器 | `feedback-synthesizer` | `agency-feedback-synthesizer` |
 | 4 | 行为助推引擎 | `behavioral-nudge-engine` | `agency-behavioral-nudge-engine` |
+| 5 | 产品经理 | `product-manager` | `agency-product-manager` |
 
 ## 项目部 (`project`)
 
@@ -131,17 +143,20 @@
 | 6 | 工具评估器 | `tool-evaluator` | `agency-tool-evaluator` |
 | 7 | 工作流程优化器 | `workflow-optimizer` | `agency-workflow-optimizer` |
 | 8 | 无障碍审核员 | `accessibility-auditor` | `agency-accessibility-auditor` |
+| 9 | 嵌入式测试工程师 | `embedded-qa-engineer` | `agency-embedded-qa-engineer` |
 
 ## 支撑部 (`support`)
 
 | 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
 |---|---|---|---|
-| 1 | 支持响应者 | `support-responder` | `agency-support-responder` |
+| 1 | 支持响应员 | `support-responder` | `agency-support-responder` |
 | 2 | 分析报告员 | `analytics-reporter` | `agency-analytics-reporter` |
-| 3 | 财务追踪器 | `finance-tracker` | `agency-finance-tracker` |
+| 3 | 财务追踪员 | `finance-tracker` | `agency-finance-tracker` |
 | 4 | 基础设施维护员 | `infrastructure-maintainer` | `agency-infrastructure-maintainer` |
 | 5 | 法律合规性检查器 | `legal-compliance-checker` | `agency-legal-compliance-checker` |
 | 6 | 执行摘要生成器 | `executive-summary-generator` | `agency-executive-summary-generator` |
+| 7 | 招聘运营专家 | `recruitment-specialist` | `agency-recruitment-specialist` |
+| 8 | 供应链采购策略师 | `supply-chain-strategist` | `agency-supply-chain-strategist` |
 
 ## 空间部 (`spatial`)
 
@@ -177,10 +192,18 @@
 | 17 | 自动化治理架构师 | `automation-governance-architect` | `agency-automation-governance-architect` |
 | 18 | 企业培训设计师 | `corporate-training-designer` | `agency-corporate-training-designer` |
 | 19 | 政府数字化售前顾问 | `government-digital-presales-consultant` | `agency-government-digital-presales-consultant` |
-| 20 | 医疗保健营销合规性 | `healthcare-marketing-compliance-specialist` | `agency-healthcare-marketing-compliance-specialist` |
-| 21 | 招聘专员 | `recruitment-specialist` | `agency-recruitment-specialist` |
-| 22 | 留学顾问 | `study-abroad-advisor` | `agency-study-abroad-advisor` |
-| 23 | 供应链战略师 | `supply-chain-strategist` | `agency-supply-chain-strategist` |
+| 20 | 医疗保健营销合规性专家 | `healthcare-marketing-compliance-specialist` | `agency-healthcare-marketing-compliance-specialist` |
+| 21 | 提示词工程师 | `prompt-engineer` | `agency-prompt-engineer` |
+| 22 | 工作流架构师 | `workflow-architect` | `agency-workflow-architect` |
+| 23 | 留学顾问 | `study-abroad-advisor` | `agency-study-abroad-advisor` |
+| 24 | Salesforce 架构师 | `salesforce-architect` | `agency-salesforce-architect` |
+| 25 | 法国咨询市场专家 | `french-consulting-market-navigator` | `agency-french-consulting-market-navigator` |
+| 26 | 韩国商务专家 | `korean-business-navigator` | `agency-korean-business-navigator` |
+| 27 | 会议效率专家 | `meeting-assistant` | `agency-meeting-assistant` |
+| 28 | 高考志愿填报顾问 | `gaokao-college-advisor` | `agency-gaokao-college-advisor` |
+| 29 | 动态定价策略师 | `pricing-optimizer` | `agency-pricing-optimizer` |
+| 30 | AI 治理政策专家 | `ai-policy-writer` | `agency-ai-policy-writer` |
+| 31 | 企业风险评估师 | `risk-assessor` | `agency-risk-assessor` |
 
 ## 游戏部 (`game`)
 
@@ -206,3 +229,44 @@
 | 18 | Roblox 系统脚本编写者 | `roblox-systems-scripter` | `agency-roblox-systems-scripter` |
 | 19 | Roblox 体验设计师 | `roblox-experience-designer` | `agency-roblox-experience-designer` |
 | 20 | Roblox 头像创建器 | `roblox-avatar-creator` | `agency-roblox-avatar-creator` |
+
+## 金融部 (`finance`)
+
+| 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
+|---|---|---|---|
+| 1 | 财务预测分析师 | `financial-forecaster` | `agency-financial-forecaster` |
+| 2 | 发票管理专家 | `invoice-manager` | `agency-invoice-manager` |
+| 3 | 金融风控分析师 | `fraud-detector` | `agency-fraud-detector` |
+
+## 人力资源部 (`hr`)
+
+| 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
+|---|---|---|---|
+| 1 | 招聘专家 | `recruiter` | `agency-recruiter` |
+| 2 | 绩效管理专家 | `performance-reviewer` | `agency-performance-reviewer` |
+
+## 法务部 (`legal`)
+
+| 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
+|---|---|---|---|
+| 1 | 合同审查专家 | `contract-reviewer` | `agency-contract-reviewer` |
+| 2 | 制度文件撰写专家 | `policy-writer` | `agency-policy-writer` |
+
+## 供应链部 (`supply-chain`)
+
+| 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
+|---|---|---|---|
+| 1 | 库存预测专家 | `inventory-forecaster` | `agency-inventory-forecaster` |
+| 2 | 供应商评估专家 | `vendor-evaluator` | `agency-vendor-evaluator` |
+| 3 | 物流路线优化师 | `route-optimizer` | `agency-route-optimizer` |
+
+## 学术部 (`academic`)
+
+| 序号 | 角色中文名 | Agent 标识 | 完整 Agent 目录名称 |
+|---|---|---|---|
+| 1 | 人类学家 | `anthropologist` | `agency-anthropologist` |
+| 2 | 地理学家 | `geographer` | `agency-geographer` |
+| 3 | 历史学家 | `historian` | `agency-historian` |
+| 4 | 叙事学家 | `narratologist` | `agency-narratologist` |
+| 5 | 心理学家 | `psychologist` | `agency-psychologist` |
+| 6 | 学习规划师 | `study-planner` | `agency-study-planner` |
