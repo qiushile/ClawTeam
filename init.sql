@@ -40,6 +40,8 @@ CREATE TABLE shared.collaboration_events (
     event_type VARCHAR(50), -- 事件类型：如 'RECEIVED_ACK', 'NOTIFIED_USER', 'DELIVERED_TO_REQUESTER'
     message TEXT,           -- 具体的通知文本或沟通内容
     description TEXT,       -- 事件描述
+    sender VARCHAR(50),     -- 发送方 (冗余字段，便于查询)
+    target_agent VARCHAR(50), -- 目标 Agent
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -154,6 +156,174 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER task_status_notifier
   AFTER INSERT OR UPDATE ON shared.tasks
   FOR EACH ROW EXECUTE FUNCTION notify_task_status_change();
+
+-- ==========================================
+-- 增强通知函数 (Agent 团队运行时依赖)
+-- ==========================================
+
+-- 部门级任务通知：按 assignee/requester 推送到对应部门频道
+CREATE OR REPLACE FUNCTION shared.notify_task_to_department()
+RETURNS TRIGGER AS $$
+DECLARE
+  payload jsonb;
+  assignee_channel TEXT;
+  requester_channel TEXT;
+BEGIN
+  payload = jsonb_build_object(
+    'task_id', NEW.id,
+    'title', NEW.title,
+    'status', NEW.status,
+    'priority', NEW.priority,
+    'assignee', NEW.assignee,
+    'requester', NEW.requester,
+    'action', TG_OP,
+    'timestamp', NOW()
+  );
+
+  IF TG_OP = 'INSERT' THEN
+    assignee_channel = 'task_' || REPLACE(NEW.assignee, '_user', '');
+    PERFORM pg_notify(assignee_channel, payload::text);
+    PERFORM pg_notify('task_channel', payload::text);
+  ELSIF TG_OP = 'UPDATE' THEN
+    assignee_channel = 'task_' || REPLACE(NEW.assignee, '_user', '');
+    PERFORM pg_notify(assignee_channel, payload::text);
+    IF NEW.status IN ('COMPLETED', 'FAILED', 'REJECTED', 'CANCELLED') THEN
+      requester_channel = 'task_' || REPLACE(NEW.requester, '_user', '');
+      IF requester_channel != assignee_channel THEN
+        PERFORM pg_notify(requester_channel, payload::text);
+      END IF;
+    END IF;
+    PERFORM pg_notify('task_channel', payload::text);
+  END IF;
+
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 协作事件通知：双向推送 + 全局广播
+CREATE OR REPLACE FUNCTION shared.notify_collaboration_event()
+RETURNS TRIGGER AS $$
+DECLARE
+  payload jsonb;
+BEGIN
+  payload = jsonb_build_object(
+    'event_id', NEW.id,
+    'task_id', NEW.task_id,
+    'from_role', NEW.from_role,
+    'to_role', NEW.to_role,
+    'event_type', NEW.event_type,
+    'message', NEW.message,
+    'description', NEW.description,
+    'action', TG_OP,
+    'timestamp', NOW()
+  );
+  IF NEW.to_role IS NOT NULL THEN
+    PERFORM pg_notify('collab_' || REPLACE(NEW.to_role, '_user', ''), payload::text);
+  END IF;
+  IF NEW.from_role IS NOT NULL AND NEW.from_role != NEW.to_role THEN
+    PERFORM pg_notify('collab_' || REPLACE(NEW.from_role, '_user', ''), payload::text);
+  END IF;
+  PERFORM pg_notify('collab_channel', payload::text);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER collaboration_event_notifier
+  AFTER INSERT ON shared.collaboration_events
+  FOR EACH ROW EXECUTE FUNCTION shared.notify_collaboration_event();
+
+-- Agent 间消息通知：点对点 + 全局广播
+CREATE OR REPLACE FUNCTION shared.notify_inter_agent_message()
+RETURNS TRIGGER AS $$
+DECLARE
+  payload jsonb;
+BEGIN
+  payload = jsonb_build_object(
+    'message_id', NEW.id,
+    'from_agent', NEW.from_agent,
+    'to_agent', NEW.to_agent,
+    'channel', NEW.channel,
+    'msg_type', NEW.msg_type,
+    'payload', NEW.payload,
+    'ref_task_id', NEW.ref_task_id,
+    'action', TG_OP,
+    'timestamp', NOW()
+  );
+  IF NEW.to_agent IS NOT NULL THEN
+    PERFORM pg_notify('msg_' || REPLACE(NEW.to_agent, '_user', ''), payload::text);
+  END IF;
+  PERFORM pg_notify('msg_channel', payload::text);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 共享产物通知：通知 requester 验收
+CREATE OR REPLACE FUNCTION shared.notify_shared_artifact()
+RETURNS TRIGGER AS $$
+DECLARE
+  payload jsonb;
+  task_requester TEXT;
+  task_assignee TEXT;
+BEGIN
+  SELECT requester, assignee INTO task_requester, task_assignee
+  FROM shared.tasks WHERE id = NEW.task_id;
+  payload = jsonb_build_object(
+    'artifact_id', NEW.id,
+    'task_id', NEW.task_id,
+    'owner', NEW.owner,
+    'artifact_type', NEW.artifact_type,
+    'title', NEW.title,
+    'action', TG_OP,
+    'timestamp', NOW()
+  );
+  IF task_requester IS NOT NULL THEN
+    PERFORM pg_notify('artifact_' || REPLACE(task_requester, '_user', ''), payload::text);
+  END IF;
+  IF task_assignee IS NOT NULL AND task_assignee != task_requester THEN
+    PERFORM pg_notify('artifact_' || REPLACE(task_assignee, '_user', ''), payload::text);
+  END IF;
+  PERFORM pg_notify('artifact_channel', payload::text);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER shared_artifact_notifier
+  AFTER INSERT ON shared.shared_artifacts
+  FOR EACH ROW EXECUTE FUNCTION shared.notify_shared_artifact();
+
+-- 任务评论通知：通知 assignee 和 requester
+CREATE OR REPLACE FUNCTION shared.notify_task_comment()
+RETURNS TRIGGER AS $$
+DECLARE
+  payload jsonb;
+  task_assignee TEXT;
+  task_requester TEXT;
+BEGIN
+  SELECT assignee, requester INTO task_assignee, task_requester
+  FROM shared.tasks WHERE id = NEW.task_id;
+  payload = jsonb_build_object(
+    'comment_id', NEW.id,
+    'task_id', NEW.task_id,
+    'author', NEW.author,
+    'content', NEW.content,
+    'parent_comment_id', NEW.parent_comment_id,
+    'action', TG_OP,
+    'timestamp', NOW()
+  );
+  IF task_assignee IS NOT NULL AND task_assignee != NEW.author THEN
+    PERFORM pg_notify('comment_' || REPLACE(task_assignee, '_user', ''), payload::text);
+  END IF;
+  IF task_requester IS NOT NULL AND task_requester != NEW.author AND task_requester != task_assignee THEN
+    PERFORM pg_notify('comment_' || REPLACE(task_requester, '_user', ''), payload::text);
+  END IF;
+  PERFORM pg_notify('comment_channel', payload::text);
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER task_comment_notifier
+  AFTER INSERT ON shared.task_comments
+  FOR EACH ROW EXECUTE FUNCTION shared.notify_task_comment();
 
 -- ==========================================
 -- 3. 创建所有部门用户及专属 Schema (User is Owner)
@@ -305,6 +475,12 @@ LEFT JOIN shared.agent_heartbeats h ON d.db_username = h.db_username
 WHERE d.is_active = true;
 GRANT SELECT ON shared.team_directory TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
 
+-- 共享产物兼容视图 (部分 Agent 通过此视图访问 shared_artifacts)
+CREATE VIEW shared.artifacts AS
+SELECT id, task_id, owner, artifact_type, title, content, metadata, created_at, updated_at
+FROM shared.shared_artifacts;
+GRANT SELECT ON shared.artifacts TO orchestrator_user, dev_user, pm_user, design_user, ads_user, sales_user, marketing_user, project_user, qa_user, support_user, spatial_user, expert_user, game_user, academic_user, finance_user, hr_user, legal_user, supply_chain_user;
+
 -- ==========================================
 -- 新增：设置 shared schema 的默认权限
 -- 确保未来在 shared 新建的表/序列，其他人也有权限访问
@@ -357,7 +533,11 @@ CREATE TABLE shared.agent_heartbeats (
     last_seen_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(20) DEFAULT 'online',     -- online / busy / offline
     current_task_id INTEGER REFERENCES shared.tasks(id),
-    metadata JSONB                           -- 可扩展: 版本号、模型、负载等
+    metadata JSONB,                          -- 可扩展: 版本号、模型、负载等
+    agent_id VARCHAR(50),                    -- Agent 标识符
+    last_heartbeat TIMESTAMP,                -- 最近一次心跳时间
+    capabilities JSONB,                      -- Agent 能力描述
+    current_load INTEGER                     -- 当前负载
 );
 
 -- (6) 跨 Agent 异步消息队列：轻量级点对点或广播通信
@@ -382,6 +562,7 @@ CREATE TABLE shared.shared_artifacts (
     title VARCHAR(255) NOT NULL,
     content TEXT,                            -- 正文或存储链接
     metadata JSONB,                          -- 扩展字段 (格式、大小等)
+    artifact_url VARCHAR(500),               -- 产物外部链接
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -407,25 +588,10 @@ CREATE TRIGGER update_shared_artifacts_modtime
     FOR EACH ROW
     EXECUTE FUNCTION update_updated_at_column();
 
--- 消息提醒触发器
-CREATE OR REPLACE FUNCTION notify_new_message()
-RETURNS TRIGGER AS $$
-BEGIN
-  PERFORM pg_notify('message_channel', json_build_object(
-    'id', NEW.id,
-    'from', NEW.from_agent,
-    'to', NEW.to_agent,
-    'type', NEW.msg_type,
-    'channel', NEW.channel,
-    'target', NEW.to_agent
-  )::text);
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
+-- 消息提醒触发器 (使用上面定义的增强版 shared.notify_inter_agent_message)
 CREATE TRIGGER inter_agent_message_notifier
   AFTER INSERT ON shared.inter_agent_messages
-  FOR EACH ROW EXECUTE FUNCTION notify_new_message();
+  FOR EACH ROW EXECUTE FUNCTION shared.notify_inter_agent_message();
 
 -- 索引
 CREATE INDEX idx_heartbeats_status ON shared.agent_heartbeats(status);
