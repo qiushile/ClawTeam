@@ -1,11 +1,11 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-31T04:50:00.000Z"
+    "lastTouchedAt": "2026-04-03T07:45:42.234Z"
   },
   "wizard": {
-    "lastRunAt": "2026-03-06T17:59:59.361Z",
-    "lastRunVersion": "2026.3.3",
+    "lastRunAt": "2026-04-03T07:45:42.173Z",
+    "lastRunVersion": "2026.3.28",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -162,16 +162,16 @@
         "aliyun/kimi-k2.5": {}
       },
       "workspace": "/root/.openclaw/workspace",
-      "compaction": {
-        "mode": "safeguard"
-      },
       "memorySearch": {
         "provider": "openai",
-        "model": "text-embedding-v4",
         "remote": {
           "baseUrl": "${ALIYUN_COMPAT_URL}",
           "apiKey": "${ALIYUN_COMPAT_KEY}"
-        }
+        },
+        "model": "text-embedding-v4"
+      },
+      "compaction": {
+        "mode": "safeguard"
       }
     }
   },
@@ -229,7 +229,7 @@
       "connectionMode": "websocket",
       "webhookPath": "/feishu/events",
       "dmPolicy": "pairing",
-      "groupPolicy": "open",
+      "groupPolicy": "allowlist",
       "reactionNotifications": "own",
       "typingIndicator": true,
       "resolveSenderNames": true,
