@@ -11,6 +11,10 @@ let dbPool = null;
 let dbUsername = 'unknown';
 let logger = null;
 let listenerClient = null;
+let listenerReconnectTimer = null;
+let reconnectAttempts = 0;
+const RECONNECT_BASE_MS = 3000;
+const RECONNECT_MAX_MS = 60000;
 
 export async function initPostgresTool(api) {
   // 防止重复初始化 — plugins 可能加载多轮
@@ -54,30 +58,44 @@ export async function initPostgresTool(api) {
   return true;
 }
 
-// --- Start async listener for realtime notifications ---
+// --- Start async listener for realtime notifications (with auto-reconnect) ---
 async function startListener() {
   if (!dbPool) {
     logger.error('PostgresTool: dbPool not initialized.');
     return;
   }
   
+  // 清理旧连接
+  if (listenerClient) {
+    try { listenerClient.release(); } catch (_) {}
+    listenerClient = null;
+  }
+
   try {
-    // 使用 dbPool.connect() 获取持久连接
     listenerClient = await dbPool.connect();
+    reconnectAttempts = 0; // 连接成功，重置计数
+
+    // 监听连接异常 → 自动重连
+    listenerClient.on('error', (err) => {
+      logger.error(`PostgresTool: Listener connection error: ${err.message}`);
+      scheduleReconnect();
+    });
+    listenerClient.on('end', () => {
+      logger.warn('PostgresTool: Listener connection ended unexpectedly.');
+      scheduleReconnect();
+    });
     
     listenerClient.on('notification', (msg) => {
       try {
-        // 兼容空 payload
         let payload = {};
         if (msg.payload && msg.payload.trim() !== '') {
           payload = JSON.parse(msg.payload);
         }
         logger.info(`[DB NOTIFY] Channel: ${msg.channel} | Payload:`, payload);
         
-        // 特定 channel 处理逻辑
-        if (msg.channel === 'task_channel') {
+        if (msg.channel === 'task_channel' || msg.channel.startsWith('task_')) {
           handleTaskNotification(payload);
-        } else if (msg.channel === 'message_channel') {
+        } else if (msg.channel === 'message_channel' || msg.channel.startsWith('msg_')) {
           handleMessageNotification(payload);
         }
       } catch (err) {
@@ -85,12 +103,41 @@ async function startListener() {
       }
     });
 
+    // 全局频道
     await listenerClient.query('LISTEN task_channel');
     await listenerClient.query('LISTEN message_channel');
-    logger.info(`PostgresTool: Listening to task_channel and message_channel.`);
+
+    // 部门专属频道 (从 dbUsername 推断)
+    const deptCode = dbUsername.replace('_user', '');
+    if (deptCode && deptCode !== 'unknown') {
+      await listenerClient.query(`LISTEN task_${deptCode}`);
+      await listenerClient.query(`LISTEN msg_${deptCode}`);
+      await listenerClient.query(`LISTEN collab_${deptCode}`);
+      await listenerClient.query(`LISTEN artifact_${deptCode}`);
+      await listenerClient.query(`LISTEN comment_${deptCode}`);
+      logger.info(`PostgresTool: Listening to task_channel, message_channel + dept channels (${deptCode}).`);
+    } else {
+      logger.info(`PostgresTool: Listening to task_channel and message_channel.`);
+    }
   } catch (e) {
     logger.error(`PostgresTool: Listener setup failed. Error: ${e.message}`);
+    scheduleReconnect();
   }
+}
+
+function scheduleReconnect() {
+  if (listenerReconnectTimer) return; // 已有重连计划
+  reconnectAttempts++;
+  const delay = Math.min(RECONNECT_BASE_MS * Math.pow(2, reconnectAttempts - 1), RECONNECT_MAX_MS);
+  logger.info(`PostgresTool: Reconnecting listener in ${delay}ms (attempt #${reconnectAttempts})...`);
+  listenerReconnectTimer = setTimeout(async () => {
+    listenerReconnectTimer = null;
+    try {
+      await startListener();
+    } catch (e) {
+      logger.error(`PostgresTool: Reconnect failed: ${e.message}`);
+    }
+  }, delay);
 }
 
 // --- Task notification handler ---
@@ -468,10 +515,15 @@ export function buildPostgresTools() {
 }
 
 export async function shutdownPostgresTool() {
+  if (listenerReconnectTimer) {
+    clearTimeout(listenerReconnectTimer);
+    listenerReconnectTimer = null;
+  }
   if (listenerClient) {
-    await listenerClient.query('UNLISTEN task_channel');
-    await listenerClient.query('UNLISTEN message_channel');
-    await listenerClient.release();
+    try {
+      await listenerClient.query('UNLISTEN *');
+      listenerClient.release();
+    } catch (_) {}
     listenerClient = null;
   }
   if (dbPool) {

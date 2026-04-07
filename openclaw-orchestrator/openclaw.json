@@ -292,7 +292,8 @@
     "allow": [
       "feishu",
       "memory-lancedb",
-      "postgres-tool"
+      "postgres-tool",
+      "task-notifier"
     ],
     "slots": {
       "memory": "memory-lancedb"
@@ -319,6 +320,10 @@
         "config": {}
       },
       "feishu": {
+        "enabled": true,
+        "config": {}
+      },
+      "task-notifier": {
         "enabled": true,
         "config": {}
       }
