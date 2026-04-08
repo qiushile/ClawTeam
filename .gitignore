@@ -156,6 +156,7 @@ sentinel/extensions/moltguard/data/*.db.corrupted.*
 
 # 本地生成的 extensions 副本
 openclaw-dev/extensions/
+openclaw-support/workspace-main/
 
 # ==========================================
 # openclaw-secretariat 运行时与敏感文件
