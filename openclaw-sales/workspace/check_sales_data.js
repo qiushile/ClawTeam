@@ -1,13 +1,12 @@
 const { Client } = require('pg');
 
 const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgresql://sales_user:sales_pass_123@postgres-db:5432/openclaw_db'
+  connectionString: process.env.DATABASE_URL
 });
 
-async function main() {
+async function checkSalesData() {
   try {
     await client.connect();
-    console.log('Connected to PostgreSQL database');
 
     // 查询 sales_schema 中的所有表
     const tablesQuery = `
@@ -18,70 +17,72 @@ async function main() {
     `;
 
     const tablesResult = await client.query(tablesQuery);
-    console.log('\n=== sales_schema 中的表 ===');
+
+    console.log('\n=== sales_schema 中的数据表 ===');
     if (tablesResult.rows.length === 0) {
-      console.log('sales_schema 中没有表');
+      console.log('⚠️  sales_schema 中没有数据表');
     } else {
-      tablesResult.rows.forEach((row, index) => {
-        console.log(`  ${index + 1}. ${row.table_name}`);
+      tablesResult.rows.forEach(row => {
+        console.log(`  - ${row.table_name}`);
       });
     }
 
-    // 检查是否有线索相关的表
-    const leadsTable = tablesResult.rows.find(row => row.table_name.toLowerCase().includes('lead') || row.table_name.toLowerCase().includes('线索'));
-    const oppsTable = tablesResult.rows.find(row => row.table_name.toLowerCase().includes('opp') || row.table_name.toLowerCase().includes('商机') || row.table_name.toLowerCase().includes('opportunity'));
-    const dealsTable = tablesResult.rows.find(row => row.table_name.toLowerCase().includes('deal') || row.table_name.toLowerCase().includes('成交'));
+    // 尝试查询一些可能的转化数据表
+    const possibleTables = ['leads', 'opportunities', 'deals', 'conversions', 'pipeline', 'customers'];
 
-    console.log('\n=== 昨日转化数据汇总 ===');
-    console.log('日期:', new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0]);
+    console.log('\n=== 尝试查询关键转化数据 ===');
 
-    if (leadsTable) {
-      const newLeadsQuery = `
-        SELECT COUNT(*) as count
-        FROM sales_schema.${leadsTable.table_name}
-        WHERE DATE(created_at) = CURRENT_DATE - INTERVAL '1 day';
+    for (const tableName of possibleTables) {
+      const checkTableExists = `
+        SELECT EXISTS (
+          SELECT FROM information_schema.tables
+          WHERE table_schema = 'sales_schema'
+          AND table_name = '${tableName}'
+        );
       `;
-      const newLeadsResult = await client.query(newLeadsQuery);
-      console.log(`\n新线索数: ${newLeadsResult.rows[0].count}`);
+
+      const existsResult = await client.query(checkTableExists);
+
+      if (existsResult.rows[0].exists) {
+        console.log(`\n📊 ${tableName} 表存在`);
+
+        // 查询昨天的数据（使用 UTC 时间）
+        const yesterdayDataQuery = `
+          SELECT COUNT(*) as count
+          FROM sales_schema.${tableName}
+          WHERE created_at >= (CURRENT_DATE - INTERVAL '1 day')::timestamp
+            AND created_at < CURRENT_DATE::timestamp;
+        `;
+
+        const countResult = await client.query(yesterdayDataQuery);
+        console.log(`   昨日新增: ${countResult.rows[0].count} 条`);
+
+        // 查询今日数据
+        const todayDataQuery = `
+          SELECT COUNT(*) as count
+          FROM sales_schema.${tableName}
+          WHERE created_at >= CURRENT_DATE::timestamp;
+        `;
+
+        const todayResult = await client.query(todayDataQuery);
+        console.log(`   今日新增: ${todayResult.rows[0].count} 条`);
+
+        // 查询总数
+        const totalQuery = `
+          SELECT COUNT(*) as count
+          FROM sales_schema.${tableName};
+        `;
+
+        const totalResult = await client.query(totalQuery);
+        console.log(`   总计: ${totalResult.rows[0].count} 条`);
+      }
     }
 
-    if (oppsTable) {
-      const newOppsQuery = `
-        SELECT COUNT(*) as count
-        FROM sales_schema.${oppsTable.table_name}
-        WHERE DATE(created_at) = CURRENT_DATE - INTERVAL '1 day';
-      `;
-      const newOppsResult = await client.query(newOppsQuery);
-      console.log(`新商机数: ${newOppsResult.rows[0].count}`);
-
-      const wonOppsQuery = `
-        SELECT COUNT(*) as count
-        FROM sales_schema.${oppsTable.table_name}
-        WHERE DATE(updated_at) = CURRENT_DATE - INTERVAL '1 day'
-        AND status ILIKE '%won%' OR status ILIKE '%成交%' OR stage ILIKE '%won%' OR stage ILIKE '%成交%';
-      `;
-      const wonOppsResult = await client.query(wonOppsQuery);
-      console.log(`成交商机数: ${wonOppsResult.rows[0].count}`);
-    }
-
-    if (dealsTable) {
-      const dealsQuery = `
-        SELECT COUNT(*) as count, COALESCE(SUM(amount), 0) as total_amount
-        FROM sales_schema.${dealsTable.table_name}
-        WHERE DATE(updated_at) = CURRENT_DATE - INTERVAL '1 day';
-      `;
-      const dealsResult = await client.query(dealsQuery);
-      console.log(`\n成交订单数: ${dealsResult.rows[0].count}`);
-      console.log(`成交金额: ¥${dealsResult.rows[0].total_amount}`);
-    }
-
+    await client.end();
   } catch (error) {
     console.error('Error:', error.message);
     process.exit(1);
-  } finally {
-    await client.end();
-    console.log('\nConnection closed');
   }
 }
 
-main();
+checkSalesData();
