@@ -1,65 +1,52 @@
-const { Client } = require('pg');
+#!/usr/bin/env node
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL || 'postgresql://sales_user:sales_pass_123@postgres-db:5432/openclaw_db'
-});
+const { Pool } = require('pg');
+
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  console.error('DATABASE_URL not found');
+  process.exit(1);
+}
+
+const pool = new Pool({ connectionString });
 
 async function main() {
   try {
-    await client.connect();
-    console.log('Connected to PostgreSQL database');
-
-    // 查询分配给 sales_user 的 PENDING 任务
-    const tasksQuery = `
-      SELECT * FROM shared.tasks
-      WHERE assignee = 'sales_user' AND status = 'PENDING'
-      ORDER BY created_at DESC;
+    // 1. 查询未完成任务
+    const query = `
+      SELECT id, title, description, status, priority, created_at
+      FROM shared.tasks
+      WHERE assignee = 'sales_user'
+      AND status NOT IN ('COMPLETED', 'FAILED', 'CANCELLED')
+      ORDER BY priority DESC, created_at ASC
     `;
 
-    const result = await client.query(tasksQuery);
-    console.log('\n=== 分配给 sales_user 的 PENDING 任务 ===');
+    const result = await pool.query(query);
+
     if (result.rows.length === 0) {
-      console.log('没有待处理的任务');
-    } else {
-      result.rows.forEach((task, index) => {
-        console.log(`\n任务 ${index + 1}:`);
-        console.log(`  ID: ${task.id}`);
-        console.log(`  标题: ${task.title}`);
-        console.log(`  描述: ${task.description}`);
-        console.log(`  创建时间: ${task.created_at}`);
-        console.log(`  优先级: ${task.priority}`);
-      });
+      console.log('NO_PENDING_TASKS');
+      process.exit(0);
     }
 
-    // 查询协作事件
-    const eventsQuery = `
-      SELECT * FROM shared.collaboration_events
-      WHERE from_role = 'sales_user' OR to_role = 'sales_user'
-      ORDER BY created_at DESC
-      LIMIT 10;
-    `;
+    console.log('TASKS_FOUND');
+    console.log(JSON.stringify(result.rows, null, 2));
 
-    const eventsResult = await client.query(eventsQuery);
-    console.log('\n=== 最近的协作事件 ===');
-    if (eventsResult.rows.length === 0) {
-      console.log('没有协作事件');
-    } else {
-      eventsResult.rows.forEach((event, index) => {
-        console.log(`\n事件 ${index + 1}:`);
-        console.log(`  类型: ${event.event_type}`);
-        console.log(`  从: ${event.from_role}`);
-        console.log(`  到: ${event.to_role}`);
-        console.log(`  消息: ${event.message}`);
-        console.log(`  时间: ${event.created_at}`);
-      });
+    // 2. 更新 PENDING 任务为 IN_PROGRESS
+    for (const row of result.rows) {
+      if (row.status === 'PENDING') {
+        await pool.query(
+          'UPDATE shared.tasks SET status = $1, updated_at = NOW() WHERE id = $2',
+          ['IN_PROGRESS', row.id]
+        );
+        console.log(`Task ${row.id} updated to IN_PROGRESS`);
+      }
     }
 
   } catch (error) {
     console.error('Error:', error.message);
     process.exit(1);
   } finally {
-    await client.end();
-    console.log('\nConnection closed');
+    await pool.end();
   }
 }
 
