@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>ai.openclaw.gateway</string>
+    
+    <key>Comment</key>
+    <string>OpenClaw Gateway (v2026.4.9)</string>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>KeepAlive</key>
+    <dict>
+      <key>SuccessfulExit</key>
+      <false/>
+      <key>Crashed</key>
+      <true/>
+    </dict>
+    <key>ThrottleInterval</key>
+    <integer>1</integer>
+    <key>Umask</key>
+    <integer>63</integer>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/opt/homebrew/bin/node</string>
+      <string>/Users/qiushile/WorkStation/mine/claw/openclaw/dist/index.js</string>
+      <string>gateway</string>
+      <string>--port</string>
+      <string>18789</string>
+    </array>
+    
+    <key>StandardOutPath</key>
+    <string>/Users/qiushile/.openclaw/logs/gateway.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/qiushile/.openclaw/logs/gateway.err.log</string>
+    <key>EnvironmentVariables</key>
+    <dict>
+    <key>HOME</key>
+    <string>/Users/qiushile</string>
+    <key>TMPDIR</key>
+    <string>/var/folders/km/vmc9k4ls4636b110mmgf5l3r0000gn/T/</string>
+    <key>NO_PROXY</key>
+    <string>localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,100.64.0.0/10,.ts.net</string>
+    <key>no_proxy</key>
+    <string>localhost,127.0.0.1,10.0.0.0/8,192.168.0.0/16,100.64.0.0/10,.ts.net</string>
+    <key>NODE_EXTRA_CA_CERTS</key>
+    <string>/etc/ssl/cert.pem</string>
+    <key>NODE_USE_SYSTEM_CA</key>
+    <string>1</string>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/Users/qiushile/Library/pnpm:/Users/qiushile/.nvm:/Users/qiushile/.local/bin:/Users/qiushile/.npm-global/bin:/Users/qiushile/bin:/Users/qiushile/.volta/bin:/Users/qiushile/.asdf/shims:/Users/qiushile/.bun/bin:/Users/qiushile/Library/Application Support/fnm/aliases/default/bin:/Users/qiushile/.fnm/aliases/default/bin:/Users/qiushile/.local/share/pnpm:/usr/local/bin:/usr/bin:/bin</string>
+    <key>OPENCLAW_GATEWAY_PORT</key>
+    <string>18789</string>
+    <key>OPENCLAW_LAUNCHD_LABEL</key>
+    <string>ai.openclaw.gateway</string>
+    <key>OPENCLAW_SYSTEMD_UNIT</key>
+    <string>openclaw-gateway.service</string>
+    <key>OPENCLAW_WINDOWS_TASK_NAME</key>
+    <string>OpenClaw Gateway</string>
+    <key>OPENCLAW_SERVICE_MARKER</key>
+    <string>openclaw</string>
+    <key>OPENCLAW_SERVICE_KIND</key>
+    <string>gateway</string>
+    <key>OPENCLAW_SERVICE_VERSION</key>
+    <string>2026.4.9</string>
+    </dict>
+  </dict>
+</plist>
