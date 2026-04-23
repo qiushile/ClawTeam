@@ -14,6 +14,7 @@ auth.json
 auth.lock
 channel_directory.json
 feishu_seen_message_ids.json
+sessions/
 
 # 缓存
 audio_cache/

@@ -51,7 +51,7 @@
     ],
     "defaults": {
       "model": {
-        "primary": "aliyun/qwen3.5-plus",
+        "primary": "aliyun/qwen3.6-plus",
         "fallbacks": []
       },
       "subagents": {

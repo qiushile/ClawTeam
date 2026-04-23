@@ -54,7 +54,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-orchestrator
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://orchestrator_user:${ORCHESTRATOR_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_ORCHESTRATOR_APP_ID}
@@ -81,7 +81,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-dev
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://dev_user:${DEV_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_DEV_APP_ID}
@@ -153,7 +153,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-ads
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://ads_user:${ADS_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_ADS_APP_ID}
@@ -222,7 +222,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-project
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://project_user:${PROJECT_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_PROJECT_APP_ID}
@@ -291,7 +291,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-spatial
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://spatial_user:${SPATIAL_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SPATIAL_APP_ID}
@@ -383,7 +383,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-finance
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://finance_user:${FINANCE_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_FINANCE_APP_ID}
@@ -406,7 +406,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-hr
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://hr_user:${HR_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_HR_APP_ID}
@@ -452,7 +452,7 @@ services:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-supply-chain
       - OPENAI_API_KEY=${ALIYUN_API_KEY}
       - OPENAI_BASE_URL=${ALIYUN_BASE_URL}
-      - OPENAI_MODEL=qwen3.5-plus
+      - OPENAI_MODEL=qwen3.6-plus
       - DATABASE_URL=postgresql://supply_chain_user:${SUPPLY_CHAIN_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SUPPLY_CHAIN_APP_ID}

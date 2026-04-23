@@ -12,8 +12,8 @@
         "api": "openai-completions",
         "models": [
           {
-            "id": "qwen3.5-plus",
-            "name": "qwen3.5-plus",
+            "id": "qwen3.6-plus",
+            "name": "qwen3.6-plus",
             "reasoning": true,
             "input": [
               "text",
@@ -153,7 +153,7 @@
         "fallbacks": []
       },
       "models": {
-        "aliyun/qwen3.5-plus": {},
+        "aliyun/qwen3.6-plus": {},
         "aliyun/qwen3-coder-plus": {},
         "zhipu/glm-5": {},
         "zhipu/glm-4.7": {},
