@@ -156,7 +156,6 @@ sentinel/extensions/moltguard/data/*.db.corrupted.*
 
 # 本地生成的 extensions 副本
 openclaw-dev/extensions/
-openclaw-support/workspace-main/
 
 # ==========================================
 # openclaw-secretariat 运行时与敏感文件
@@ -181,3 +180,5 @@ openclaw-secretariat/workspace/.openclaw/
 # 备份文件
 openclaw-secretariat/openclaw.json.bak
 openclaw-secretariat/openclaw.json.bak.*
+/openclaw-design/workspace-main/.openclaw/
+/openclaw-support/workspace-main/.openclaw/
