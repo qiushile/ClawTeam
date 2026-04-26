@@ -104,9 +104,9 @@ services:
       - "13003:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-pm
-      - OPENAI_API_KEY=${MINIMAX_API_KEY}
-      - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
-      - OPENAI_MODEL=MiniMax-M2.5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://pm_user:${PM_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_PM_APP_ID}
@@ -128,9 +128,9 @@ services:
       - "13004:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-design
-      - OPENAI_API_KEY=${KIMI_API_KEY}
-      - OPENAI_BASE_URL=${KIMI_BASE_URL}
-      - OPENAI_MODEL=kimi-k2.5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://design_user:${DESIGN_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_DESIGN_APP_ID}
@@ -174,9 +174,9 @@ services:
       - "13006:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-sales
-      - OPENAI_API_KEY=${ZHIPU_API_KEY}
-      - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
-      - OPENAI_MODEL=glm-4.7
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://sales_user:${SALES_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SALES_APP_ID}
@@ -197,9 +197,9 @@ services:
       - "13007:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-marketing
-      - OPENAI_API_KEY=${KIMI_API_KEY}
-      - OPENAI_BASE_URL=${KIMI_BASE_URL}
-      - OPENAI_MODEL=kimi-k2.5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://marketing_user:${MARKETING_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_MARKETING_APP_ID}
@@ -266,9 +266,9 @@ services:
       - "13010:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-support
-      - OPENAI_API_KEY=${MINIMAX_API_KEY}
-      - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
-      - OPENAI_MODEL=MiniMax-M2.5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://support_user:${SUPPORT_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_SUPPORT_APP_ID}
@@ -312,9 +312,9 @@ services:
       - "13012:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-expert
-      - OPENAI_API_KEY=${ZHIPU_API_KEY}
-      - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
-      - OPENAI_MODEL=glm-5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://expert_user:${EXPERT_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_EXPERT_APP_ID}
@@ -358,9 +358,9 @@ services:
       - "13014:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-academic
-      - OPENAI_API_KEY=${ZHIPU_API_KEY}
-      - OPENAI_BASE_URL=${ZHIPU_BASE_URL}
-      - OPENAI_MODEL=glm-5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://academic_user:${ACADEMIC_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_ACADEMIC_APP_ID}
@@ -427,9 +427,9 @@ services:
       - "13017:3000"
     environment:
       - OPENCLAW_MDNS_HOSTNAME=openclaw-legal
-      - OPENAI_API_KEY=${MINIMAX_API_KEY}
-      - OPENAI_BASE_URL=${MINIMAX_BASE_URL}
-      - OPENAI_MODEL=MiniMax-M2.5
+      - OPENAI_API_KEY=${IFLYTEK_API_KEY}
+      - OPENAI_BASE_URL=${IFLYTEK_OPENAI_URL}
+      - OPENAI_MODEL=${IFLYTEK_MODEL}
       - DATABASE_URL=postgresql://legal_user:${LEGAL_DB_PASS}@postgres-db:5432/openclaw_db
       - TZ=Asia/Shanghai
       - FEISHU_APP_ID=${FEISHU_LEGAL_APP_ID}
