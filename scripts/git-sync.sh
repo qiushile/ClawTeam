@@ -1,91 +1,162 @@
 #!/bin/bash
-# Git 双向同步脚本 — 检测本地和远程变更，自动 push/pull
+# Git 双向同步脚本 — 智能分类 + 同步
 # 用法：git-sync.sh [local|remote]
-#   local:  本地模式（~/WorkStation/mine/claw/ClawTeam）
-#   remote: 远端模式（通过 SSH 在 ubuntu24 上执行）
+#   两边共用同一份脚本，由 cron 在各自环境触发
 
 set -euo pipefail
 
 MODE="${1:-local}"
-REPO_DIR=""
-LOG_FILE=""
 
 if [ "$MODE" = "local" ]; then
     REPO_DIR="$HOME/WorkStation/mine/claw/ClawTeam"
-    LOG_FILE="$HOME/.hermes/logs/git-sync-local.log"
-    REMOTE_SSH="ssh -o ConnectTimeout=10 -o StrictHostKeyChecking=no root@ubuntu24.tailcc8506.ts.net"
 elif [ "$MODE" = "remote" ]; then
     REPO_DIR="/opt/openclaw-team"
-    LOG_FILE="/var/log/git-sync-remote.log"
 else
     echo "Usage: $0 [local|remote]"
     exit 1
 fi
 
+LOG_FILE="/tmp/git-sync-${MODE}.log"
 log() {
-    mkdir -p "$(dirname "$LOG_FILE")"
     echo "$(date '+%Y-%m-%d %H:%M:%S') [$MODE] $*" | tee -a "$LOG_FILE"
 }
 
 cd "$REPO_DIR"
 
-# 检查是否有未提交的变更
-has_uncommitted() {
-    [ -n "$(git status --porcelain)" ]
+# ========== 忽略规则（运行态 / 敏感信息 / 临时文件） ==========
+MUST_IGNORE_PATTERNS=(
+    ".env"
+    "*.key" "*.pem" "*.p12"
+    "secrets/"
+    "*.log"
+    "*.pid" "*.tmp" "*.swp" "*.swo"
+    ".openclaw/"
+    "workspace-main/.openclaw/"
+    "__pycache__/" "*.pyc"
+    "node_modules/"
+    ".venv/" "venv/"
+    "*.db" "*.sqlite" "*.sqlite3"
+    ".DS_Store" "Thumbs.db"
+    ".vscode/" ".idea/"
+)
+
+# ========== 确保 .gitignore 包含基础规则 ==========
+ensure_gitignore() {
+    for pattern in "${MUST_IGNORE_PATTERNS[@]}"; do
+        grep -qxF "$pattern" .gitignore 2>/dev/null || echo "$pattern" >> .gitignore
+    done
+    git rm -r --cached --ignore-unmatch \
+        .env "*.key" "*.pem" "*.p12" "secrets/" \
+        "*.log" "*.pid" "*.tmp" "*.swp" "*.swo" \
+        ".openclaw/" "workspace-main/.openclaw/" \
+        "__pycache__/" "*.pyc" "node_modules/" \
+        ".venv/" "venv/" \
+        "*.db" "*.sqlite" ".DS_Store" "Thumbs.db" \
+        ".vscode/" ".idea/" \
+        2>/dev/null || true
 }
 
-# 检查本地是否有未推送的 commit
-has_unpushed() {
-    git fetch origin --quiet 2>/dev/null
-    [ -n "$(git log origin/master..HEAD --oneline 2>/dev/null)" ]
-}
+# ========== 主流程 ==========
+log "=== 开始同步 ==="
 
-# 检查远端是否有新的 commit
-has_unpulled() {
-    git fetch origin --quiet 2>/dev/null
-    [ -n "$(git log HEAD..origin/master --oneline 2>/dev/null)" ]
-}
+# 1. 更新 .gitignore
+ensure_gitignore
 
-# 推送本地变更
-do_push() {
-    if has_uncommitted; then
-        log "发现未提交的变更，自动 commit + push"
-        git add -A
-        git commit -m "auto-sync: $(date '+%Y-%m-%d %H:%M:%S') 自动同步变更" 2>/dev/null || true
-    fi
-    if has_unpushed; then
-        log "推送本地 commit 到 origin"
-        git push origin master 2>&1 | tee -a "$LOG_FILE"
-        log "推送完成"
+# 2. 拉取远端变更
+git fetch origin --quiet 2>/dev/null
+
+if [ -n "$(git log HEAD..origin/master --oneline 2>/dev/null)" ]; then
+    log "远端有新 commit，执行 pull"
+    if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+        log "本地有变更，先 stash"
+        git stash push --include-untracked -m "sync-$(date +%s)" --quiet
+        STASHED=true
     else
-        log "本地无未推送的变更"
+        STASHED=false
     fi
-}
+    git pull origin master --no-edit 2>&1 | tee -a "$LOG_FILE"
+    if [ "$STASHED" = true ]; then
+        git stash pop --quiet 2>/dev/null || log "stash pop 冲突，需手动处理"
+    fi
+fi
 
-# 拉取远端变更
-do_pull() {
-    if has_unpulled; then
-        if has_uncommitted; then
-            log "有本地未提交变更，先 stash"
-            git stash --include-untracked --quiet
-            STASHED=true
+# 3. 分类未跟踪文件
+UNTRACKED=$(git ls-files --others --exclude-standard 2>/dev/null || true)
+if [ -n "$UNTRACKED" ]; then
+    TO_ADD=""
+    TO_IGNORE=""
+
+    while IFS= read -r file; do
+        [ -z "$file" ] && continue
+        ignore=false
+        for pattern in "${MUST_IGNORE_PATTERNS[@]}"; do
+            if [[ "$file" == $pattern ]] || [[ "$file" == *"$pattern"* ]] || [[ "$file" == */$pattern ]]; then
+                ignore=true
+                break
+            fi
+        done
+        # 路径关键词检测
+        if [[ "$file" == *".log/"* ]] || [[ "$file" == *"logs/"* ]] || \
+           [[ "$file" == *".openclaw/"* ]] || [[ "$file" == *"/__pycache__/"* ]] || \
+           [[ "$file" == *"node_modules/"* ]] || [[ "$file" == *".venv/"* ]] || \
+           [[ "$file" == *"venv/"* ]] || [[ "$file" == *".bak" ]] || [[ "$file" == *".backup" ]]; then
+            ignore=true
+        fi
+
+        if [ "$ignore" = true ]; then
+            TO_IGNORE="${TO_IGNORE}${file}
+"
         else
-            STASHED=false
+            TO_ADD="${TO_ADD}${file}
+"
         fi
-        log "拉取远端变更"
-        git pull origin master --no-edit 2>&1 | tee -a "$LOG_FILE"
-        if [ "$STASHED" = true ]; then
-            log "恢复本地 stash"
-            git stash pop --quiet 2>/dev/null || log "stash pop 有冲突，已保留在 stash 中"
-        fi
-        log "拉取完成"
-    else
-        log "远端无新变更"
-    fi
-}
+    done <<< "$UNTRACKED"
 
-# 主流程：先 pull 再 push（确保基于最新版本）
-log "=== 开始同步检查 ==="
-do_pull
-do_push
+    # 处理应忽略的文件
+    if [ -n "$TO_IGNORE" ]; then
+        while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            if [[ -d "$file" ]]; then
+                entry="${file%/}/"
+            else
+                entry="$(basename "$file")"
+            fi
+            grep -qxF "$entry" .gitignore 2>/dev/null || echo "$entry" >> .gitignore
+            git rm -r --cached --ignore-unmatch "$file" 2>/dev/null || true
+            log "IGNORE: $file"
+        done <<< "$TO_IGNORE"
+    fi
+
+    # 处理应提交的文件
+    if [ -n "$TO_ADD" ]; then
+        while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            git add "$file" 2>/dev/null || true
+            log "ADD: $file"
+        done <<< "$TO_ADD"
+    fi
+fi
+
+# 4. 提交并推送
+if [ -n "$(git status --porcelain 2>/dev/null)" ]; then
+    dirs=$(git diff --cached --name-only 2>/dev/null; git ls-files --others --exclude-standard 2>/dev/null; git diff --name-only 2>/dev/null)
+    prefix=$(echo "$dirs" | grep -v '^$' | awk -F'/' '{print $1}' | sort -u | head -3 | tr '\n' ',' | sed 's/,$//')
+    [ -z "$prefix" ] && prefix="config"
+
+    git add -A
+    git commit -m "sync($prefix): $(date '+%Y-%m-%d %H:%M')" 2>/dev/null || true
+
+    if [ -n "$(git log origin/master..HEAD --oneline 2>/dev/null)" ]; then
+        log "推送到 origin"
+        git push origin master 2>&1 | tee -a "$LOG_FILE" || {
+            log "push 被拒绝，先 pull 再重试"
+            git pull origin master --no-edit 2>&1 | tee -a "$LOG_FILE" || true
+            git push origin master 2>&1 | tee -a "$LOG_FILE" || log "push 仍然失败"
+        }
+        log "推送完成"
+    fi
+else
+    log "无变更"
+fi
+
 log "=== 同步完成 ==="
