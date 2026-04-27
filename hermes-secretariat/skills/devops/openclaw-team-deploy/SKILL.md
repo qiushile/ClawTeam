@@ -171,6 +171,16 @@ ssh root@ubuntu24.tailcc8506.ts.net "systemctl status openclaw.service --no-page
 - `.gitignore` 应只忽略 `workspace-main/.openclaw/`（运行时目录），**不要**忽略整个 `workspace-main/`
 - 然后 `git add -f workspace-main/` 纳入团队管理
 
+### Git 同步操作规范
+- **先分析再操作**：遇到分歧或冲突时，先用 `git status --short`、`git diff --name-status`、`git diff` 查看具体变更，不要盲目 stash/reset
+- **禁止随意使用 `git reset --hard`**：会永久丢失未提交的本地修改。如必须对齐远端，先 `git stash push --include-untracked` 保存
+- **保持线性 commit log**：同步时使用 `git pull --rebase`，避免 merge commit
+- **Rebase 冲突处理**：
+  - 仅限 `scripts/git-sync.sh` 或 `.gitignore` 的 auto-sync 冲突 → `git rebase --skip`（跳过重复提交）
+  - 真实业务文件冲突 → 中止 rebase，分析后手动解决
+- **长命令拆分**：SSH/Tailscale 不稳定时，把 `reset + clean + pull` 等长命令拆成独立步骤，每步单独超时控制
+- **Tailscale 连接检测**：先 `tailscale status` 确认可达性，超时用 `ConnectTimeout=10` + `ServerAliveInterval=5`
+
 ### Git 提交拆分
 - 手动部署时，建议将变更拆分为多个独立 commit，按功能模块分离
 - 自动同步时脚本生成统一 commit message（`sync(dirs): timestamp`）
