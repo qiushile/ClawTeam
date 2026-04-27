@@ -70,44 +70,45 @@ DEV_DB_PASS=xxx
 
 ## 部署流程
 
-### 1. 本地修改配置
+### 方式一：Git Pull（推荐，远程 /opt/openclaw-team/ 是 git 仓库）
 
 ```bash
+# 1. 本地按功能拆分 commit（推荐维度：文档 / 配置 / Secretariat / 运维）
 cd ~/WorkStation/mine/claw/ClawTeam
-# 编辑 .env 或 docker-compose.yml
-```
-
-### 2. 提交并推送
-
-```bash
-git add -A
-git commit -m "chore: update config description"
+git add docs/coding-plan.md && git commit -m "docs: ..."
+git add docker-compose.yml && git commit -m "feat(config): ..."
+git add openclaw-secretariat/openclaw.json && git commit -m "feat(secretariat): ..."
+git add .gitignore ... && git commit -m "refactor: ..."
 git push
+
+# 2. 远程 git pull（需先 stash 未暂存变更）
+ssh root@ubuntu24.tailcc8506.ts.net "cd /opt/openclaw-team && git stash --include-untracked && git pull origin master"
+
+# 3. 如果 .env 有变更，单独 scp 或 ssh sed 更新
+scp .env root@ubuntu24.tailcc8506.ts.net:/opt/openclaw-team/.env
+
+# 4. 重启受影响的容器（用 --no-deps 只重建变更的，避免全量重启）
+ssh root@ubuntu24.tailcc8506.ts.net "cd /opt/openclaw-team && docker compose up -d --no-deps openclaw-pm openclaw-design ..."
 ```
 
-### 3. 部署到远程
+### 方式二：SCP（适合 .env 变更或小改动）
 
 ```bash
 scp .env docker-compose.yml root@ubuntu24.tailcc8506.ts.net:/opt/openclaw-team/
+ssh root@ubuntu24.tailcc8506.ts.net "cd /opt/openclaw-team && docker compose up -d --no-deps <affected-containers>"
 ```
 
-### 4. 远程重启
+### 验证
 
 ```bash
-ssh root@ubuntu24.tailcc8506.ts.net "cd /opt/openclaw-team && docker compose up -d"
-```
+# 检查容器状态（启动后需等 1-2 分钟 health check 才会变 healthy）
+ssh root@ubuntu24.tailcc8506.ts.net "sleep 60 && docker ps --format 'table {{.Names}}\t{{.Status}}'"
 
-### 5. 验证
-
-```bash
-# 检查容器状态
-ssh root@ubuntu24.tailcc8506.ts.net "docker ps --format 'table {{.Names}}\t{{.Status}}'"
+# 如果容器在 Restarting 循环，立即查看日志排查
+ssh root@ubuntu24.tailcc8506.ts.net "docker logs <container> --tail 30"
 
 # 检查 Sentinel
 ssh root@ubuntu24.tailcc8506.ts.net "systemctl status openclaw.service --no-pager"
-
-# 查看日志
-ssh root@ubuntu24.tailcc8506.ts.net "docker logs --tail 50 openclaw-dev"
 ```
 
 ## ⚠️ 关键陷阱
@@ -129,7 +130,42 @@ ssh root@ubuntu24.tailcc8506.ts.net "docker logs --tail 50 openclaw-dev"
 - 解决方案：
   - 使用 `scp` 前先用 `ssh -o ConnectTimeout=5` 测试连通性
   - 超时后等待 30-60 秒重试
-  - 可考虑先 `git pull` 到远程再本地重建
+  - 优先使用 git pull 方式部署
+  - `docker compose up` 会被 Hermes 误识别为长驻进程，需使用 `background=true` + `process(action='wait')`
+
+### 嵌套 Git 仓库清理
+- `workspace-main/` 目录可能包含嵌套的 `.git`（早期 Agent 初始化遗留）
+- 这会导致 `git status` 显示 `?? workspace-main/` 且无法纳入团队 git 管理
+- 检测方法：`find /opt/openclaw-team -maxdepth 3 -name ".git" -type d`
+- 清理方法：
+  ```bash
+  # 只删除嵌套 .git 目录，保留文件由 Team 统一管理
+  rm -rf /opt/openclaw-team/openclaw-design/workspace-main/.git
+  rm -rf /opt/openclaw-team/openclaw-support/workspace-main/.git
+  ```
+- `.gitignore` 应只忽略 `workspace-main/.openclaw/`（运行时目录），**不要**忽略整个 `workspace-main/`
+- 然后 `git add -f workspace-main/` 纳入团队管理
+
+### Git 提交拆分
+- 用户期望将变更拆分为多个独立 commit，按功能模块分离
+- 推荐拆分维度：文档 / 配置文件（docker-compose + .env）/ Secretariat 配置 / 运维杂项
+- 每个 commit 应职责单一，方便回滚和审查
+
+### Git Pull 前置条件
+- 远程 `git pull` 可能因 unstaged changes 失败（`cannot pull with rebase`）
+- 标准做法：`git stash --include-untracked && git pull origin master`
+- pull 后如果有需要保留的 stash：`git stash pop` 或 `git stash drop`
+
+### Docker env_file 变量不展开陷阱 ⚠️
+- Docker 的 `env_file` **不会展开** `${VAR}` 变量引用
+- 错误示例：`.env` 中写 `ALIYUN_COMPAT_KEY=${ALIYUN_API_KEY}` → 容器收到的是字面字符串 `${ALIYUN_API_KEY}`，不是实际 Key
+- 正确做法：`.env` 中每个变量必须写**完整真实值**，不能互相引用
+- 如果之前写的是引用，需要用 `sed` 替换为真实值后重启容器
+
+### 健康检查延迟
+- 容器启动后 `health: starting` 状态会持续 1-2 分钟
+- 这是正常的，health check 按间隔轮询，不需要干预
+- 如果 3 分钟后仍是 `health: starting` 或 `unhealthy`，查看日志排查
 
 ## 本地 Secretariat 配置
 
