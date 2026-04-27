@@ -182,3 +182,13 @@ openclaw-secretariat/openclaw.json.bak
 openclaw-secretariat/openclaw.json.bak.*
 /openclaw-design/workspace-main/.openclaw/
 /openclaw-support/workspace-main/.openclaw/
+*.key
+*.pem
+*.p12
+secrets/
+*.pid
+.openclaw/
+workspace-main/.openclaw/
+.venv/
+venv/
+Thumbs.db
