@@ -68,30 +68,49 @@ DEV_DB_PASS=xxx
 # ... 各 Agent 独立 DB 密码
 ```
 
+## 自动同步机制
+
+ClawTeam 仓库已配置自动 Git 同步（`scripts/git-sync.sh`）：
+
+- **本地**：LaunchAgent `com.clawteam.git-sync`，每 5 分钟运行一次
+- **远端**：cron（`2-59/5 * * * *`），每 5 分钟运行一次
+- 脚本自动判断：文件变更应 `git add` 提交还是加入 `.gitignore`
+- 流程：更新 .gitignore → pull 远端 → 分类未跟踪文件 → commit & push
+
+**同步日志**：
+- 本地：`/tmp/git-sync-local.log`
+- 远端：`/tmp/git-sync-remote.log`
+
+手动触发同步：
+```bash
+# 本地
+bash ~/WorkStation/mine/claw/ClawTeam/scripts/git-sync.sh local
+# 远端
+ssh root@ubuntu24.tailcc8506.ts.net "bash /opt/openclaw-team/scripts/git-sync.sh remote"
+```
+
 ## 部署流程
 
-### 方式一：Git Pull（推荐，远程 /opt/openclaw-team/ 是 git 仓库）
+### 标准部署
 
 ```bash
-# 1. 本地按功能拆分 commit（推荐维度：文档 / 配置 / Secretariat / 运维）
+# 1. 本地编辑配置后提交
 cd ~/WorkStation/mine/claw/ClawTeam
-git add docs/coding-plan.md && git commit -m "docs: ..."
 git add docker-compose.yml && git commit -m "feat(config): ..."
 git add openclaw-secretariat/openclaw.json && git commit -m "feat(secretariat): ..."
-git add .gitignore ... && git commit -m "refactor: ..."
 git push
 
-# 2. 远程 git pull（需先 stash 未暂存变更）
-ssh root@ubuntu24.tailcc8506.ts.net "cd /opt/openclaw-team && git stash --include-untracked && git pull origin master"
+# 2. 远端自动同步（5分钟内生效），或手动触发
+ssh root@ubuntu24.tailcc8506.ts.net "bash /opt/openclaw-team/scripts/git-sync.sh remote"
 
-# 3. 如果 .env 有变更，单独 scp 或 ssh sed 更新
+# 3. 如果 .env 有变更（.env 不在 git 中），单独 scp
 scp .env root@ubuntu24.tailcc8506.ts.net:/opt/openclaw-team/.env
 
-# 4. 重启受影响的容器（用 --no-deps 只重建变更的，避免全量重启）
+# 4. 重启受影响的容器（用 --no-deps 只重建变更的）
 ssh root@ubuntu24.tailcc8506.ts.net "cd /opt/openclaw-team && docker compose up -d --no-deps openclaw-pm openclaw-design ..."
 ```
 
-### 方式二：SCP（适合 .env 变更或小改动）
+### SCP 快速部署（适合 .env 变更或小改动）
 
 ```bash
 scp .env docker-compose.yml root@ubuntu24.tailcc8506.ts.net:/opt/openclaw-team/
@@ -133,6 +152,12 @@ ssh root@ubuntu24.tailcc8506.ts.net "systemctl status openclaw.service --no-page
   - 优先使用 git pull 方式部署
   - `docker compose up` 会被 Hermes 误识别为长驻进程，需使用 `background=true` + `process(action='wait')`
 
+### 文件分类规则
+- `.env`、运行时目录（`.openclaw/`）、日志（`*.log`）、密钥（`*.key`/`*.pem`）、缓存（`__pycache__/`、`.venv/`）等自动进入 `.gitignore`
+- 配置文件、文档、脚本等代码文件自动 `git add` 并提交
+- 新增的忽略模式会自动追加到 `.gitignore`
+- 同步脚本本身维护在仓库中（`scripts/git-sync.sh`），两边共用
+
 ### 嵌套 Git 仓库清理
 - `workspace-main/` 目录可能包含嵌套的 `.git`（早期 Agent 初始化遗留）
 - 这会导致 `git status` 显示 `?? workspace-main/` 且无法纳入团队 git 管理
@@ -147,14 +172,8 @@ ssh root@ubuntu24.tailcc8506.ts.net "systemctl status openclaw.service --no-page
 - 然后 `git add -f workspace-main/` 纳入团队管理
 
 ### Git 提交拆分
-- 用户期望将变更拆分为多个独立 commit，按功能模块分离
-- 推荐拆分维度：文档 / 配置文件（docker-compose + .env）/ Secretariat 配置 / 运维杂项
-- 每个 commit 应职责单一，方便回滚和审查
-
-### Git Pull 前置条件
-- 远程 `git pull` 可能因 unstaged changes 失败（`cannot pull with rebase`）
-- 标准做法：`git stash --include-untracked && git pull origin master`
-- pull 后如果有需要保留的 stash：`git stash pop` 或 `git stash drop`
+- 手动部署时，建议将变更拆分为多个独立 commit，按功能模块分离
+- 自动同步时脚本生成统一 commit message（`sync(dirs): timestamp`）
 
 ### Docker env_file 变量不展开陷阱 ⚠️
 - Docker 的 `env_file` **不会展开** `${VAR}` 变量引用
