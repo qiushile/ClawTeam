@@ -84,8 +84,8 @@ do_pull() {
     fi
 }
 
-# 主流程：先 push 再 pull（避免 pull 产生不必要的 merge）
+# 主流程：先 pull 再 push（确保基于最新版本）
 log "=== 开始同步检查 ==="
-do_push
 do_pull
+do_push
 log "=== 同步完成 ==="
