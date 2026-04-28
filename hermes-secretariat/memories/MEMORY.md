@@ -21,3 +21,8 @@ qwen3.6-plus: orchestrator/dev/ads/project/qa/spatial/game/finance/hr/supply-cha
 GLM-5.1 (astron-code-latest): pm/design/sales/marketing/support/expert/academic/legal（8个Agent）
 讯飞端点: openai_url=`https://maas-coding-api.cn-huabei-1.xf-yun.com/v2`, anthropic_url=`https://maas-coding-api.cn-huabei-1.xf-yun.com/anthropic`, 上下文200k
 本地 openclaw.json 已添加 iflytek provider，models 列表中有 iflytek/astron-code-latest
+§
+ClawTeam 仓库分工：
+- 远端（ubuntu24）：真正部署 OpenClaw Team 所有 Agent + sentinel 的运行环境，1.1G 工作目录
+- 本地（macOS）：主要用于编辑源码 + 部署 openclaw-secretariat + 部署 hermes-secretariat
+- 两边的 .env 不同（各自有独立的 API keys 和配置），均被 .gitignore 排除
