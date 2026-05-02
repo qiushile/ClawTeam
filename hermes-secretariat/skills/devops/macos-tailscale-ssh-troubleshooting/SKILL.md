@@ -80,6 +80,7 @@ ssh m3max@m3max # Should now work
 
 ## Pitfalls
 - **OrbStack coincidence**: The `198.18.x.x` range IS used by OrbStack internally, but in this case the fake IP comes from DNS hijacking, NOT OrbStack. Always verify by testing `nslookup` of a random non-existent domain against the DNS server.
+- **ISP-level UDP 53 hijacking**: If `nslookup` of non-existent domains returns fake IPs even after switching to known-good DNS servers (223.5.5.5, 119.29.29.29, 8.8.8.8), the hijacking is at the ISP/router level via transparent UDP 53 proxy. Changing DNS servers in system settings will NOT fix this. Use the SSH config `HostName` workaround with full Tailscale MagicDNS name instead.
 - **MagicDNS not active**: Tailscale configures `ts.net` domain to use `100.100.100.100`, but macOS marks it as "Not Reachable" and falls back to system DNS. This is why `hostname.ts.net` queries also fail.
 - **Multiple network interfaces**: If user uses both Wi-Fi and Ethernet, DNS must be changed for BOTH interfaces.
 - **SSH config Include**: OrbStack adds `Include ~/.orbstack/ssh/config` to `~/.ssh/config`. After uninstalling OrbStack, remove this line to prevent SSH warnings/errors.
