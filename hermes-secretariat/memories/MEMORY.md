@@ -26,3 +26,5 @@ ClawTeam 仓库分工：
 - 远端（ubuntu24）：真正部署 OpenClaw Team 所有 Agent + sentinel 的运行环境，1.1G 工作目录
 - 本地（macOS）：主要用于编辑源码 + 部署 openclaw-secretariat + 部署 hermes-secretariat
 - 两边的 .env 不同（各自有独立的 API keys 和配置），均被 .gitignore 排除
+§
+用户有一台 m3max 的 macOS 主机作为 OrbStack VM（hostname M3Max, 用户 m3max, 内网IP 198.18.0.187, 解析名为 m3max）。从本机 SSH 到 m3max@m3max 会被直接关闭连接（TCP 握手成功但无 SSH banner），本机 ssh config 无 m3max 条目，连接走的是 OrbStack 内部网络。m3max 上 macOS 防火墙已启用。m3max 上也运行了一个 Hermes agent 实例，API Key 配置有误，需要修复。
