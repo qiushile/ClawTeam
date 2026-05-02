@@ -27,4 +27,4 @@ ClawTeam 仓库分工：
 - 本地（macOS）：主要用于编辑源码 + 部署 openclaw-secretariat + 部署 hermes-secretariat
 - 两边的 .env 不同（各自有独立的 API keys 和配置），均被 .gitignore 排除
 §
-用户有一台 m3max 的 macOS 主机作为 OrbStack VM（hostname M3Max, 用户 m3max, 内网IP 198.18.0.187, 解析名为 m3max）。从本机 SSH 到 m3max@m3max 会被直接关闭连接（TCP 握手成功但无 SSH banner），本机 ssh config 无 m3max 条目，连接走的是 OrbStack 内部网络。m3max 上 macOS 防火墙已启用。m3max 上也运行了一个 Hermes agent 实例，API Key 配置有误，需要修复。
+m3max 主机（macOS, Tailscale IP 100.86.50.21, hostname M3Max, 用户 m3max）也运行 Hermes。本机 DNS（114.114.114.114）劫持短域名查询返回 198.18.x.x，导致 ssh m3max 连错地址。已修复：/etc/hosts 中 100.86.50.21 m3max。m3max 上 macOS 防火墙已启用，Tailscale 连通正常。Hermes API Key 配置有误待修复。
