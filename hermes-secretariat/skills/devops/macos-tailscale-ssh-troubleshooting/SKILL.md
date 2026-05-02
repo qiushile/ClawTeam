@@ -90,3 +90,22 @@ brew uninstall --cask --force orbstack 2>&1 || true
 rm -rf ~/.orbstack
 # Edit ~/.ssh/config to remove the Include ~/.orbstack/ssh/config line
 ```
+
+## Workaround: SSH config with full Tailscale domain (bypasses DNS hijacking entirely)
+
+If DNS hijacking cannot be fixed (e.g., ISP-level UDP 53 hijacking that affects all DNS servers), use the full Tailscale MagicDNS name in `~/.ssh/config`:
+
+```text
+Host m3max
+    HostName m3max.tailcc8506.ts.net
+    User m3max
+```
+
+This works because `ssh` resolves `m3max.tailcc8506.ts.net` correctly — the Tailscale client handles resolution internally for `*.ts.net` domains, bypassing the system DNS.
+
+Find the full MagicDNS name with:
+```bash
+tailscale status
+# OR
+tailscale dns-status  # if supported
+```
