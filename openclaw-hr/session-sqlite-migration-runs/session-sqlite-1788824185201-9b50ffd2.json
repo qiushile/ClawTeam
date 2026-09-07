@@ -1,0 +1,270 @@
+{
+  "manifestVersion": 3,
+  "openClawVersion": "2026.9.2",
+  "runId": "session-sqlite-1788824185201-9b50ffd2",
+  "startedAt": "2026-09-07T23:36:25.201Z",
+  "targets": [
+    {
+      "agentId": "hr-recruiter",
+      "sqlitePath": "/home/node/.openclaw/agents/hr-recruiter/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/sessions.json",
+      "completedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/agent_hr-recruiter_main.3fcc2050-8ab6-4fe5-bb7a-6eac84107881.jsonl.imported-1788824186766",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18262275",
+              "mtimeNs": "1788822342041080407",
+              "size": 1420207,
+              "sha256": "2b9478bc8c1d7d119476f8209ae43037be5e13046db87d32a9bfe9d89e4cedb7"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:hr-recruiter:main",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/agent_hr-recruiter_main.3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory.jsonl.imported-1788824186767",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382417",
+              "mtimeNs": "1788822342593100324",
+              "size": 10478230,
+              "sha256": "d5aa95bf1ab5f7059f055a9031169579cb63baeec6b3f48693febf3ed9f9f90f"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:hr-recruiter:main",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/agent_hr-recruiter_main.3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory-path.json.imported-1788824186767",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18087957",
+              "mtimeNs": "1788822335811855711",
+              "size": 252,
+              "sha256": "ee5d7e51f62f7ac1e43705502c05056377a837ee1775688c876a65da5004977a"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:hr-recruiter:main",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/archive-tier.2fc92eeb-4ed5-400e-9023-97f94ab62338.jsonl.imported-1788824186810",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165784",
+              "mtimeNs": "1786403138921900526",
+              "size": 3634497,
+              "sha256": "861642df99cada46326c2b214b0a2b237be6a134cd434d405d794e1367f49bbb"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/2fc92eeb-4ed5-400e-9023-97f94ab62338.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/archive-tier.2fc92eeb-4ed5-400e-9023-97f94ab62338.trajectory.jsonl.imported-1788824186858",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165604",
+              "mtimeNs": "1786403139413925142",
+              "size": 10466380,
+              "sha256": "ccfca2091e962c9fdcd9b217b02d717b8290bcb5f1282e4e99f0498ca828aaad"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/2fc92eeb-4ed5-400e-9023-97f94ab62338.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824187386",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382507",
+              "mtimeNs": "1788822342634101803",
+              "size": 9693,
+              "sha256": "23ff65752a2e93f376d040479a8fe15692cfc495ef85ea62bf6b49d36c35c088"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/sessions.json"
+        }
+      ],
+      "issues": [],
+      "plannedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/agent_hr-recruiter_main.3fcc2050-8ab6-4fe5-bb7a-6eac84107881.jsonl.imported-1788824186766",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18262275",
+              "mtimeNs": "1788822342041080407",
+              "size": 1420207,
+              "sha256": "2b9478bc8c1d7d119476f8209ae43037be5e13046db87d32a9bfe9d89e4cedb7"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:hr-recruiter:main",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/agent_hr-recruiter_main.3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory.jsonl.imported-1788824186767",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382417",
+              "mtimeNs": "1788822342593100324",
+              "size": 10478230,
+              "sha256": "d5aa95bf1ab5f7059f055a9031169579cb63baeec6b3f48693febf3ed9f9f90f"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:hr-recruiter:main",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/agent_hr-recruiter_main.3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory-path.json.imported-1788824186767",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18087957",
+              "mtimeNs": "1788822335811855711",
+              "size": 252,
+              "sha256": "ee5d7e51f62f7ac1e43705502c05056377a837ee1775688c876a65da5004977a"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:hr-recruiter:main",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/archive-tier.2fc92eeb-4ed5-400e-9023-97f94ab62338.jsonl.imported-1788824186810",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165784",
+              "mtimeNs": "1786403138921900526",
+              "size": 3634497,
+              "sha256": "861642df99cada46326c2b214b0a2b237be6a134cd434d405d794e1367f49bbb"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/2fc92eeb-4ed5-400e-9023-97f94ab62338.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/archive-tier.2fc92eeb-4ed5-400e-9023-97f94ab62338.trajectory.jsonl.imported-1788824186858",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165604",
+              "mtimeNs": "1786403139413925142",
+              "size": 10466380,
+              "sha256": "ccfca2091e962c9fdcd9b217b02d717b8290bcb5f1282e4e99f0498ca828aaad"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/2fc92eeb-4ed5-400e-9023-97f94ab62338.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/hr-recruiter/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824187386",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382507",
+              "mtimeNs": "1788822342634101803",
+              "size": 9693,
+              "sha256": "23ff65752a2e93f376d040479a8fe15692cfc495ef85ea62bf6b49d36c35c088"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/hr-recruiter/sessions/3fcc2050-8ab6-4fe5-bb7a-6eac84107881.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/hr-recruiter/sessions/sessions.json"
+        }
+      ],
+      "validationBeforeArchive": "passed"
+    }
+  ],
+  "completedAt": "2026-09-07T23:36:27.435Z"
+}

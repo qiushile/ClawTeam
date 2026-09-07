@@ -185,6 +185,7 @@
         ]
       }
     },
+    "ownership": "explicit",
     "entries": {
       "expert": {
         "workspace": "/home/node/.openclaw/workspace",
@@ -302,8 +303,7 @@
       "expert-technical-translator-agent": {
         "workspace": "/home/node/.openclaw/workspace-expert-technical-translator-agent"
       }
-    },
-    "ownership": "explicit"
+    }
   },
   "tools": {
     "allow": [
@@ -353,8 +353,6 @@
   ],
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
       "feishu",
       "memory-lancedb",
       "minimax",
@@ -364,12 +362,6 @@
       "memory": ""
     },
     "entries": {
-      "postgres-tool": {
-        "enabled": true
-      },
-      "task-notifier": {
-        "enabled": true
-      },
       "feishu": {
         "enabled": false,
         "config": {}
@@ -392,6 +384,112 @@
       "remote": {
         "baseUrl": "${ALIYUN_COMPAT_URL}",
         "apiKey": "${ALIYUN_COMPAT_KEY}"
+      }
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-09-07T23:34:25.367Z",
+    "lastRunVersion": "2026.9.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "tmux": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "video-frames": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
       }
     }
   }

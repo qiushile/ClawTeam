@@ -185,6 +185,7 @@
         ]
       }
     },
+    "ownership": "explicit",
     "entries": {
       "finance-financial-forecaster": {
         "workspace": "/home/node/.openclaw/workspace-finance-financial-forecaster"
@@ -195,8 +196,7 @@
       "finance-fraud-detector": {
         "workspace": "/home/node/.openclaw/workspace-finance-fraud-detector"
       }
-    },
-    "ownership": "explicit"
+    }
   },
   "tools": {
     "allow": [
@@ -254,8 +254,6 @@
   },
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
       "feishu",
       "memory-lancedb",
       "minimax",
@@ -265,14 +263,6 @@
       "memory": ""
     },
     "entries": {
-      "postgres-tool": {
-        "enabled": true,
-        "config": {}
-      },
-      "task-notifier": {
-        "enabled": true,
-        "config": {}
-      },
       "feishu": {
         "enabled": true,
         "config": {}
@@ -296,6 +286,112 @@
         "apiKey": "${ALIYUN_COMPAT_KEY}"
       },
       "model": "text-embedding-v4"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-09-07T23:35:13.594Z",
+    "lastRunVersion": "2026.9.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "tmux": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "video-frames": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
+      }
     }
   }
 }

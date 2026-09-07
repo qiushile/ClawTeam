@@ -1,0 +1,270 @@
+{
+  "manifestVersion": 3,
+  "openClawVersion": "2026.9.2",
+  "runId": "session-sqlite-1788824080230-01623f2c",
+  "startedAt": "2026-09-07T23:34:40.230Z",
+  "targets": [
+    {
+      "agentId": "finance-financial-forecaster",
+      "sqlitePath": "/home/node/.openclaw/agents/finance-financial-forecaster/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/sessions.json",
+      "completedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/agent_finance-financial-forecaster_main.bb985f22-740b-44df-9568-d51c81cafcaa.jsonl.imported-1788824081951",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18366219",
+              "mtimeNs": "1788823145708678315",
+              "size": 1630433,
+              "sha256": "9b50807f1fcf8f4240a27e3ee9587ebf0fbf6c9fb87a03fcf26b0fa09bc440a3"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:finance-financial-forecaster:main",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/agent_finance-financial-forecaster_main.bb985f22-740b-44df-9568-d51c81cafcaa.trajectory.jsonl.imported-1788824081951",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382456",
+              "mtimeNs": "1788823146168693624",
+              "size": 10478403,
+              "sha256": "efe4df2909c0644b82a86822e6d7f8f28bc5b8cf6dc5e3751f9395596b52b0f3"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:finance-financial-forecaster:main",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/agent_finance-financial-forecaster_main.bb985f22-740b-44df-9568-d51c81cafcaa.trajectory-path.json.imported-1788824081952",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18087996",
+              "mtimeNs": "1788823137738413220",
+              "size": 268,
+              "sha256": "485d63cee328d88a91ab8ff9d8cad74986074d3a1646ffdbce2132828054cf84"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:finance-financial-forecaster:main",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/archive-tier.750df0f3-86fb-473b-878c-ce8f2dff087c.jsonl.imported-1788824082002",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165733",
+              "mtimeNs": "1786402141023206320",
+              "size": 4441658,
+              "sha256": "b0a30798c22ee394aa151869728d8565ab6244abd40048232482b69504232b5d"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/750df0f3-86fb-473b-878c-ce8f2dff087c.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/archive-tier.750df0f3-86fb-473b-878c-ce8f2dff087c.trajectory.jsonl.imported-1788824082070",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165553",
+              "mtimeNs": "1786402141532240259",
+              "size": 10463302,
+              "sha256": "d0103aab2040400cfc7d5201e6062a5b07db852a5323108b71e747fbfa85bc42"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/750df0f3-86fb-473b-878c-ce8f2dff087c.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824082591",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382546",
+              "mtimeNs": "1788823146207694922",
+              "size": 9733,
+              "sha256": "2328b8ec75d12b05f0e3e129b2c356b9a6da927f2894bc34fdfb21e22568bba8"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/sessions.json"
+        }
+      ],
+      "issues": [],
+      "plannedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/agent_finance-financial-forecaster_main.bb985f22-740b-44df-9568-d51c81cafcaa.jsonl.imported-1788824081951",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18366219",
+              "mtimeNs": "1788823145708678315",
+              "size": 1630433,
+              "sha256": "9b50807f1fcf8f4240a27e3ee9587ebf0fbf6c9fb87a03fcf26b0fa09bc440a3"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:finance-financial-forecaster:main",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/agent_finance-financial-forecaster_main.bb985f22-740b-44df-9568-d51c81cafcaa.trajectory.jsonl.imported-1788824081951",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382456",
+              "mtimeNs": "1788823146168693624",
+              "size": 10478403,
+              "sha256": "efe4df2909c0644b82a86822e6d7f8f28bc5b8cf6dc5e3751f9395596b52b0f3"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:finance-financial-forecaster:main",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/agent_finance-financial-forecaster_main.bb985f22-740b-44df-9568-d51c81cafcaa.trajectory-path.json.imported-1788824081952",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18087996",
+              "mtimeNs": "1788823137738413220",
+              "size": 268,
+              "sha256": "485d63cee328d88a91ab8ff9d8cad74986074d3a1646ffdbce2132828054cf84"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:finance-financial-forecaster:main",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/archive-tier.750df0f3-86fb-473b-878c-ce8f2dff087c.jsonl.imported-1788824082002",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165733",
+              "mtimeNs": "1786402141023206320",
+              "size": 4441658,
+              "sha256": "b0a30798c22ee394aa151869728d8565ab6244abd40048232482b69504232b5d"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/750df0f3-86fb-473b-878c-ce8f2dff087c.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/archive-tier.750df0f3-86fb-473b-878c-ce8f2dff087c.trajectory.jsonl.imported-1788824082070",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18165553",
+              "mtimeNs": "1786402141532240259",
+              "size": 10463302,
+              "sha256": "d0103aab2040400cfc7d5201e6062a5b07db852a5323108b71e747fbfa85bc42"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/750df0f3-86fb-473b-878c-ce8f2dff087c.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/finance-financial-forecaster/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824082591",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "18382546",
+              "mtimeNs": "1788823146207694922",
+              "size": 9733,
+              "sha256": "2328b8ec75d12b05f0e3e129b2c356b9a6da927f2894bc34fdfb21e22568bba8"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/bb985f22-740b-44df-9568-d51c81cafcaa.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/finance-financial-forecaster/sessions/sessions.json"
+        }
+      ],
+      "validationBeforeArchive": "passed"
+    }
+  ],
+  "completedAt": "2026-09-07T23:34:42.610Z"
+}

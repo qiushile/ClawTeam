@@ -1,0 +1,535 @@
+{
+  "manifestVersion": 3,
+  "openClawVersion": "2026.9.2",
+  "runId": "session-sqlite-1788824021785-7bf65b75",
+  "startedAt": "2026-09-07T23:33:41.785Z",
+  "targets": [
+    {
+      "agentId": "expert",
+      "sqlitePath": "/home/node/.openclaw/agents/expert/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/expert/sessions/sessions.json",
+      "completedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_main.7d102932-2e52-427b-8174-38da56b22c72.jsonl.imported-1788824023888",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355271",
+              "mtimeNs": "1788822001485939851",
+              "size": 488039,
+              "sha256": "a5df36dcc3aa8434bc3e0db9d9b7465c24892f19a74d2721569830c571df8a50"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:expert:main",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_main.7d102932-2e52-427b-8174-38da56b22c72.trajectory.jsonl.imported-1788824023889",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355241",
+              "mtimeNs": "1788822001945956004",
+              "size": 10445207,
+              "sha256": "7940f87b20247e04685d7dbc2951bc42673f588ca4f43c1ea17c3e81fbdae59e"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:expert:main",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_main.7d102932-2e52-427b-8174-38da56b22c72.trajectory-path.json.imported-1788824023889",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355239",
+              "mtimeNs": "1788822000681911618",
+              "size": 246,
+              "sha256": "8f7dec176867295a355ad1a66309cfd74ae7d48dd22585355ff7ff28cbfa69c8"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:expert:main",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_feishu_group_oc_ba4c29cdc3abfeacb635a394af7ee34d.db634798-4683-4ed6-accb-a6c3b9e48f58.jsonl.imported-1788824023928",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17341512",
+              "mtimeNs": "1774442250352442868",
+              "size": 4381,
+              "sha256": "d5491ad65788f31248dc64d816438e7a3cc7b54244850561af813ce04c755494"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:expert:feishu:group:oc_ba4c29cdc3abfeacb635a394af7ee34d",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/db634798-4683-4ed6-accb-a6c3b9e48f58.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.45e43824-34ba-4e35-a0cb-9167379469b9.jsonl.imported-1788824023933",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17338585",
+              "mtimeNs": "1786403005315163190",
+              "size": 4955602,
+              "sha256": "8803f5579a36fd1344e3ff6941d6a7649a4755f73e71a2dfbe4246c98524b34e"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/45e43824-34ba-4e35-a0cb-9167379469b9.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.45e43824-34ba-4e35-a0cb-9167379469b9.trajectory.jsonl.imported-1788824024034",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17320516",
+              "mtimeNs": "1786403005876191721",
+              "size": 10475731,
+              "sha256": "f93b575d4e0ccbd8994e266ef551918b6addb07f1834a9ad3bbb2f359842bde1"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/45e43824-34ba-4e35-a0cb-9167379469b9.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.cff20695-3071-4d01-a7c4-e043fc2cd43b.jsonl.imported-1788824024104",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355261",
+              "mtimeNs": "1787643695170790282",
+              "size": 634980,
+              "sha256": "fcc6d0d8ab4f8b68984058e9c637e2566b1fd02cc9335f44a179ec6c47aa810f"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/cff20695-3071-4d01-a7c4-e043fc2cd43b.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.cff20695-3071-4d01-a7c4-e043fc2cd43b.trajectory.jsonl.imported-1788824024120",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355229",
+              "mtimeNs": "1787643695676839789",
+              "size": 10456367,
+              "sha256": "576d050fab8e229c3992c995df47eafb311e727eeb9740173cb34966f4532417"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/cff20695-3071-4d01-a7c4-e043fc2cd43b.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824024906",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17319256",
+              "mtimeNs": "1788822016996484962",
+              "size": 19141,
+              "sha256": "0169ae51287d19b617b4f529382f5289cfa3e617bf78dbe32307e4c60fb92942"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.jsonl",
+              "/home/node/.openclaw/agents/expert/sessions/db634798-4683-4ed6-accb-a6c3b9e48f58.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/sessions.json"
+        }
+      ],
+      "issues": [],
+      "plannedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_main.7d102932-2e52-427b-8174-38da56b22c72.jsonl.imported-1788824023888",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355271",
+              "mtimeNs": "1788822001485939851",
+              "size": 488039,
+              "sha256": "a5df36dcc3aa8434bc3e0db9d9b7465c24892f19a74d2721569830c571df8a50"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:expert:main",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_main.7d102932-2e52-427b-8174-38da56b22c72.trajectory.jsonl.imported-1788824023889",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355241",
+              "mtimeNs": "1788822001945956004",
+              "size": 10445207,
+              "sha256": "7940f87b20247e04685d7dbc2951bc42673f588ca4f43c1ea17c3e81fbdae59e"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:expert:main",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_main.7d102932-2e52-427b-8174-38da56b22c72.trajectory-path.json.imported-1788824023889",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355239",
+              "mtimeNs": "1788822000681911618",
+              "size": 246,
+              "sha256": "8f7dec176867295a355ad1a66309cfd74ae7d48dd22585355ff7ff28cbfa69c8"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:expert:main",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/agent_expert_feishu_group_oc_ba4c29cdc3abfeacb635a394af7ee34d.db634798-4683-4ed6-accb-a6c3b9e48f58.jsonl.imported-1788824023928",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17341512",
+              "mtimeNs": "1774442250352442868",
+              "size": 4381,
+              "sha256": "d5491ad65788f31248dc64d816438e7a3cc7b54244850561af813ce04c755494"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:expert:feishu:group:oc_ba4c29cdc3abfeacb635a394af7ee34d",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/db634798-4683-4ed6-accb-a6c3b9e48f58.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.45e43824-34ba-4e35-a0cb-9167379469b9.jsonl.imported-1788824023933",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17338585",
+              "mtimeNs": "1786403005315163190",
+              "size": 4955602,
+              "sha256": "8803f5579a36fd1344e3ff6941d6a7649a4755f73e71a2dfbe4246c98524b34e"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/45e43824-34ba-4e35-a0cb-9167379469b9.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.45e43824-34ba-4e35-a0cb-9167379469b9.trajectory.jsonl.imported-1788824024034",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17320516",
+              "mtimeNs": "1786403005876191721",
+              "size": 10475731,
+              "sha256": "f93b575d4e0ccbd8994e266ef551918b6addb07f1834a9ad3bbb2f359842bde1"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/45e43824-34ba-4e35-a0cb-9167379469b9.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.cff20695-3071-4d01-a7c4-e043fc2cd43b.jsonl.imported-1788824024104",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355261",
+              "mtimeNs": "1787643695170790282",
+              "size": 634980,
+              "sha256": "fcc6d0d8ab4f8b68984058e9c637e2566b1fd02cc9335f44a179ec6c47aa810f"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/cff20695-3071-4d01-a7c4-e043fc2cd43b.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/archive-tier.cff20695-3071-4d01-a7c4-e043fc2cd43b.trajectory.jsonl.imported-1788824024120",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17355229",
+              "mtimeNs": "1787643695676839789",
+              "size": 10456367,
+              "sha256": "576d050fab8e229c3992c995df47eafb311e727eeb9740173cb34966f4532417"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/cff20695-3071-4d01-a7c4-e043fc2cd43b.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/expert/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824024906",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17319256",
+              "mtimeNs": "1788822016996484962",
+              "size": 19141,
+              "sha256": "0169ae51287d19b617b4f529382f5289cfa3e617bf78dbe32307e4c60fb92942"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/expert/sessions/7d102932-2e52-427b-8174-38da56b22c72.jsonl",
+              "/home/node/.openclaw/agents/expert/sessions/db634798-4683-4ed6-accb-a6c3b9e48f58.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/expert/sessions/sessions.json"
+        }
+      ],
+      "validationBeforeArchive": "passed"
+    },
+    {
+      "agentId": "main",
+      "sqlitePath": "/home/node/.openclaw/agents/main/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/main/sessions/sessions.json",
+      "completedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/main/session-sqlite-import-archive/agent_main_main.df6a00f1-75b1-4f16-bf34-d10e583c425d.jsonl.imported-1788824023928",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17180577",
+              "mtimeNs": "1774437938866431333",
+              "size": 277905,
+              "sha256": "e7254c1ba94ef71ca6ede2ec3c96017d09705a7e54c462c6ae6abde130dd4a58"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:main:main",
+          "sourcePath": "/home/node/.openclaw/agents/main/sessions/df6a00f1-75b1-4f16-bf34-d10e583c425d.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/main/session-sqlite-import-archive/agent_main_feishu_group_oc_ba4c29cdc3abfeacb635a394af7ee34d.6070e75c-f8cf-4856-829f-a8b8da38bbb7.jsonl.imported-1788824023930",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17182102",
+              "mtimeNs": "1774402282607956799",
+              "size": 84785,
+              "sha256": "ddf05b0a825aa8ed87a23cb5bfa4e098d506268118b743fe4f48e169d1918b37"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:main:feishu:group:oc_ba4c29cdc3abfeacb635a394af7ee34d",
+          "sourcePath": "/home/node/.openclaw/agents/main/sessions/6070e75c-f8cf-4856-829f-a8b8da38bbb7.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/main/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824024932",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17180557",
+              "mtimeNs": "1774437938863431190",
+              "size": 42155,
+              "sha256": "206154075036b6638427e16333b8bd50f03779ba95ec624e7950a45a264d1768"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/main/sessions/df6a00f1-75b1-4f16-bf34-d10e583c425d.jsonl",
+              "/home/node/.openclaw/agents/main/sessions/6070e75c-f8cf-4856-829f-a8b8da38bbb7.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/main/sessions/sessions.json"
+        }
+      ],
+      "issues": [],
+      "plannedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/main/session-sqlite-import-archive/agent_main_main.df6a00f1-75b1-4f16-bf34-d10e583c425d.jsonl.imported-1788824023928",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17180577",
+              "mtimeNs": "1774437938866431333",
+              "size": 277905,
+              "sha256": "e7254c1ba94ef71ca6ede2ec3c96017d09705a7e54c462c6ae6abde130dd4a58"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:main:main",
+          "sourcePath": "/home/node/.openclaw/agents/main/sessions/df6a00f1-75b1-4f16-bf34-d10e583c425d.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/main/session-sqlite-import-archive/agent_main_feishu_group_oc_ba4c29cdc3abfeacb635a394af7ee34d.6070e75c-f8cf-4856-829f-a8b8da38bbb7.jsonl.imported-1788824023930",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17182102",
+              "mtimeNs": "1774402282607956799",
+              "size": 84785,
+              "sha256": "ddf05b0a825aa8ed87a23cb5bfa4e098d506268118b743fe4f48e169d1918b37"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:main:feishu:group:oc_ba4c29cdc3abfeacb635a394af7ee34d",
+          "sourcePath": "/home/node/.openclaw/agents/main/sessions/6070e75c-f8cf-4856-829f-a8b8da38bbb7.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/main/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788824024932",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "17180557",
+              "mtimeNs": "1774437938863431190",
+              "size": 42155,
+              "sha256": "206154075036b6638427e16333b8bd50f03779ba95ec624e7950a45a264d1768"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/main/sessions/df6a00f1-75b1-4f16-bf34-d10e583c425d.jsonl",
+              "/home/node/.openclaw/agents/main/sessions/6070e75c-f8cf-4856-829f-a8b8da38bbb7.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/main/sessions/sessions.json"
+        }
+      ],
+      "validationBeforeArchive": "passed"
+    }
+  ],
+  "completedAt": "2026-09-07T23:33:44.957Z"
+}
