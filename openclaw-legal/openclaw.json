@@ -187,6 +187,7 @@
         ]
       }
     },
+    "ownership": "explicit",
     "entries": {
       "legal-policy-writer": {
         "workspace": "/home/node/.openclaw/workspace-legal-policy-writer"
@@ -194,8 +195,7 @@
       "legal-contract-reviewer": {
         "workspace": "/home/node/.openclaw/workspace-legal-contract-reviewer"
       }
-    },
-    "ownership": "explicit"
+    }
   },
   "tools": {
     "allow": [
@@ -253,8 +253,6 @@
   },
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
       "feishu",
       "memory-lancedb",
       "minimax",
@@ -264,14 +262,6 @@
       "memory": ""
     },
     "entries": {
-      "postgres-tool": {
-        "enabled": true,
-        "config": {}
-      },
-      "task-notifier": {
-        "enabled": true,
-        "config": {}
-      },
       "feishu": {
         "enabled": true,
         "config": {}
@@ -296,5 +286,11 @@
       },
       "model": "text-embedding-v4"
     }
+  },
+  "wizard": {
+    "lastRunAt": "2026-09-07T23:37:15.073Z",
+    "lastRunVersion": "2026.9.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
   }
 }

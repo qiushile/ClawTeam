@@ -1,0 +1,26 @@
+{
+  "manifestVersion": 3,
+  "openClawVersion": "2026.9.2",
+  "runId": "session-sqlite-1788824241180-af3ea314",
+  "startedAt": "2026-09-07T23:37:21.180Z",
+  "targets": [
+    {
+      "agentId": "legal-policy-writer",
+      "sqlitePath": "/home/node/.openclaw/agents/legal-policy-writer/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/legal-policy-writer/sessions/sessions.json",
+      "completedMoves": [],
+      "issues": [],
+      "plannedMoves": [],
+      "validationBeforeArchive": "passed"
+    },
+    {
+      "agentId": "legal-contract-reviewer",
+      "sqlitePath": "/home/node/.openclaw/agents/legal-contract-reviewer/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/legal-contract-reviewer/sessions/sessions.json",
+      "completedMoves": [],
+      "issues": [],
+      "plannedMoves": [],
+      "validationBeforeArchive": "passed"
+    }
+  ]
+}
