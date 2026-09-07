@@ -1,228 +1,169 @@
 #!/usr/bin/env node
 /**
- * DB Health Monitor - 数据库健康检查与自动恢复脚本
+ * db-health-monitor.js — PostgreSQL 健康检查与自动恢复
  * 
  * 功能:
- * 1. 定期检查 PostgreSQL 连接可用性
- * 2. 连接失败时指数退避重试 (1s→2s→4s→8s→16s)
- * 3. 自动扫描子网寻找新 DB IP
- * 4. 自动更新 .dev-config.json
- * 5. 连续失败告警记录
+ * 1. 每 30 分钟检查 DB 连接
+ * 2. 连接失败时自动扫描子网寻找新 IP
+ * 3. 成功后自动更新 .dev-config.json
+ * 4. 连续失败记录告警
  * 
- * 使用: node db-health-monitor.js [--daemon] [--interval=30]
- * 
- * 验收标准:
- * - IP 漂移后 5 分钟内自动恢复
- * - 连续 3 次失败记录告警
- * - 月度可用性 ≥ 99.9%
+ * 用法: node scripts/db-health-monitor.js [--once]
+ *   --once: 单次检查 (用于 cron/heartbeat 触发)
  */
 
-const { Client } = require('pg');
 const fs = require('fs');
 const path = require('path');
-const { execSync } = require('child_process');
+const net = require('net');
+const { Client } = require('pg');
 
-// ==================== 配置 ====================
-
-const CONFIG_PATH = path.resolve(__dirname, '..', '.dev-config.json');
-const LOG_PATH = path.resolve(__dirname, '..', 'logs', 'db-health.log');
-const ALERT_PATH = path.resolve(__dirname, '..', 'logs', 'db-alerts.log');
+const CONFIG_PATH = path.join(__dirname, '..', '.dev-config.json');
+const WORKSPACE = path.join(__dirname, '..');
+const DB_NAME = 'dev_db';
+const DB_USER = 'dev_user';
+const DB_PASS = process.env.DEV_DB_PASS || 'dev_password';
 const MAX_RETRIES = 5;
-const RETRY_BASE_MS = 1000; // 指数退避基数
-const SUBNET_PREFIX = '172.23.0';
-const CONSECUTIVE_FAIL_THRESHOLD = 3;
+const RETRY_BASE_MS = 1000;
+const SUBNET_BASE = '172.23.0';
 
-// ==================== 日志 ====================
+// ─── Logging ───────────────────────────────────────────────
 
-function ensureDir(dir) {
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+function log(level, msg) {
+  const ts = new Date().toISOString();
+  console.log(`[${ts}] [${level}] ${msg}`);
 }
 
-function log(message, level = 'INFO') {
-  const timestamp = new Date().toISOString();
-  const line = `[${timestamp}] [${level}] ${message}`;
-  console.log(line);
-  ensureDir(path.dirname(LOG_PATH));
-  fs.appendFileSync(LOG_PATH, line + '\n');
-}
+// ─── Config ────────────────────────────────────────────────
 
-function logAlert(message) {
-  ensureDir(path.dirname(ALERT_PATH));
-  fs.appendFileSync(ALERT_PATH, `[${new Date().toISOString()}] ALERT: ${message}\n`);
-}
-
-// ==================== 配置读写 ====================
-
-function loadConfig() {
+function readConfig() {
   try {
     return JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf8'));
-  } catch (e) {
-    log(`Failed to load config: ${e.message}`, 'ERROR');
-    return null;
+  } catch {
+    return { db_host: '172.23.0.14', db_port: 5432, db_name: DB_NAME, db_user: DB_USER };
   }
 }
 
-function saveConfig(config) {
-  config.last_updated = new Date().toISOString().split('T')[0];
+function writeConfig(config) {
+  config.last_updated = new Date().toISOString().slice(0, 10);
   fs.writeFileSync(CONFIG_PATH, JSON.stringify(config, null, 2) + '\n');
-  log(`Config updated: db_host=${config.db_host}`);
+  log('INFO', `Config updated: ${config.db_host}:${config.db_port}`);
 }
 
-// ==================== 连接测试 ====================
+// ─── DB Connection ─────────────────────────────────────────
 
-async function testConnection(host, port, db, user, password) {
-  const client = new Client({ host, port, database: db, user, password });
+async function testConnection(host, port) {
+  const client = new Client({ host, port, database: DB_NAME, user: DB_USER, password: DB_PASS });
   try {
     await client.connect();
-    await client.query('SELECT 1');
-    return true;
-  } catch (e) {
+    const r = await client.query('SELECT 1 as ok;');
+    return r.rows[0]?.ok === 1;
+  } catch {
     return false;
   } finally {
     try { await client.end(); } catch {}
   }
 }
 
-// ==================== 指数退避重试 ====================
+// ─── IP Scanner ────────────────────────────────────────────
 
-async function connectWithRetry(host, port, db, user, password) {
-  for (let attempt = 0; attempt <= MAX_RETRIES; attempt++) {
-    if (await testConnection(host, port, db, user, password)) return true;
-    
-    if (attempt < MAX_RETRIES) {
-      const delay = RETRY_BASE_MS * Math.pow(2, attempt);
-      log(`Connection failed (attempt ${attempt + 1}/${MAX_RETRIES + 1}), retrying in ${delay}ms...`, 'WARN');
-      await new Promise(r => setTimeout(r, delay));
-    }
+async function scanSubnet(base, port) {
+  log('INFO', `Scanning ${base}.1-254:${port}...`);
+  const hosts = Array.from({ length: 254 }, (_, i) => `${base}.${i + 1}`);
+  let found = null;
+
+  for (let b = 0; b < hosts.length; b += 50) {
+    if (found) break;
+    const batch = hosts.slice(b, b + 50);
+    await Promise.all(batch.map(async (ip) => {
+      if (found) return;
+      const sock = new net.Socket();
+      sock.setTimeout(300);
+      await new Promise((resolve) => {
+        sock.on('connect', () => { sock.destroy(); found = ip; resolve(); });
+        sock.on('error', () => resolve());
+        sock.connect(port, ip);
+      });
+    }));
   }
-  return false;
-}
-
-// ==================== IP 扫描 ====================
-
-async function scanSubnet(prefix, excludeIp) {
-  log(`Scanning subnet ${prefix}.1-254 for PostgreSQL (excluding ${excludeIp})...`);
-  const found = [];
-  
-  const promises = [];
-  for (let i = 1; i <= 254; i++) {
-    const ip = `${prefix}.${i}`;
-    if (ip === excludeIp) continue;
-    
-    promises.push(
-      new Promise((resolve) => {
-        const timeout = setTimeout(() => resolve(null), 1000);
-        try {
-          const { exec } = require('child_process');
-          exec(`timeout 1 bash -c "echo >/dev/tcp/${ip}/5432" 2>/dev/null`, (err) => {
-            clearTimeout(timeout);
-            if (!err) {
-              found.push(ip);
-              resolve(ip);
-            } else {
-              resolve(null);
-            }
-          });
-        } catch {
-          clearTimeout(timeout);
-          resolve(null);
-        }
-      })
-    );
-  }
-  
-  await Promise.allSettled(promises);
   return found;
 }
 
-// ==================== 主健康检查 ====================
+// ─── Retry with Exponential Backoff ────────────────────────
 
-let consecutiveFails = 0;
-let totalChecks = 0;
-let successfulChecks = 0;
-
-async function healthCheck() {
-  const config = loadConfig();
-  if (!config) {
-    log('Cannot load config, aborting', 'ERROR');
-    return false;
+async function retryConnect(host, port) {
+  for (let i = 0; i < MAX_RETRIES; i++) {
+    const delay = RETRY_BASE_MS * Math.pow(2, i);
+    log('INFO', `Connection attempt ${i + 1}/${MAX_RETRIES} (backoff: ${delay}ms)`);
+    if (await testConnection(host, port)) return true;
+    if (i < MAX_RETRIES - 1) await new Promise(r => setTimeout(r, delay));
   }
-
-  totalChecks++;
-  const { db_host: host, db_port: port, db_name: db, db_user: user, env_var_password } = config;
-  const password = process.env[env_var_password] || '';
-
-  log(`Checking connection to ${host}:${port}/${db}...`);
-
-  const connected = await connectWithRetry(host, port, db, user, password);
-
-  if (connected) {
-    consecutiveFails = 0;
-    successfulChecks++;
-    log(`✅ Connection successful (${successfulChecks}/${totalChecks}, ${(successfulChecks/totalChecks*100).toFixed(1)}% uptime)`);
-    return true;
-  }
-
-  consecutiveFails++;
-  log(`❌ Connection failed to ${host}:${port} (consecutive: ${consecutiveFails})`, 'ERROR');
-
-  // 扫描子网寻找新 IP
-  if (consecutiveFails >= 1) {
-    log('Initiating subnet scan to find new DB host...', 'WARN');
-    const foundIPs = await scanSubnet(SUBNET_PREFIX, host);
-    
-    if (foundIPs.length > 0) {
-      const newHost = foundIPs[0];
-      log(`Found PostgreSQL at ${newHost}, verifying...`);
-      
-      if (await testConnection(newHost, port, db, user, password)) {
-        log(`✅ Verified new DB host: ${newHost}`);
-        config.db_host = newHost;
-        saveConfig(config);
-        consecutiveFails = 0;
-        logAlert(`DB host changed: ${host} → ${newHost}`);
-        return true;
-      }
-    } else {
-      log(`❌ No PostgreSQL hosts found in subnet ${SUBNET_PREFIX}.0/24`, 'ERROR');
-    }
-  }
-
-  // 连续失败告警
-  if (consecutiveFails >= CONSECUTIVE_FAIL_THRESHOLD) {
-    const msg = `DB connection failed ${consecutiveFails} consecutive times. Last host: ${host}:${port}`;
-    log(msg, 'ALERT');
-    logAlert(msg);
-  }
-
   return false;
 }
 
-// ==================== 守护模式 ====================
+// ─── Main ──────────────────────────────────────────────────
 
-function runDaemon(intervalMin = 30) {
-  log(`Starting DB health monitor in daemon mode (interval: ${intervalMin}min)`);
-  healthCheck().then(() => {
-    setInterval(() => {
-      healthCheck().catch(e => log(`Unhandled error: ${e.message}`, 'ERROR'));
-    }, intervalMin * 60 * 1000);
-  });
+async function run() {
+  const config = readConfig();
+  const { db_host, db_port } = config;
+
+  log('INFO', `Health check: ${db_host}:${db_port}`);
+
+  // Step 1: Try current host
+  if (await testConnection(db_host, db_port)) {
+    log('OK', `DB healthy: ${db_host}:${db_port}`);
+    return { status: 'ok', host: db_host };
+  }
+
+  log('WARN', `Connection failed to ${db_host}:${db_port}, retrying...`);
+
+  // Step 2: Retry with backoff
+  if (await retryConnect(db_host, db_port)) {
+    log('OK', `DB recovered after retries: ${db_host}:${db_port}`);
+    return { status: 'recovered', host: db_host };
+  }
+
+  // Step 3: Scan subnet
+  log('WARN', 'Retries exhausted, scanning subnet...');
+  const newHost = await scanSubnet(SUBNET_BASE, db_port);
+
+  if (!newHost) {
+    log('ERROR', `No PostgreSQL found in ${SUBNET_BASE}.0/24`);
+    return { status: 'down', host: null };
+  }
+
+  // Step 4: Verify and update config
+  if (await testConnection(newHost, db_port)) {
+    log('OK', `Found DB at ${newHost}:${db_port}`);
+    config.db_host = newHost;
+    writeConfig(config);
+    return { status: 'relocated', host: newHost, prev_host: db_host };
+  }
+
+  log('ERROR', `Found port open at ${newHost} but connection failed`);
+  return { status: 'down', host: null };
 }
 
-// ==================== CLI ====================
+// ─── CLI ───────────────────────────────────────────────────
 
-function main() {
-  const args = process.argv.slice(2);
-  const isDaemon = args.includes('--daemon');
-  const intervalArg = args.find(a => a.startsWith('--interval='));
-  const intervalMin = intervalArg ? parseInt(intervalArg.split('=')[1]) : 30;
+if (require.main === module) {
+  const once = process.argv.includes('--once');
+  run().then(result => {
+    console.log(JSON.stringify(result));
+    process.exit(result.status === 'ok' || result.status === 'recovered' ? 0 : 1);
+  }).catch(e => {
+    log('ERROR', e.message);
+    process.exit(1);
+  });
 
-  if (isDaemon) {
-    runDaemon(intervalMin);
-  } else {
-    healthCheck().then(ok => process.exit(ok ? 0 : 1))
-      .catch(e => { log(`Fatal: ${e.message}`, 'ERROR'); process.exit(2); });
+  if (!once) {
+    log('INFO', 'Running as daemon (every 30 min)...');
+    setInterval(async () => {
+      const result = await run();
+      if (result.status !== 'ok') {
+        log('ALERT', JSON.stringify(result));
+      }
+    }, 30 * 60 * 1000);
   }
 }
 
-main();
+module.exports = { run, testConnection, scanSubnet };
