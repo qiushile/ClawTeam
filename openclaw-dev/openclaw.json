@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-08T06:41:29.447Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,22 +162,32 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "dev"
+      },
+      "systemAgent": {
+        "agentId": "dev"
+      },
+      "authInheritance": {
+        "agentId": "dev"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "dev",
-        "default": true,
+    "ownership": "explicit",
+    "entries": {
+      "dev": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -183,127 +195,97 @@
           ]
         }
       },
-      {
-        "id": "dev-security-engineer",
+      "dev-security-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-security-engineer"
       },
-      {
-        "id": "dev-incident-response-commander",
+      "dev-incident-response-commander": {
         "workspace": "/home/node/.openclaw/workspace-dev-incident-response-commander"
       },
-      {
-        "id": "dev-autonomous-optimization-architect",
+      "dev-autonomous-optimization-architect": {
         "workspace": "/home/node/.openclaw/workspace-dev-autonomous-optimization-architect"
       },
-      {
-        "id": "dev-database-optimizer",
+      "dev-database-optimizer": {
         "workspace": "/home/node/.openclaw/workspace-dev-database-optimizer"
       },
-      {
-        "id": "dev-wechat-mini-program-developer",
+      "dev-wechat-mini-program-developer": {
         "workspace": "/home/node/.openclaw/workspace-dev-wechat-mini-program-developer"
       },
-      {
-        "id": "dev-ai-data-remediation-engineer",
+      "dev-ai-data-remediation-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-ai-data-remediation-engineer"
       },
-      {
-        "id": "dev-frontend-developer",
+      "dev-frontend-developer": {
         "workspace": "/home/node/.openclaw/workspace-dev-frontend-developer"
       },
-      {
-        "id": "dev-sre-site-reliability-engineer",
+      "dev-sre-site-reliability-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-sre-site-reliability-engineer"
       },
-      {
-        "id": "dev-embedded-firmware-engineer",
+      "dev-embedded-firmware-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-embedded-firmware-engineer"
       },
-      {
-        "id": "dev-software-architect",
+      "dev-software-architect": {
         "workspace": "/home/node/.openclaw/workspace-dev-software-architect"
       },
-      {
-        "id": "dev-devops-automator",
+      "dev-devops-automator": {
         "workspace": "/home/node/.openclaw/workspace-dev-devops-automator"
       },
-      {
-        "id": "dev-backend-architect",
+      "dev-backend-architect": {
         "workspace": "/home/node/.openclaw/workspace-dev-backend-architect"
       },
-      {
-        "id": "dev-data-engineer",
+      "dev-data-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-data-engineer"
       },
-      {
-        "id": "dev-rapid-prototyper",
+      "dev-rapid-prototyper": {
         "workspace": "/home/node/.openclaw/workspace-dev-rapid-prototyper"
       },
-      {
-        "id": "dev-threat-detection-engineer",
+      "dev-threat-detection-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-threat-detection-engineer"
       },
-      {
-        "id": "dev-mobile-app-builder",
+      "dev-mobile-app-builder": {
         "workspace": "/home/node/.openclaw/workspace-dev-mobile-app-builder"
       },
-      {
-        "id": "dev-git-workflow-master",
+      "dev-git-workflow-master": {
         "workspace": "/home/node/.openclaw/workspace-dev-git-workflow-master"
       },
-      {
-        "id": "dev-code-reviewer",
+      "dev-code-reviewer": {
         "workspace": "/home/node/.openclaw/workspace-dev-code-reviewer"
       },
-      {
-        "id": "dev-feishu-integration-developer",
+      "dev-feishu-integration-developer": {
         "workspace": "/home/node/.openclaw/workspace-dev-feishu-integration-developer"
       },
-      {
-        "id": "dev-solidity-smart-contract-engineer",
+      "dev-solidity-smart-contract-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-solidity-smart-contract-engineer"
       },
-      {
-        "id": "dev-technical-writer",
+      "dev-technical-writer": {
         "workspace": "/home/node/.openclaw/workspace-dev-technical-writer"
       },
-      {
-        "id": "dev-ai-engineer",
+      "dev-ai-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-ai-engineer"
       },
-      {
-        "id": "dev-senior-developer",
+      "dev-senior-developer": {
         "workspace": "/home/node/.openclaw/workspace-dev-senior-developer"
       },
-      {
-        "id": "dev-embedded-linux-driver-engineer",
+      "dev-embedded-linux-driver-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-embedded-linux-driver-engineer"
       },
-      {
-        "id": "dev-fpga-digital-design-engineer",
+      "dev-fpga-digital-design-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-fpga-digital-design-engineer"
       },
-      {
-        "id": "dev-iot-solution-architect",
+      "dev-iot-solution-architect": {
         "workspace": "/home/node/.openclaw/workspace-dev-iot-solution-architect"
       },
-      {
-        "id": "dev-dingtalk-integration-developer",
+      "dev-dingtalk-integration-developer": {
         "workspace": "/home/node/.openclaw/workspace-dev-dingtalk-integration-developer"
       },
-      {
-        "id": "dev-filament-optimization-specialist",
+      "dev-filament-optimization-specialist": {
         "workspace": "/home/node/.openclaw/workspace-dev-filament-optimization-specialist"
       },
-      {
-        "id": "dev-cms-developer",
+      "dev-cms-developer": {
         "workspace": "/home/node/.openclaw/workspace-dev-cms-developer"
       },
-      {
-        "id": "dev-email-intelligence-engineer",
+      "dev-email-intelligence-engineer": {
         "workspace": "/home/node/.openclaw/workspace-dev-email-intelligence-engineer"
       }
-    ]
+    }
   },
   "tools": {
     "allow": [
@@ -331,13 +313,19 @@
       "match": {
         "channel": "feishu"
       }
+    },
+    {
+      "agentId": "dev",
+      "match": {
+        "channel": "feishu",
+        "accountId": "*"
+      }
     }
   ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -372,8 +360,6 @@
   },
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
       "feishu",
       "memory-lancedb",
       "minimax",
@@ -383,14 +369,6 @@
       "memory": ""
     },
     "entries": {
-      "postgres-tool": {
-        "enabled": true,
-        "config": {}
-      },
-      "task-notifier": {
-        "enabled": true,
-        "config": {}
-      },
       "feishu": {
         "enabled": true,
         "config": {}
@@ -402,5 +380,24 @@
         "enabled": true
       }
     }
+  },
+  "talk": {
+    "agentId": "dev"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-09-07T23:29:22.785Z",
+    "lastRunVersion": "2026.9.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
   }
 }

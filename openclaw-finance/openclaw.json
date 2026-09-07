@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-12T11:04:27.635Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,33 +162,41 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "finance-financial-forecaster"
+      },
+      "systemAgent": {
+        "agentId": "finance-financial-forecaster"
+      },
+      "authInheritance": {
+        "agentId": "finance-financial-forecaster"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "finance-financial-forecaster",
-        "workspace": "/home/node/.openclaw/workspace-finance-financial-forecaster",
-        "default": true
+    "entries": {
+      "finance-financial-forecaster": {
+        "workspace": "/home/node/.openclaw/workspace-finance-financial-forecaster"
       },
-      {
-        "id": "finance-invoice-manager",
+      "finance-invoice-manager": {
         "workspace": "/home/node/.openclaw/workspace-finance-invoice-manager"
       },
-      {
-        "id": "finance-fraud-detector",
+      "finance-fraud-detector": {
         "workspace": "/home/node/.openclaw/workspace-finance-fraud-detector"
       }
-    ]
+    },
+    "ownership": "explicit"
   },
   "tools": {
     "allow": [
@@ -211,8 +221,7 @@
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -274,6 +283,19 @@
       "kimi": {
         "enabled": true
       }
+    }
+  },
+  "talk": {
+    "agentId": "finance-financial-forecaster"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
     }
   }
 }

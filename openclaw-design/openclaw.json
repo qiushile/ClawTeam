@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-08T06:41:29.524Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,22 +162,32 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "design"
+      },
+      "systemAgent": {
+        "agentId": "design"
+      },
+      "authInheritance": {
+        "agentId": "design"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "design",
-        "default": true,
+    "ownership": "explicit",
+    "entries": {
+      "design": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -183,39 +195,31 @@
           ]
         }
       },
-      {
-        "id": "design-inclusive-visuals-specialist",
+      "design-inclusive-visuals-specialist": {
         "workspace": "/home/node/.openclaw/workspace-design-inclusive-visuals-specialist"
       },
-      {
-        "id": "design-image-prompt-engineer",
+      "design-image-prompt-engineer": {
         "workspace": "/home/node/.openclaw/workspace-design-image-prompt-engineer"
       },
-      {
-        "id": "design-brand-guardian",
+      "design-brand-guardian": {
         "workspace": "/home/node/.openclaw/workspace-design-brand-guardian"
       },
-      {
-        "id": "design-visual-storyteller",
+      "design-visual-storyteller": {
         "workspace": "/home/node/.openclaw/workspace-design-visual-storyteller"
       },
-      {
-        "id": "design-ux-researcher",
+      "design-ux-researcher": {
         "workspace": "/home/node/.openclaw/workspace-design-ux-researcher"
       },
-      {
-        "id": "design-whimsy-injector",
+      "design-whimsy-injector": {
         "workspace": "/home/node/.openclaw/workspace-design-whimsy-injector"
       },
-      {
-        "id": "design-ui-designer",
+      "design-ui-designer": {
         "workspace": "/home/node/.openclaw/workspace-design-ui-designer"
       },
-      {
-        "id": "design-ux-architect",
+      "design-ux-architect": {
         "workspace": "/home/node/.openclaw/workspace-design-ux-architect"
       }
-    ]
+    }
   },
   "tools": {
     "allow": [
@@ -235,13 +239,19 @@
       "match": {
         "channel": "feishu"
       }
+    },
+    {
+      "agentId": "design",
+      "match": {
+        "channel": "feishu",
+        "accountId": "*"
+      }
     }
   ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -275,8 +285,6 @@
   },
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
       "feishu",
       "memory-lancedb",
       "minimax",
@@ -286,14 +294,6 @@
       "memory": ""
     },
     "entries": {
-      "postgres-tool": {
-        "enabled": true,
-        "config": {}
-      },
-      "task-notifier": {
-        "enabled": true,
-        "config": {}
-      },
       "feishu": {
         "enabled": true,
         "config": {}
@@ -305,5 +305,24 @@
         "enabled": true
       }
     }
+  },
+  "talk": {
+    "agentId": "design"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-09-07T23:32:07.247Z",
+    "lastRunVersion": "2026.9.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
   }
 }

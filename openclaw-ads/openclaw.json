@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-08T06:41:34.778Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,22 +162,32 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "ads"
+      },
+      "systemAgent": {
+        "agentId": "ads"
+      },
+      "authInheritance": {
+        "agentId": "ads"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "ads",
-        "default": true,
+    "ownership": "explicit",
+    "entries": {
+      "ads": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -183,47 +195,37 @@
           ]
         }
       },
-      {
-        "id": "ads-paid-media-auditor",
+      "ads-paid-media-auditor": {
         "workspace": "/home/node/.openclaw/workspace-ads-paid-media-auditor"
       },
-      {
-        "id": "ads-ad-creative-strategist",
+      "ads-ad-creative-strategist": {
         "workspace": "/home/node/.openclaw/workspace-ads-ad-creative-strategist"
       },
-      {
-        "id": "ads-paid-social-strategist",
+      "ads-paid-social-strategist": {
         "workspace": "/home/node/.openclaw/workspace-ads-paid-social-strategist"
       },
-      {
-        "id": "ads-search-query-analyst",
+      "ads-search-query-analyst": {
         "workspace": "/home/node/.openclaw/workspace-ads-search-query-analyst"
       },
-      {
-        "id": "ads-tracking-measurement-specialist",
+      "ads-tracking-measurement-specialist": {
         "workspace": "/home/node/.openclaw/workspace-ads-tracking-measurement-specialist"
       },
-      {
-        "id": "ads-ppc-campaign-strategist",
+      "ads-ppc-campaign-strategist": {
         "workspace": "/home/node/.openclaw/workspace-ads-ppc-campaign-strategist"
       },
-      {
-        "id": "ads-programmatic-display-buyer",
+      "ads-programmatic-display-buyer": {
         "workspace": "/home/node/.openclaw/workspace-ads-programmatic-display-buyer"
       },
-      {
-        "id": "ads-tracking-specialist",
+      "ads-tracking-specialist": {
         "workspace": "/home/node/.openclaw/workspace-ads-tracking-specialist"
       },
-      {
-        "id": "ads-programmatic-buyer",
+      "ads-programmatic-buyer": {
         "workspace": "/home/node/.openclaw/workspace-ads-programmatic-buyer"
       },
-      {
-        "id": "ads-ppc-strategist",
+      "ads-ppc-strategist": {
         "workspace": "/home/node/.openclaw/workspace-ads-ppc-strategist"
       }
-    ]
+    }
   },
   "tools": {
     "allow": [
@@ -248,8 +250,7 @@
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -282,8 +283,6 @@
   },
   "plugins": {
     "allow": [
-      "postgres-tool",
-      "task-notifier",
       "feishu",
       "memory-lancedb",
       "minimax",
@@ -293,14 +292,6 @@
       "memory": ""
     },
     "entries": {
-      "postgres-tool": {
-        "enabled": true,
-        "config": {}
-      },
-      "task-notifier": {
-        "enabled": true,
-        "config": {}
-      },
       "feishu": {
         "enabled": true,
         "config": {}
@@ -310,6 +301,125 @@
       },
       "kimi": {
         "enabled": true
+      }
+    }
+  },
+  "talk": {
+    "agentId": "ads"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
+    }
+  },
+  "wizard": {
+    "lastRunAt": "2026-09-07T23:31:53.373Z",
+    "lastRunVersion": "2026.9.2",
+    "lastRunCommand": "doctor",
+    "lastRunMode": "local"
+  },
+  "skills": {
+    "entries": {
+      "1password": {
+        "enabled": false
+      },
+      "blogwatcher": {
+        "enabled": false
+      },
+      "blucli": {
+        "enabled": false
+      },
+      "camsnap": {
+        "enabled": false
+      },
+      "coding-agent": {
+        "enabled": false
+      },
+      "eightctl": {
+        "enabled": false
+      },
+      "gemini": {
+        "enabled": false
+      },
+      "gh-issues": {
+        "enabled": false
+      },
+      "gifgrep": {
+        "enabled": false
+      },
+      "github": {
+        "enabled": false
+      },
+      "gog": {
+        "enabled": false
+      },
+      "goplaces": {
+        "enabled": false
+      },
+      "himalaya": {
+        "enabled": false
+      },
+      "mcporter": {
+        "enabled": false
+      },
+      "model-usage": {
+        "enabled": false
+      },
+      "nano-pdf": {
+        "enabled": false
+      },
+      "obsidian": {
+        "enabled": false
+      },
+      "openai-whisper": {
+        "enabled": false
+      },
+      "openai-whisper-api": {
+        "enabled": false
+      },
+      "openhue": {
+        "enabled": false
+      },
+      "oracle": {
+        "enabled": false
+      },
+      "ordercli": {
+        "enabled": false
+      },
+      "sag": {
+        "enabled": false
+      },
+      "sherpa-onnx-tts": {
+        "enabled": false
+      },
+      "songsee": {
+        "enabled": false
+      },
+      "sonoscli": {
+        "enabled": false
+      },
+      "spotify-player": {
+        "enabled": false
+      },
+      "summarize": {
+        "enabled": false
+      },
+      "tmux": {
+        "enabled": false
+      },
+      "trello": {
+        "enabled": false
+      },
+      "video-frames": {
+        "enabled": false
+      },
+      "xurl": {
+        "enabled": false
       }
     }
   }

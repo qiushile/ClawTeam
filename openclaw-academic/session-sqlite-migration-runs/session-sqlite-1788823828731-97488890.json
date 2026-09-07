@@ -1,0 +1,270 @@
+{
+  "manifestVersion": 3,
+  "openClawVersion": "2026.9.2",
+  "runId": "session-sqlite-1788823828731-97488890",
+  "startedAt": "2026-09-07T23:30:28.731Z",
+  "targets": [
+    {
+      "agentId": "academic-narratologist",
+      "sqlitePath": "/home/node/.openclaw/agents/academic-narratologist/agent/openclaw-agent.sqlite",
+      "storePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/sessions.json",
+      "completedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/agent_academic-narratologist_main.fe7df92a-6e4e-406e-9fbe-bd87365b3505.jsonl.imported-1788823829843",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515257",
+              "mtimeNs": "1786851534934527272",
+              "size": 576024,
+              "sha256": "d8593e32a8819f22d6513069e2377aa9f99503b27c12e11f06875c94a08f7a36"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:academic-narratologist:main",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/agent_academic-narratologist_main.fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory.jsonl.imported-1788823829844",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515270",
+              "mtimeNs": "1786851535324558664",
+              "size": 10467015,
+              "sha256": "871f59631e4d54de3b3d1da3345fec621750d9e48c2fc8d85e1a8c9a8cae1723"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:academic-narratologist:main",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/agent_academic-narratologist_main.fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory-path.json.imported-1788823829845",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515100",
+              "mtimeNs": "1786851454635829299",
+              "size": 262,
+              "sha256": "26dcfbc71be1db6ccf08394c3500541f737c66ed2f06a86290e3204b7abecbfb"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:academic-narratologist:main",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/archive-tier.f17aad0a-7071-439a-820b-a7739f08ab18.jsonl.imported-1788823829960",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515256",
+              "mtimeNs": "1786403257223784454",
+              "size": 12654444,
+              "sha256": "c2ff4e32631441de043ed6d767449f96d78163b408a48ebda6e09fa445b7654a"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/f17aad0a-7071-439a-820b-a7739f08ab18.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/archive-tier.f17aad0a-7071-439a-820b-a7739f08ab18.trajectory.jsonl.imported-1788823830081",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515084",
+              "mtimeNs": "1786403257629804537",
+              "size": 10436838,
+              "sha256": "24de82b10ed80c7ef34072ef40c56b2a6f41b88aa8d2109090fb4e7646c3ebd5"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/f17aad0a-7071-439a-820b-a7739f08ab18.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788823830720",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515271",
+              "mtimeNs": "1786851535400564781",
+              "size": 15989,
+              "sha256": "af296cb325ef7a637ffff984cb439746b1bda0387dc745984a0c17f3904fcc61"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/sessions.json"
+        }
+      ],
+      "issues": [],
+      "plannedMoves": [
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/agent_academic-narratologist_main.fe7df92a-6e4e-406e-9fbe-bd87365b3505.jsonl.imported-1788823829843",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515257",
+              "mtimeNs": "1786851534934527272",
+              "size": 576024,
+              "sha256": "d8593e32a8819f22d6513069e2377aa9f99503b27c12e11f06875c94a08f7a36"
+            },
+            "classification": "imported",
+            "reason": "verified-import-original",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "transcript",
+          "sessionKey": "agent:academic-narratologist:main",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/agent_academic-narratologist_main.fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory.jsonl.imported-1788823829844",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515270",
+              "mtimeNs": "1786851535324558664",
+              "size": 10467015,
+              "sha256": "871f59631e4d54de3b3d1da3345fec621750d9e48c2fc8d85e1a8c9a8cae1723"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:academic-narratologist:main",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/agent_academic-narratologist_main.fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory-path.json.imported-1788823829845",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515100",
+              "mtimeNs": "1786851454635829299",
+              "size": 262,
+              "sha256": "26dcfbc71be1db6ccf08394c3500541f737c66ed2f06a86290e3204b7abecbfb"
+            },
+            "classification": "protected",
+            "reason": "unimported-or-unknown-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "trajectory",
+          "sessionKey": "agent:academic-narratologist:main",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.trajectory-path.json"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/archive-tier.f17aad0a-7071-439a-820b-a7739f08ab18.jsonl.imported-1788823829960",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515256",
+              "mtimeNs": "1786403257223784454",
+              "size": 12654444,
+              "sha256": "c2ff4e32631441de043ed6d767449f96d78163b408a48ebda6e09fa445b7654a"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/f17aad0a-7071-439a-820b-a7739f08ab18.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/archive-tier.f17aad0a-7071-439a-820b-a7739f08ab18.trajectory.jsonl.imported-1788823830081",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515084",
+              "mtimeNs": "1786403257629804537",
+              "size": 10436838,
+              "sha256": "24de82b10ed80c7ef34072ef40c56b2a6f41b88aa8d2109090fb4e7646c3ebd5"
+            },
+            "classification": "protected",
+            "reason": "unreferenced-history",
+            "dependencies": [],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "unreferenced-jsonl",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/f17aad0a-7071-439a-820b-a7739f08ab18.trajectory.jsonl"
+        },
+        {
+          "archivePath": "/home/node/.openclaw/agents/academic-narratologist/session-sqlite-import-archive/legacy-store.sessions.json.imported-1788823830720",
+          "artifact": {
+            "identity": {
+              "dev": "64512",
+              "ino": "16515271",
+              "mtimeNs": "1786851535400564781",
+              "size": 15989,
+              "sha256": "af296cb325ef7a637ffff984cb439746b1bda0387dc745984a0c17f3904fcc61"
+            },
+            "classification": "imported",
+            "reason": "verified-index-import",
+            "dependencies": [
+              "/home/node/.openclaw/agents/academic-narratologist/sessions/fe7df92a-6e4e-406e-9fbe-bd87365b3505.jsonl"
+            ],
+            "disposal": {
+              "state": "retained"
+            }
+          },
+          "kind": "legacy-store",
+          "sourcePath": "/home/node/.openclaw/agents/academic-narratologist/sessions/sessions.json"
+        }
+      ],
+      "validationBeforeArchive": "passed"
+    }
+  ],
+  "completedAt": "2026-09-07T23:30:30.741Z"
+}

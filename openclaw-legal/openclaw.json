@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-12T11:04:26.240Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,14 +162,6 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
       },
@@ -175,19 +169,33 @@
         "every": "60s",
         "isolatedSession": true,
         "lightContext": true
+      },
+      "systemAgent": {
+        "agentId": "legal-policy-writer"
+      },
+      "authInheritance": {
+        "agentId": "legal-policy-writer"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "legal-policy-writer",
-        "workspace": "/home/node/.openclaw/workspace-legal-policy-writer",
-        "default": true
+    "entries": {
+      "legal-policy-writer": {
+        "workspace": "/home/node/.openclaw/workspace-legal-policy-writer"
       },
-      {
-        "id": "legal-contract-reviewer",
+      "legal-contract-reviewer": {
         "workspace": "/home/node/.openclaw/workspace-legal-contract-reviewer"
       }
-    ]
+    },
+    "ownership": "explicit"
   },
   "tools": {
     "allow": [
@@ -212,8 +220,7 @@
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -275,6 +282,19 @@
       "kimi": {
         "enabled": true
       }
+    }
+  },
+  "talk": {
+    "agentId": "legal-policy-writer"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
     }
   }
 }

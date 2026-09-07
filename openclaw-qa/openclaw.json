@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.6.5",
-    "lastTouchedAt": "2026-06-12T02:03:38.005Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,22 +162,31 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "qa"
+      },
+      "systemAgent": {
+        "agentId": "qa"
+      },
+      "authInheritance": {
+        "agentId": "qa"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "qa",
-        "default": true,
+    "entries": {
+      "qa": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -183,43 +194,35 @@
           ]
         }
       },
-      {
-        "id": "qa-evidence-collector",
+      "qa-evidence-collector": {
         "workspace": "/home/node/.openclaw/workspace-qa-evidence-collector"
       },
-      {
-        "id": "qa-accessibility-auditor",
+      "qa-accessibility-auditor": {
         "workspace": "/home/node/.openclaw/workspace-qa-accessibility-auditor"
       },
-      {
-        "id": "qa-tool-evaluator",
+      "qa-tool-evaluator": {
         "workspace": "/home/node/.openclaw/workspace-qa-tool-evaluator"
       },
-      {
-        "id": "qa-performance-benchmarker",
+      "qa-performance-benchmarker": {
         "workspace": "/home/node/.openclaw/workspace-qa-performance-benchmarker"
       },
-      {
-        "id": "qa-workflow-optimizer",
+      "qa-workflow-optimizer": {
         "workspace": "/home/node/.openclaw/workspace-qa-workflow-optimizer"
       },
-      {
-        "id": "qa-api-tester",
+      "qa-api-tester": {
         "workspace": "/home/node/.openclaw/workspace-qa-api-tester"
       },
-      {
-        "id": "qa-test-results-analyzer",
+      "qa-test-results-analyzer": {
         "workspace": "/home/node/.openclaw/workspace-qa-test-results-analyzer"
       },
-      {
-        "id": "qa-reality-checker",
+      "qa-reality-checker": {
         "workspace": "/home/node/.openclaw/workspace-qa-reality-checker"
       },
-      {
-        "id": "qa-embedded-qa-engineer",
+      "qa-embedded-qa-engineer": {
         "workspace": "/home/node/.openclaw/workspace-qa-embedded-qa-engineer"
       }
-    ]
+    },
+    "ownership": "explicit"
   },
   "tools": {
     "allow": [
@@ -247,13 +250,19 @@
       "match": {
         "channel": "feishu"
       }
+    },
+    {
+      "agentId": "qa",
+      "match": {
+        "channel": "feishu",
+        "accountId": "*"
+      }
     }
   ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -315,8 +324,7 @@
       "kimi": {
         "enabled": true
       }
-    },
-    "bundledDiscovery": "compat"
+    }
   },
   "skills": {
     "entries": {
@@ -456,5 +464,18 @@
     "lastRunVersion": "2026.6.5",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
+  },
+  "talk": {
+    "agentId": "qa"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
+    }
   }
 }

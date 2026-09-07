@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-08T06:41:31.548Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,22 +162,31 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "pm"
+      },
+      "systemAgent": {
+        "agentId": "pm"
+      },
+      "authInheritance": {
+        "agentId": "pm"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "pm",
-        "default": true,
+    "entries": {
+      "pm": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -183,27 +194,23 @@
           ]
         }
       },
-      {
-        "id": "pm-sprint-prioritizer",
+      "pm-sprint-prioritizer": {
         "workspace": "/home/node/.openclaw/workspace-pm-sprint-prioritizer"
       },
-      {
-        "id": "pm-product-manager",
+      "pm-product-manager": {
         "workspace": "/home/node/.openclaw/workspace-pm-product-manager"
       },
-      {
-        "id": "pm-feedback-synthesizer",
+      "pm-feedback-synthesizer": {
         "workspace": "/home/node/.openclaw/workspace-pm-feedback-synthesizer"
       },
-      {
-        "id": "pm-trend-researcher",
+      "pm-trend-researcher": {
         "workspace": "/home/node/.openclaw/workspace-pm-trend-researcher"
       },
-      {
-        "id": "pm-behavioral-nudge-engine",
+      "pm-behavioral-nudge-engine": {
         "workspace": "/home/node/.openclaw/workspace-pm-behavioral-nudge-engine"
       }
-    ]
+    },
+    "ownership": "explicit"
   },
   "tools": {
     "allow": [
@@ -229,13 +236,19 @@
       "match": {
         "channel": "feishu"
       }
+    },
+    {
+      "agentId": "pm",
+      "match": {
+        "channel": "feishu",
+        "accountId": "*"
+      }
     }
   ],
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -299,6 +312,19 @@
       "kimi": {
         "enabled": true
       }
+    }
+  },
+  "talk": {
+    "agentId": "pm"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
     }
   }
 }

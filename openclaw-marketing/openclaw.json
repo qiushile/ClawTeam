@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-08T06:41:28.463Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "models": {
     "mode": "merge",
@@ -160,22 +162,31 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "heartbeat": {
+        "agentId": "marketing"
+      },
+      "systemAgent": {
+        "agentId": "marketing"
+      },
+      "authInheritance": {
+        "agentId": "marketing"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "marketing",
-        "default": true,
+    "entries": {
+      "marketing": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -183,171 +194,131 @@
           ]
         }
       },
-      {
-        "id": "marketing-reddit-community-builder",
+      "marketing-reddit-community-builder": {
         "workspace": "/home/node/.openclaw/workspace-marketing-reddit-community-builder"
       },
-      {
-        "id": "marketing-book-co-author",
+      "marketing-book-co-author": {
         "workspace": "/home/node/.openclaw/workspace-marketing-book-co-author"
       },
-      {
-        "id": "marketing-kuaishou-strategist",
+      "marketing-kuaishou-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-kuaishou-strategist"
       },
-      {
-        "id": "marketing-douyin-strategist",
+      "marketing-douyin-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-douyin-strategist"
       },
-      {
-        "id": "marketing-app-store-optimizer",
+      "marketing-app-store-optimizer": {
         "workspace": "/home/node/.openclaw/workspace-marketing-app-store-optimizer"
       },
-      {
-        "id": "marketing-growth-hacker",
+      "marketing-growth-hacker": {
         "workspace": "/home/node/.openclaw/workspace-marketing-growth-hacker"
       },
-      {
-        "id": "marketing-carousel-growth-engine",
+      "marketing-carousel-growth-engine": {
         "workspace": "/home/node/.openclaw/workspace-marketing-carousel-growth-engine"
       },
-      {
-        "id": "marketing-content-creator",
+      "marketing-content-creator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-content-creator"
       },
-      {
-        "id": "content-strategist",
+      "content-strategist": {
         "workspace": "/home/node/.openclaw/workspace-content-strategist"
       },
-      {
-        "id": "material-collector",
+      "material-collector": {
         "workspace": "/home/node/.openclaw/workspace-material-collector"
       },
-      {
-        "id": "content-writer",
+      "content-writer": {
         "workspace": "/home/node/.openclaw/workspace-content-writer"
       },
-      {
-        "id": "content-editor",
+      "content-editor": {
         "workspace": "/home/node/.openclaw/workspace-content-editor"
       },
-      {
-        "id": "publisher",
+      "publisher": {
         "workspace": "/home/node/.openclaw/workspace-publisher"
       },
-      {
-        "id": "marketing-wechat-official-account-manager",
+      "marketing-wechat-official-account-manager": {
         "workspace": "/home/node/.openclaw/workspace-marketing-wechat-official-account-manager"
       },
-      {
-        "id": "marketing-tiktok-strategist",
+      "marketing-tiktok-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-tiktok-strategist"
       },
-      {
-        "id": "marketing-weibo-strategist",
+      "marketing-weibo-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-weibo-strategist"
       },
-      {
-        "id": "marketing-baidu-seo-specialist",
+      "marketing-baidu-seo-specialist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-baidu-seo-specialist"
       },
-      {
-        "id": "marketing-social-media-strategist",
+      "marketing-social-media-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-social-media-strategist"
       },
-      {
-        "id": "marketing-seo-specialist",
+      "marketing-seo-specialist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-seo-specialist"
       },
-      {
-        "id": "marketing-twitter-engager",
+      "marketing-twitter-engager": {
         "workspace": "/home/node/.openclaw/workspace-marketing-twitter-engager"
       },
-      {
-        "id": "marketing-zhihu-strategist",
+      "marketing-zhihu-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-zhihu-strategist"
       },
-      {
-        "id": "marketing-podcast-strategist",
+      "marketing-podcast-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-podcast-strategist"
       },
-      {
-        "id": "marketing-china-e-commerce-operator",
+      "marketing-china-e-commerce-operator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-china-e-commerce-operator"
       },
-      {
-        "id": "marketing-livestream-commerce-coach",
+      "marketing-livestream-commerce-coach": {
         "workspace": "/home/node/.openclaw/workspace-marketing-livestream-commerce-coach"
       },
-      {
-        "id": "marketing-private-domain-operator",
+      "marketing-private-domain-operator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-private-domain-operator"
       },
-      {
-        "id": "marketing-instagram-curator",
+      "marketing-instagram-curator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-instagram-curator"
       },
-      {
-        "id": "marketing-short-video-editing-coach",
+      "marketing-short-video-editing-coach": {
         "workspace": "/home/node/.openclaw/workspace-marketing-short-video-editing-coach"
       },
-      {
-        "id": "marketing-xiaohongshu-specialist",
+      "marketing-xiaohongshu-specialist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-xiaohongshu-specialist"
       },
-      {
-        "id": "marketing-cross-border-e-commerce-specialist",
+      "marketing-cross-border-e-commerce-specialist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-cross-border-e-commerce-specialist"
       },
-      {
-        "id": "marketing-bilibili-content-strategist",
+      "marketing-bilibili-content-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-bilibili-content-strategist"
       },
-      {
-        "id": "marketing-linkedin-content-creator",
+      "marketing-linkedin-content-creator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-linkedin-content-creator"
       },
-      {
-        "id": "marketing-xiaohongshu-operator",
+      "marketing-xiaohongshu-operator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-xiaohongshu-operator"
       },
-      {
-        "id": "marketing-weixin-channels-strategist",
+      "marketing-weixin-channels-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-weixin-channels-strategist"
       },
-      {
-        "id": "marketing-ai-citation-strategist",
+      "marketing-ai-citation-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-ai-citation-strategist"
       },
-      {
-        "id": "marketing-knowledge-commerce-strategist",
+      "marketing-knowledge-commerce-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-knowledge-commerce-strategist"
       },
-      {
-        "id": "marketing-ecommerce-operator",
+      "marketing-ecommerce-operator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-ecommerce-operator"
       },
-      {
-        "id": "marketing-wechat-operator",
+      "marketing-wechat-operator": {
         "workspace": "/home/node/.openclaw/workspace-marketing-wechat-operator"
       },
-      {
-        "id": "marketing-bilibili-strategist",
+      "marketing-bilibili-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-bilibili-strategist"
       },
-      {
-        "id": "marketing-china-market-localization-strategist",
+      "marketing-china-market-localization-strategist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-china-market-localization-strategist"
       },
-      {
-        "id": "marketing-video-optimization-specialist",
+      "marketing-video-optimization-specialist": {
         "workspace": "/home/node/.openclaw/workspace-marketing-video-optimization-specialist"
       },
-      {
-        "id": "marketing-cross-border-ecommerce",
+      "marketing-cross-border-ecommerce": {
         "workspace": "/home/node/.openclaw/workspace-marketing-cross-border-ecommerce"
       }
-    ]
+    },
+    "ownership": "explicit"
   },
   "tools": {
     "allow": [
@@ -380,8 +351,7 @@
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "channels": {
     "feishu": {
@@ -444,6 +414,19 @@
       "kimi": {
         "enabled": true
       }
+    }
+  },
+  "talk": {
+    "agentId": "marketing"
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
     }
   }
 }

@@ -1,7 +1,9 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.5.7",
-    "lastTouchedAt": "2026-05-08T06:41:26.537Z"
+    "lastTouchedVersion": "2026.9.2",
+    "migrations": {
+      "modelPolicyAllowlist": true
+    }
   },
   "wizard": {
     "lastRunAt": "2026-03-06T17:59:59.361Z",
@@ -166,22 +168,22 @@
         "kimi/kimi-k2.5": {},
         "minimax/MiniMax-M2.5": {}
       },
-      "memorySearch": {
-        "provider": "openai",
-        "remote": {
-          "baseUrl": "${ALIYUN_COMPAT_URL}",
-          "apiKey": "${ALIYUN_COMPAT_KEY}"
-        },
-        "model": "text-embedding-v4"
-      },
       "compaction": {
         "mode": "safeguard"
+      },
+      "modelPolicy": {
+        "allow": [
+          "aliyun/qwen3.6-plus",
+          "aliyun/qwen3-coder-plus",
+          "zhipu/glm-5",
+          "zhipu/glm-4.7",
+          "kimi/kimi-k2.5",
+          "minimax/MiniMax-M2.5"
+        ]
       }
     },
-    "list": [
-      {
-        "id": "orchestrator",
-        "default": true,
+    "entries": {
+      "orchestrator": {
         "workspace": "/home/node/.openclaw/workspace",
         "subagents": {
           "allowAgents": [
@@ -189,7 +191,7 @@
           ]
         }
       }
-    ]
+    }
   },
   "tools": {
     "allow": [
@@ -229,8 +231,7 @@
   "commands": {
     "native": "auto",
     "nativeSkills": "auto",
-    "restart": true,
-    "ownerDisplay": "raw"
+    "restart": true
   },
   "session": {
     "dmScope": "per-channel-peer"
@@ -273,19 +274,20 @@
       "192.168.0.2"
     ],
     "tailscale": {
-      "mode": "off",
-      "resetOnExit": false
+      "mode": "off"
     },
     "nodes": {
-      "denyCommands": [
-        "camera.snap",
-        "camera.clip",
-        "screen.record",
-        "contacts.add",
-        "calendar.add",
-        "reminders.add",
-        "sms.send"
-      ]
+      "commands": {
+        "deny": [
+          "camera.snap",
+          "camera.clip",
+          "screen.record",
+          "contacts.add",
+          "calendar.add",
+          "reminders.add",
+          "sms.send"
+        ]
+      }
     }
   },
   "plugins": {
@@ -322,6 +324,16 @@
       "kimi": {
         "enabled": true
       }
+    }
+  },
+  "memory": {
+    "search": {
+      "provider": "openai",
+      "remote": {
+        "baseUrl": "${ALIYUN_COMPAT_URL}",
+        "apiKey": "${ALIYUN_COMPAT_KEY}"
+      },
+      "model": "text-embedding-v4"
     }
   }
 }
